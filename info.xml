@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<extension key="de.systopia.birthdays" type="module">
+  <file>birthdays</file>
+  <name>SYSTOPIA Birthdays</name>
+  <description>Provides tools to keep track of your contacts' birthdays</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>systopia</author>
+    <email>endres@systopia.de</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">http://FIXME</url>
+    <url desc="Documentation">http://FIXME</url>
+    <url desc="Support">http://FIXME</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2016-04-01</releaseDate>
+  <version>0.1</version>
+  <develStage>testing</develStage>
+  <compatibility>
+    <ver>4.6</ver>
+  </compatibility>
+  <comments>Provides a report on upcoming birthdays</comments>
+  <civix>
+    <namespace>CRM/Birthdays</namespace>
+  </civix>
+</extension>
