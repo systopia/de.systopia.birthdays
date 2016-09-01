@@ -14,8 +14,8 @@
     <url desc="Support">https://github.com/systopia/de.systopia.birthdays</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2016-04-11</releaseDate>
-  <version>1.0.beta1</version>
+  <releaseDate>2016-09-01</releaseDate>
+  <version>1.0.dev4</version>
   <develStage>beta</develStage>
   <compatibility>
     <ver>4.6</ver>
