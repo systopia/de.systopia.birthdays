@@ -46,12 +46,17 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'default' => TRUE,
             'no_repeat' => TRUE,
           ),
+          'contact_type' => array(
+            'title' => ts('Contact Type', array('domain' => 'de.systopia.birthdays')),
+          ),
+          'contact_sub_type' => array(
+            'title' => ts('Contact Subtype', array('domain' => 'de.systopia.birthdays')),
+          ),
           'first_name' => array(
             'title' => ts('First Name', array('domain' => 'de.systopia.birthdays')),
             'no_repeat' => TRUE,
           ),
           'last_name' => array(
-            'dbAlias' => 'birth_date',
             'title' => ts('Last Name', array('domain' => 'de.systopia.birthdays')),
             'no_repeat' => TRUE,
           ),
@@ -76,6 +81,24 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           ),
           'id' => array(
             'no_display' => TRUE,
+          ),
+          'birth_date' => array(
+            'title' => ts('Birth Date', array('domain' => 'de.systopia.birthdays')),
+            'type' => CRM_Utils_Type::T_DATE,
+          ),
+          'birthday' => array(
+            'title' => ts('Birthday', array('domain' => 'de.systopia.birthdays')),
+            'type' => CRM_Utils_Type::T_DATE,
+          ),
+          'age' => array(
+            'title' => ts('Age', array('domain' => 'de.systopia.birthdays')),
+            'type' => CRM_Utils_Type::T_INT,
+          ),
+          'contact_type' => array(
+            'title' => ts('Contact Type', array('domain' => 'de.systopia.birthdays')),
+          ),
+          'contact_sub_type' => array(
+            'title' => ts('Contact Subtype', array('domain' => 'de.systopia.birthdays')),
           ),
         ),
         'grouping' => 'contact-fields',
@@ -152,6 +175,13 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
       if (array_key_exists('filters', $table)) {
         foreach ($table['filters'] as $fieldName => $field) {
           $clause = NULL;
+          if ($fieldName == 'birthday') {
+            $field['name'] = "DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR) ";
+          }
+          elseif ($fieldName == 'age') {
+            $field['dbAlias'] = "(YEAR(DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR)) - YEAR({$this->_aliases['civicrm_contact']}.birth_date)) ";
+          }
+
           if (CRM_Utils_Array::value('operatorType', $field) & CRM_Utils_Type::T_DATE) {
             $relative = CRM_Utils_Array::value("{$fieldName}_relative", $this->_params);
             $from     = CRM_Utils_Array::value("{$fieldName}_from", $this->_params);
@@ -249,5 +279,16 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         break;
       }
     }
+  }
+
+  /**
+   * Override getOperationPair to add 'in', 'not in' for 'age' field
+   */
+  public function getOperationPair($type = 'string', $fieldName = NULL) {
+    $operations = parent::getOperationPair($type, $fieldName);
+    if ($fieldName == 'age') {
+      $operations += parent::getOperationPair(CRM_Report_Form::OP_MULTISELECT, $fieldName);
+    }
+    return $operations;
   }
 }
