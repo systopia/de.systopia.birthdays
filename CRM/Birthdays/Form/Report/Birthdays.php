@@ -15,7 +15,7 @@
 
 /**
  * Report on upcoming birthdays
- * 
+ *
  * loosely based on https://stackoverflow.com/questions/18747853/mysql-select-upcoming-birthdays#18748008
  */
 class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
@@ -28,7 +28,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
   protected $_customGroupExtends = NULL;
 
-  protected $_customGroupGroupBy = FALSE; 
+  protected $_customGroupGroupBy = FALSE;
 
 
   function __construct() {
@@ -210,6 +210,9 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
     // only contacts with birthdays
     $clauses[] = "({$this->_aliases['civicrm_contact']}.birth_date IS NOT NULL)";
+
+    // no deleted contacts (see https://github.com/systopia/de.systopia.birthdays/issues/10)
+    $clauses[] = "(({$this->_aliases['civicrm_contact']}.is_deleted IS NULL) OR ({$this->_aliases['civicrm_contact']}.is_deleted = 0))";
 
     $this->_where = "WHERE " . implode(' AND ', $clauses);
 
