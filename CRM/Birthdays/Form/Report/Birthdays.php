@@ -44,7 +44,6 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'title' => ts('Contact Name', array('domain' => 'de.systopia.birthdays')),
             'required' => TRUE,
             'default' => TRUE,
-            'no_repeat' => TRUE,
           ),
           'contact_type' => array(
             'title' => ts('Contact Type', array('domain' => 'de.systopia.birthdays')),
@@ -54,11 +53,9 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           ),
           'first_name' => array(
             'title' => ts('First Name', array('domain' => 'de.systopia.birthdays')),
-            'no_repeat' => TRUE,
           ),
           'last_name' => array(
             'title' => ts('Last Name', array('domain' => 'de.systopia.birthdays')),
-            'no_repeat' => TRUE,
           ),
           'birth_date' => array(
             'title' => ts('Birth Date', array('domain' => 'de.systopia.birthdays')),
@@ -244,27 +241,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
   function alterDisplay(&$rows) {
     // custom code to alter rows
     $entryFound = FALSE;
-    $checkList = array();
     foreach ($rows as $rowNum => $row) {
-
-      if (!empty($this->_noRepeats) && $this->_outputMode != 'csv') {
-        // not repeat contact display names if it matches with the one
-        // in previous row
-        $repeatFound = FALSE;
-        foreach ($row as $colName => $colVal) {
-          if (CRM_Utils_Array::value($colName, $checkList) &&
-            is_array($checkList[$colName]) &&
-            in_array($colVal, $checkList[$colName])
-          ) {
-            $rows[$rowNum][$colName] = "";
-            $repeatFound = TRUE;
-          }
-          if (in_array($colName, $this->_noRepeats)) {
-            $checkList[$colName][] = $colVal;
-          }
-        }
-      }
-
       if (array_key_exists('civicrm_contact_sort_name', $row) &&
         $rows[$rowNum]['civicrm_contact_sort_name'] &&
         array_key_exists('civicrm_contact_id', $row)
