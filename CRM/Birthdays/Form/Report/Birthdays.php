@@ -261,6 +261,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         $entryFound = TRUE;
       }
 
+      $entryFound = $this->alterDisplayAddressFields($row, $rows, $rowNum, NULL, NULL) ? TRUE : $entryFound;
+
       if (!$entryFound) {
         break;
       }
