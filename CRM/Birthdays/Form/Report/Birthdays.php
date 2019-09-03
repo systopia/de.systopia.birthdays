@@ -105,7 +105,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         'fields' => array('email' => NULL),
         'grouping' => 'contact-fields',
       ),
-    );
+    ) + $this->getAddressColumns(array('group_by' => FALSE));
     $this->_groupFilter = TRUE;
     $this->_tagFilter = TRUE;
     parent::__construct();
@@ -163,6 +163,12 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
                         ON {$this->_aliases['civicrm_contact']}.id =
                            {$this->_aliases['civicrm_email']}.contact_id AND
                            {$this->_aliases['civicrm_email']}.is_primary = 1\n";
+    }
+    if ($this->isTableSelected('civicrm_address')) {
+      $this->_from .= "
+            LEFT JOIN civicrm_address {$this->_aliases['civicrm_address']}
+                   ON ({$this->_aliases['civicrm_contact']}.id = {$this->_aliases['civicrm_address']}.contact_id AND
+                      {$this->_aliases['civicrm_address']}.is_primary = 1 ) ";
     }
   }
 
@@ -254,6 +260,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         $rows[$rowNum]['civicrm_contact_sort_name_hover'] = ts("View Contact Summary for this Contact.", array('domain' => 'de.systopia.birthdays'));
         $entryFound = TRUE;
       }
+
+      $entryFound = $this->alterDisplayAddressFields($row, $rows, $rowNum, NULL, NULL) ? TRUE : $entryFound;
 
       if (!$entryFound) {
         break;
