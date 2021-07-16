@@ -105,6 +105,13 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         'fields' => array('email' => NULL),
         'grouping' => 'contact-fields',
       ),
+      'civicrm_phone' => array(
+        'dao' => 'CRM_Core_DAO_Phone',
+        'fields' => array(
+          'phone' => NULL,
+        ),
+        'grouping' => 'contact-fields',
+      ),
     ) + $this->getAddressColumns(array('group_by' => FALSE));
     $this->_groupFilter = TRUE;
     $this->_tagFilter = TRUE;
@@ -170,6 +177,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
                    ON ({$this->_aliases['civicrm_contact']}.id = {$this->_aliases['civicrm_address']}.contact_id AND
                       {$this->_aliases['civicrm_address']}.is_primary = 1 ) ";
     }
+
+    $this->joinPhoneFromContact();
   }
 
   function where() {
