@@ -258,7 +258,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $entryFound = FALSE;
     foreach ($rows as $rowNum => $row) {
       if (array_key_exists('civicrm_contact_sort_name', $row) &&
-        $rows[$rowNum]['civicrm_contact_sort_name'] &&
+        $row['civicrm_contact_sort_name'] &&
         array_key_exists('civicrm_contact_id', $row)
       ) {
         $url = CRM_Utils_System::url("civicrm/contact/view",
