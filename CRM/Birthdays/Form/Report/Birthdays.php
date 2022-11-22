@@ -281,7 +281,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
   /**
    * Override getOperationPair to add 'in', 'not in' for 'age' field
    */
-  public function getOperationPair($type = 'string', $fieldName = NULL) {
+  public function getOperationPair($type = 'string', $fieldName = NULL): array
+  {
     $operations = parent::getOperationPair($type, $fieldName);
     if ($fieldName == 'age') {
       $operations += parent::getOperationPair(CRM_Report_Form::OP_MULTISELECT, $fieldName);
