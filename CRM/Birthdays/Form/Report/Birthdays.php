@@ -26,105 +26,105 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
   protected $_summary = NULL;
 
-  protected $_customGroupExtends = array('Contact', 'Individual');
+  protected $_customGroupExtends = ['Contact', 'Individual'];
 
   protected $_customGroupGroupBy = FALSE;
 
 
   function __construct() {
-    $this->_columns = array(
-      'civicrm_contact' => array(
+    $this->_columns = [
+      'civicrm_contact' => [
         'dao' => 'CRM_Contact_DAO_Contact',
-        'fields' => array(
-          'id' => array(
+        'fields' => [
+          'id' => [
             'no_display' => TRUE,
             'required' => TRUE,
-          ),
-          'sort_name' => array(
-            'title' => ts('Contact Name', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'sort_name' => [
+            'title' => ts('Contact Name', ['domain' => 'de.systopia.birthdays']),
             'required' => TRUE,
             'default' => TRUE,
-          ),
-          'contact_type' => array(
-            'title' => ts('Contact Type', array('domain' => 'de.systopia.birthdays')),
-          ),
-          'contact_sub_type' => array(
-            'title' => ts('Contact Subtype', array('domain' => 'de.systopia.birthdays')),
-          ),
-          'first_name' => array(
-            'title' => ts('First Name', array('domain' => 'de.systopia.birthdays')),
-          ),
-          'last_name' => array(
-            'title' => ts('Last Name', array('domain' => 'de.systopia.birthdays')),
-          ),
-          'birth_date' => array(
-            'title' => ts('Birth Date', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'contact_type' => [
+            'title' => ts('Contact Type', ['domain' => 'de.systopia.birthdays']),
+          ],
+          'contact_sub_type' => [
+            'title' => ts('Contact Subtype', ['domain' => 'de.systopia.birthdays']),
+          ],
+          'first_name' => [
+            'title' => ts('First Name', ['domain' => 'de.systopia.birthdays']),
+          ],
+          'last_name' => [
+            'title' => ts('Last Name', ['domain' => 'de.systopia.birthdays']),
+          ],
+          'birth_date' => [
+            'title' => ts('Birth Date', ['domain' => 'de.systopia.birthdays']),
             'type' => CRM_Utils_Type::T_DATE,
-          ),
-          'birthday' => array(
-            'title' => ts('Birthday', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'birthday' => [
+            'title' => ts('Birthday', ['domain' => 'de.systopia.birthdays']),
             'type' => CRM_Utils_Type::T_DATE,
             'required' => TRUE,
             'default' => TRUE,
-          ),
-          'age' => array(
-            'title' => ts('Age', array('domain' => 'de.systopia.birthdays')),
-          ),
-        ),
-        'filters' => array(
-          'sort_name' => array(
-            'title' => ts('Contact Name', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'age' => [
+            'title' => ts('Age', ['domain' => 'de.systopia.birthdays']),
+          ],
+        ],
+        'filters' => [
+          'sort_name' => [
+            'title' => ts('Contact Name', ['domain' => 'de.systopia.birthdays']),
             'operator' => 'like',
-          ),
-          'id' => array(
+          ],
+          'id' => [
             'no_display' => TRUE,
-          ),
-          'birth_date' => array(
-            'title' => ts('Birth Date', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'birth_date' => [
+            'title' => ts('Birth Date', ['domain' => 'de.systopia.birthdays']),
             'type' => CRM_Utils_Type::T_DATE,
-          ),
-          'birthday' => array(
-            'title' => ts('Birthday', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'birthday' => [
+            'title' => ts('Birthday', ['domain' => 'de.systopia.birthdays']),
             'type' => CRM_Utils_Type::T_DATE,
-          ),
-          'age' => array(
-            'title' => ts('Age', array('domain' => 'de.systopia.birthdays')),
+          ],
+          'age' => [
+            'title' => ts('Age', ['domain' => 'de.systopia.birthdays']),
             'type' => CRM_Utils_Type::T_INT,
-          ),
-          'contact_type' => array(
-            'title' => ts('Contact Type', array('domain' => 'de.systopia.birthdays')),
-          ),
-          'contact_sub_type' => array(
-            'title' => ts('Contact Subtype', array('domain' => 'de.systopia.birthdays')),
-          ),
-        ),
+          ],
+          'contact_type' => [
+            'title' => ts('Contact Type', ['domain' => 'de.systopia.birthdays']),
+          ],
+          'contact_sub_type' => [
+            'title' => ts('Contact Subtype', ['domain' => 'de.systopia.birthdays']),
+          ],
+        ],
         'grouping' => 'contact-fields',
-      ),
-      'civicrm_email' => array(
+      ],
+      'civicrm_email' => [
         'dao' => 'CRM_Core_DAO_Email',
-        'fields' => array('email' => NULL),
+        'fields' => ['email' => NULL],
         'grouping' => 'contact-fields',
-      ),
-      'civicrm_phone' => array(
+      ],
+      'civicrm_phone' => [
         'dao' => 'CRM_Core_DAO_Phone',
-        'fields' => array(
+        'fields' => [
           'phone' => NULL,
-        ),
+        ],
         'grouping' => 'contact-fields',
-      ),
-    ) + $this->getAddressColumns(array('group_by' => FALSE));
+      ],
+        ] + $this->getAddressColumns(['group_by' => FALSE]);
     $this->_groupFilter = TRUE;
     $this->_tagFilter = TRUE;
     parent::__construct();
   }
 
   function preProcess() {
-    $this->assign('reportTitle', ts('Birthday Report', array('domain' => 'de.systopia.birthdays')));
+    $this->assign('reportTitle', ts('Birthday Report', ['domain' => 'de.systopia.birthdays']));
     parent::preProcess();
   }
 
   function select() {
-    $select = $this->_columnHeaders = array();
+    $select = $this->_columnHeaders = [];
 
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('fields', $table)) {
@@ -182,7 +182,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
   }
 
   function where() {
-    $clauses = array();
+    $clauses = [];
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('filters', $table)) {
         foreach ($table['filters'] as $fieldName => $field) {
@@ -245,7 +245,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $this->buildACLClause($this->_aliases['civicrm_contact']);
     $sql = $this->buildQuery(TRUE);
 
-    $rows = array();
+    $rows = [];
     $this->buildRows($sql, $rows);
 
     $this->formatDisplay($rows);
@@ -258,7 +258,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $entryFound = FALSE;
     foreach ($rows as $rowNum => $row) {
       if (array_key_exists('civicrm_contact_sort_name', $row) &&
-        $rows[$rowNum]['civicrm_contact_sort_name'] &&
+        $row['civicrm_contact_sort_name'] &&
         array_key_exists('civicrm_contact_id', $row)
       ) {
         $url = CRM_Utils_System::url("civicrm/contact/view",
@@ -266,7 +266,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           $this->_absoluteUrl
         );
         $rows[$rowNum]['civicrm_contact_sort_name_link'] = $url;
-        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = ts("View Contact Summary for this Contact.", array('domain' => 'de.systopia.birthdays'));
+        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = ts("View Contact Summary for this Contact.", ['domain' => 'de.systopia.birthdays']);
         $entryFound = TRUE;
       }
 
@@ -281,7 +281,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
   /**
    * Override getOperationPair to add 'in', 'not in' for 'age' field
    */
-  public function getOperationPair($type = 'string', $fieldName = NULL) {
+  public function getOperationPair($type = 'string', $fieldName = NULL): array
+  {
     $operations = parent::getOperationPair($type, $fieldName);
     if ($fieldName == 'age') {
       $operations += parent::getOperationPair(CRM_Report_Form::OP_MULTISELECT, $fieldName);
