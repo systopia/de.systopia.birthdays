@@ -18,7 +18,7 @@ require_once 'birthdays.civix.php';
 /**
  * Implements hook_civicrm_config().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
 function birthdays_civicrm_config(&$config) {
   _birthdays_civix_civicrm_config($config);
@@ -27,7 +27,7 @@ function birthdays_civicrm_config(&$config) {
 /**
  * Implements hook_civicrm_install().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
 function birthdays_civicrm_install() {
   _birthdays_civix_civicrm_install();
@@ -36,7 +36,7 @@ function birthdays_civicrm_install() {
 /**
  * Implements hook_civicrm_uninstall().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall/
  */
 function birthdays_civicrm_uninstall() {
   _birthdays_civix_civicrm_uninstall();
