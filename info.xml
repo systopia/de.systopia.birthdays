@@ -6,7 +6,7 @@
   <license>AGPL-3.0</license>
   <maintainer>
     <author>SYSTOPIA</author>
-    <email>endres@systopia.de</email>
+    <email>info@systopia.de</email>
   </maintainer>
   <urls>
     <url desc="Main Extension Page">https://github.com/systopia/de.systopia.birthdays</url>
@@ -20,7 +20,7 @@
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>Provides a report on upcoming birthdays</comments>
+  <comments>Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.</comments>
   <civix>
     <namespace>CRM/Birthdays</namespace>
     <format>22.10.0</format>
