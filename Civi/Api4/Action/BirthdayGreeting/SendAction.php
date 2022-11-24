@@ -17,15 +17,30 @@
 
 declare(strict_types = 1);
 
-namespace Civi\Api4;
+namespace Civi\Api4\Action\BirthdayGreeting;
 
-use Civi\Api4\Generic\AbstractEntity;
-use Civi\Api4\Action\SendBirthdayGreetings\GetAction;
+use Civi\Api4\BirthdayGreeting;
+use Civi\Api4\Generic\AbstractAction;
+use Civi\Api4\Generic\Result;
 
-final class SendBirthdayGreetings extends AbstractEntity {
+final class SendAction extends AbstractAction {
 
-    public static function get(): GetAction {
-        return \Civi::service(GetAction::class);
+  public function __construct() {
+  }
+
+  /**
+   * @inheritDoc
+   *
+   * @throws \API_Exception
+   */
+  public function _run(Result $result): void {
+      $result[] = [
+          'row' => 0,
+          'key' => 'test'
+      ];
+  }
+
+    public function fields() {
+        return [];
     }
-
 }

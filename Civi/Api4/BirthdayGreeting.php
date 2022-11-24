@@ -17,27 +17,15 @@
 
 declare(strict_types = 1);
 
-namespace Civi\Api4\Action\SendBirthdayGreetings;
+namespace Civi\Api4;
 
-use Civi\Api4\SendBirthdayGreetings;
-use Civi\Api4\Generic\AbstractGetAction;
-use Civi\Api4\Generic\Result;
+use Civi\Api4\Generic\AbstractEntity;
+use Civi\Api4\Action\BirthdayGreeting\SendAction;
 
-final class GetAction extends AbstractGetAction {
+final class BirthdayGreeting extends AbstractEntity {
 
-  public function __construct() {
-  }
+    public static function send($checkPermissions = true): SendAction {
+        return (new SendAction())->setCheckPermissions($checkPermissions);
+    }
 
-  /**
-   * @inheritDoc
-   *
-   * @throws \API_Exception
-   */
-  public function _run(Result $result): void {
-      $result[] = [
-          'row' => 0,
-          'key' => 'test'
-      ];
-
-  }
 }
