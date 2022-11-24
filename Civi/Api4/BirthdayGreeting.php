@@ -28,4 +28,8 @@ final class BirthdayGreeting extends AbstractEntity {
         return (new SendAction())->setCheckPermissions($checkPermissions);
     }
 
+    public static function getFields()
+    {
+       return [];
+    }
 }

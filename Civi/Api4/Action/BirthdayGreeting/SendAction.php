@@ -40,7 +40,5 @@ final class SendAction extends AbstractAction {
       ];
   }
 
-    public function fields() {
-        return [];
-    }
+
 }
