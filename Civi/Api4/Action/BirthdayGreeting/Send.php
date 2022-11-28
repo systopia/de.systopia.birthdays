@@ -23,20 +23,15 @@ use Civi\Api4\BirthdayGreeting;
 use Civi\Api4\Generic\AbstractAction;
 use Civi\Api4\Generic\Result;
 
-final class SendAction extends AbstractAction {
-
-  public function __construct() {
-  }
+final class Send extends \Civi\Api4\Generic\AbstractAction {
 
   /**
    * @inheritDoc
    *
-   * @throws \API_Exception
    */
   public function _run(Result $result): void {
       $result[] = [
-          'row' => 0,
-          'key' => 'test'
+          'status' => 'successful'
       ];
   }
 
