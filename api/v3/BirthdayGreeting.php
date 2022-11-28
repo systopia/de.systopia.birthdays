@@ -15,8 +15,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once 'birthdays.civix.php';
-
 
 /**
  * birthdays.send
@@ -26,14 +24,13 @@ require_once 'birthdays.civix.php';
  *
  * @return array
  *   API3 response
+ * @throws API_Exception
  * @throws CiviCRM_API3_Exception
  */
-function civicrm_api3_birthday_greeting_send($params)
+function civicrm_api3_birthday_greeting_send(array $params): array
 {
-    // todo add apiv4 call
-    sleep(3);
+    $results = \Civi\Api4\BirthdayGreeting::send()
+        ->execute();
 
-    $return = ['done'];
-
-    return civicrm_api3_create_success($return, $params, 'birthdays', 'send');
+    return civicrm_api3_create_success($results, $params, 'birthdays', 'send');
 }
