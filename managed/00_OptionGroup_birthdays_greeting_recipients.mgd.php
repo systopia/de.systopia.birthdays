@@ -3,7 +3,7 @@ return [
     [
         'name' => 'OptionGroup_birthday_greeting_recipients',
         'entity' => 'OptionGroup',
-        'cleanup' => 'always',
+        'cleanup' => 'never',
         'update' => 'unmodified',
         'params' => [
             'version' => 4,
