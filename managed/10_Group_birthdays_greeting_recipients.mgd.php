@@ -1,27 +1,23 @@
 <?php
 return [
     [
-        'name' => 'group_birthday_greeting_recipients',
+        'name' => 'Group_birthday_greeting_recipients',
         'entity' => 'Group',
-        'title' => ts('Birthday greeting recipients group'),
-        'description' => ts('Every contact in this group is elected to get a birthday email if birthday is set correctly'),
-        'source' => NULL,
-        'saved_search_id' => NULL,
-        'is_active' => TRUE,
-        'visibility' => 'User and User Admin Only',
-        'where_clause' => NULL,
-        'select_tables' => NULL,
-        'where_tables' => NULL,
-        'group_type' => [
-            '2',
+        'cleanup' => 'never',
+        'update' => 'unmodified',
+        'params' => [
+            'version' => 4,
+            'values' => [
+                'name' => 'birthday_greeting_recipients_group',
+                'title' => ts('Birthday greeting recipients group'),
+                'description' => ts('Every contact in this group is elected to get a birthday email if birthday is set correctly'),
+                'data_type' => NULL,
+                'is_reserved' => TRUE,
+                'is_active' => TRUE,
+                'is_locked' => TRUE,
+                'option_value_fields' => ['name', 'label', 'description', 'icon'],
+            ],
         ],
-        'cache_date' => NULL,
-        'refresh_date' => NULL,
-        'parents' => NULL,
-        'children' => NULL,
-        'is_hidden' => FALSE,
-        'is_reserved' => FALSE,
-        'created_id' => NULL,
-        'modified_id' => NULL
-    ],
+        'match' => ['name'],
+    ]
 ];
