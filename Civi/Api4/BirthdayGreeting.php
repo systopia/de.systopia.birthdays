@@ -26,11 +26,6 @@ use Civi\Api4\Action\BirthdayGreeting\Send;
 final class BirthdayGreeting extends AbstractEntity {
 
     public static function send($checkPermissions = true): Send {
-
-        $mailer = new \CRM_Birthdays_Mailer();
-
-        $mailer->send_mails();
-
         return (new Send(__CLASS__,__FUNCTION__))->setCheckPermissions($checkPermissions);
     }
 

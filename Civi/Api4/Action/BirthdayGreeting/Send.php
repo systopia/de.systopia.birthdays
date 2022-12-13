@@ -30,6 +30,11 @@ final class Send extends \Civi\Api4\Generic\AbstractAction {
    *
    */
   public function _run(Result $result): void {
+
+      $mailer = new \CRM_Birthdays_Mailer();
+
+      $mailer->send_mails();
+
       $result[] = [
           'status' => 'successful'
       ];
