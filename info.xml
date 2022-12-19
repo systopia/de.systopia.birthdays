@@ -23,7 +23,7 @@
   <comments>Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.</comments>
   <civix>
     <namespace>CRM/Birthdays</namespace>
-    <format>22.10.0</format>
+    <format>22.12.1</format>
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
