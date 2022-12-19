@@ -17,22 +17,28 @@
 
 declare(strict_types = 1);
 
-namespace Civi\Api4;
+namespace Civi\Api4\Action\Birthdays;
 
-use Civi\Api4\Generic\AbstractEntity;
-use Civi\Api4\Generic\BasicGetFieldsAction;
-use Civi\Api4\Action\BirthdayGreeting\Send;
+use Civi\Api4\BirthdayGreeting;
+use Civi\Api4\Generic\AbstractAction;
+use Civi\Api4\Generic\Result;
 
-final class BirthdayGreeting extends AbstractEntity {
+final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
 
-    public static function send($checkPermissions = true): Send {
-        return (new Send(__CLASS__,__FUNCTION__))->setCheckPermissions($checkPermissions);
-    }
+  /**
+   * @inheritDoc
+   *
+   */
+  public function _run(Result $result): void {
 
-    public static function getFields($checkPermissions = true) {
-        return (new BasicGetFieldsAction(__CLASS__, __FUNCTION__, function ($getFieldsAction) {
-            return [];
-        }))->setCheckPermissions($checkPermissions);
-    }
+      $mailer = new \CRM_Birthdays_Mailer();
+
+      $mailer->send_mails();
+
+      $result[] = [
+          'status' => 'successful'
+      ];
+  }
+
 
 }

@@ -17,7 +17,7 @@
 
 
 /**
- * birthdays.send
+ * birthdays.sendGreetings
  *
  * @param array $params
  *   API call parameters
@@ -25,12 +25,12 @@
  * @return array
  *   API3 response
  * @throws API_Exception
- * @throws CiviCRM_API3_Exception
+ * @throws CiviCRM_API3_Exception|CRM_Core_Exception
  */
-function civicrm_api3_birthday_greeting_send(array $params): array
+function civicrm_api3_birthday_greeting_sendGreetings(array $params): array
 {
-    $results = \Civi\Api4\BirthdayGreeting::send()
+    $results = \Civi\Api4\Birthdays::sendGreetings()
         ->execute();
 
-    return civicrm_api3_create_success($results, $params, 'birthdays', 'send');
+    return civicrm_api3_create_success($results, $params, 'birthdays', 'sendGreetings');
 }
