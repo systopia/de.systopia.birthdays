@@ -27,7 +27,7 @@
  * @throws API_Exception
  * @throws CiviCRM_API3_Exception|CRM_Core_Exception
  */
-function civicrm_api3_birthday_greeting_sendGreetings(array $params): array
+function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
     $results = \Civi\Api4\Birthdays::sendGreetings()
         ->execute();

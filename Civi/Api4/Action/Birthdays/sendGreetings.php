@@ -19,8 +19,6 @@ declare(strict_types = 1);
 
 namespace Civi\Api4\Action\Birthdays;
 
-use Civi\Api4\BirthdayGreeting;
-use Civi\Api4\Generic\AbstractAction;
 use Civi\Api4\Generic\Result;
 
 final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
