@@ -27,6 +27,7 @@
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
+    <mixin>menu-xml@1.0.0</mixin>
   </mixins>
   <classloader>
     <psr0 prefix="CRM_" path=""/>
