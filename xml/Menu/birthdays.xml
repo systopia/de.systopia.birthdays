@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <menu>
   <item>
-    <path>civicrm/birthdays</path>
+    <path>civicrm/admin/birthdays</path>
     <page_callback>CRM_Birthdays_Form_Settings</page_callback>
     <title>Birthdays Extension Settings</title>
     <access_arguments>administer CiviCRM</access_arguments>
