@@ -26,13 +26,33 @@
 
 <h2><ts>Template selection</ts></h2>
 <div id="help">{ts}Please select a template for birthday greeting emails{/ts}</div>
-{foreach from=$elementNames item=elementName}
-  <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
-    <div class="content">{$form.$elementName.html}</div>
+
+
+<div class="crm-section">
+    <div class="label">{$form.message_template_id.label}</div>
+    <div class="content">{$form.message_template_id.html}</div>
     <div class="clear"></div>
-  </div>
-{/foreach}
+</div>
+
+<h2><ts>Sender email selection</ts></h2>
+<div id="help">{ts}Please select an outgoing email address for birthday greeting emails{/ts}</div>
+<div class="crm-section">
+    <div class="label">{$form.birthday_sender_email_address.label}</div>
+    <div class="content">{$form.birthday_sender_email_address.html}</div>
+    <div class="clear"></div>
+</div>
+
+<h2><ts>Interesting facts</ts></h2>
+<div id="help">{ts}There is a contact filter which only selects contacts with:<br>
+        <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
+            whenever you add or change things changes-->
+            <li>contact which are part of the birthday group</li>
+            <li>contact_type = 'Individual'</li>
+            <li>opt_out = 0</li>
+            <li>do_not_email = 0</li>
+        </ul>
+    {/ts}</div>
+
 {* FOOTER *}
 <div class="crm-submit-buttons">
 {include file="CRM/common/formButtons.tpl" location="bottom"}
