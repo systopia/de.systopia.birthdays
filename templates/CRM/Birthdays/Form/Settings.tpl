@@ -9,7 +9,7 @@
 <div id="help">{ts}This extension (
         <a href="https://github.com/systopia/de.systopia.birthdays">de.systopia.birthdays</a>
         ) allows
-        you to build a report on upcoming birthdays and provices an API for sending birthday greetings
+        you to build a report on upcoming birthdays and provides an API for sending birthday greetings
         automatically via e-mail.{/ts}</div>
 <br>
 <h2>
