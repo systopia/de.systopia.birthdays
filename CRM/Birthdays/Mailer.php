@@ -17,16 +17,107 @@
 
 class CRM_Birthdays_Mailer
 {
-
+    private int $template_id;
+    private string $from_mail;
     public function __construct()
     {
+        $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE); // todo if null?
+        if (empty($this->template_id)) {
+            throw new Exception('Message template not found. Please set a template in birthday settings');
+        }
+
+        $this->from_mail = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);
+        if (empty($this->from_mail)) {
+            throw new Exception('Pre selected outgoing email not found. Please set am outgoing email address in birthday settings');
+        }
     }
 
-    public function send_mails() {
+    /**
+     * @param $contacts
+     * @return int error count
+     */
+    public function send_mails_and_write_activity($contacts): int
+    {
+        $error_count = 0;
+        foreach ($contacts as $contact_id => $contact_info) {
+            try {
+                $this->send_mail($contact_id, $this->from_mail, $contact_info['email'], $this->template_id);
+                $this->create_activity($contact_id, ts('Successful birthday greeting mail'), 'Success!');
+            } catch (Exception $exception) {
+                $this->create_activity($contact_id, ts('FAILED birthday greeting mail'), 'fixme add params');
+                ++$error_count;
+                // todo write $exception to logs?
+            }
+        }
+        return $error_count;
+    }
 
-        $template_name = 'Sample CiviMail Newsletter Template'; // fixme test
+    /**
+     * @throws CiviCRM_API3_Exception
+     * @throws CRM_Core_Exception|API_Exception
+     */
+    private function send_mail($contact_id, $from_email_adress, $to_email_address, $template_id) {
+        try {
+            civicrm_api3('MessageTemplate', 'send', [
+                'check_permissions' => 0,
+                'id'                => $template_id,
+                'to_name'           => civicrm_api3('Contact', 'getvalue', ['id' => $contact_id, 'return' => 'display_name']),
+                'from'              => trim($from_email_adress),
+                'contact_id'        => $contact_id,
+                'to_email'          => trim($to_email_address),
+            ]);
+        } catch (Exception $exception) {
+            throw new \API_Exception('MessageTemplate exception');
+        }
+    }
 
 
-        echo "test";
+
+
+    /**
+     * @return void
+     */
+    private function create_activity($target_id, $title, $description): void
+    {
+        $target_id = 4;
+
+        $results = \Civi\Api4\Activity::create()
+            ->addValue('debug', TRUE)
+            ->addValue('activity_type_id', 19)
+            ->addValue('subject', 'test subject')
+            ->addValue('status_id', 2)
+            ->addValue('activity_date_time', '2022-12-18 13:45:00') // fixme use date("YmdHis")
+            ->addValue('target_contact_id', [$target_id])
+            ->addValue('activity_type_id:icon', '')
+            ->addValue('activity_type_id:description', 'Bulk Email Sent.')
+            ->addValue('activity_type_id:label', 'Email')
+            ->addValue('is_test', TRUE) // fixme on release
+            ->addValue('is_auto', TRUE)
+            ->addValue('is_deleted', FALSE)
+            ->addValue('is_star', FALSE)
+            ->addValue('source_contact_id', 4) // ->addValue('source_contact_id', 'user_contact_id')
+            ->execute();
+
+
+
+        /*civicrm_api3('Activity', 'create', [
+            'activity_type_id' => $this->activity_type_id,
+            'subject' => E::ts("Document (CiviOffice)"),
+            'status_id' => 'Completed',
+            'activity_date_time' => date("YmdHis"),
+            'target_id' => [$contact_id],
+            'details' => '<p>' . E::ts(
+                    'Created from document: %1',
+                    [1 => '<code>' . CRM_Civioffice_Configuration::getConfig()->getDocument($this->document_uri)->getName() . '</code>']
+                ) . '</p>'
+                . '<p>' . E::ts('Live Snippets used:') . '</p>'
+                . (!empty($live_snippet_values) ? '<table><tr>' . implode(
+                        '</tr><tr>',
+                        array_map(function ($name, $value) use ($live_snippets) {
+                            return '<th>' . $live_snippets[$name]['label'] . '</th>'
+                                . '<td>' . $value . '</td>';
+                        }, array_keys($live_snippet_values), $live_snippet_values)
+                    ) . '</tr></table>' : ''),
+        ]);*/
     }
 }
