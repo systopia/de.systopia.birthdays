@@ -3,6 +3,11 @@
 <div class="crm-submit-buttons">
 {include file="CRM/common/formButtons.tpl" location="top"}
 </div>
+<h2><ts>General</ts></h2>
+<div id="help">{ts}The <a href="https://github.com/systopia/de.systopia.birthdays">de.systopia.birthdays</a>
+extension allows you to build a report on upcoming birthdays and provices an API for sending birthday greetings
+automatically via e-mail.{/ts}</div>
+<br>
 <h2><ts>Setup for automatical mailings</ts></h2>
 <div id="help">{ts}<b>Step 1:</b> Select and save a template at this page.
             <br>
@@ -34,6 +39,8 @@
     <div class="clear"></div>
 </div>
 
+<br>
+
 <h2><ts>Sender email selection</ts></h2>
 <div id="help">{ts}Please select an outgoing email address for birthday greeting emails{/ts}</div>
 <div class="crm-section">
@@ -42,14 +49,16 @@
     <div class="clear"></div>
 </div>
 
+<br>
+
 <h2><ts>Interesting facts</ts></h2>
 <div id="help">{ts}There is a contact filter which only selects contacts with:<br>
         <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
             whenever you add or change things changes-->
-            <li>contact which are part of the birthday group</li>
-            <li>contact_type = 'Individual'</li>
-            <li>opt_out = 0</li>
-            <li>do_not_email = 0</li>
+            <li>contacts which are part of the birthday group</li>
+            <li><code>contact_type</code> = 'Individual'</li>
+            <li><code>opt_out</code> = 0</li>
+            <li><code>do_not_email</code> = 0</li>
         </ul>
     {/ts}</div>
 

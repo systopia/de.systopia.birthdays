@@ -4,6 +4,8 @@ This is a simple CiviCRM report giving you a list of the upcoming birthdays of
 your contacts. Simply install the extension, create a new report, and use
 "Available for Dashboard" to give you the list upon login.
 
+**NEW Feature:** This extension now provices an API for sending birthday greetings automatically via e-mail.
+
 ![image](https://civicrm.org/sites/civicrm.org/files/birthday_report.png)
 
 The extension is currently localised for English and German, but it since the
