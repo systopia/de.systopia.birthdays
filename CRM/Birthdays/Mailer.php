@@ -18,7 +18,11 @@
 class CRM_Birthdays_Mailer
 {
     private int $template_id;
-    private string $from_mail;
+    private string $email_address_from;
+
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE); // todo if null?
@@ -26,8 +30,9 @@ class CRM_Birthdays_Mailer
             throw new Exception('Message template not found. Please set a template in birthday settings');
         }
 
-        $this->from_mail = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);
-        if (empty($this->from_mail)) {
+        $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);;
+        $this->email_address_from = $this->get_sender_email_address_from_id($email_id);
+        if (empty($this->email_address_from)) {
             throw new Exception('Pre selected outgoing email not found. Please set am outgoing email address in birthday settings');
         }
     }
@@ -41,7 +46,7 @@ class CRM_Birthdays_Mailer
         $error_count = 0;
         foreach ($contacts as $contact_id => $contact_info) {
             try {
-                $this->send_mail($contact_id, $this->from_mail, $contact_info['email'], $this->template_id);
+                $this->send_mail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
                 $this->create_activity($contact_id, ts('Successful birthday greeting mail'), 'Success!');
             } catch (Exception $exception) {
                 $this->create_activity($contact_id, ts('FAILED birthday greeting mail'), 'fixme add params');
@@ -53,8 +58,8 @@ class CRM_Birthdays_Mailer
     }
 
     /**
-     * @throws CiviCRM_API3_Exception
-     * @throws CRM_Core_Exception|API_Exception
+     * @throws CRM_Core_Exception
+     * @throws Exception
      */
     private function send_mail($contact_id, $from_email_adress, $to_email_address, $template_id) {
         try {
@@ -67,7 +72,7 @@ class CRM_Birthdays_Mailer
                 'to_email'          => trim($to_email_address),
             ]);
         } catch (Exception $exception) {
-            throw new \API_Exception('MessageTemplate exception');
+            throw new Exception('MessageTemplate exception');
         }
     }
 
@@ -119,5 +124,20 @@ class CRM_Birthdays_Mailer
                         }, array_keys($live_snippet_values), $live_snippet_values)
                     ) . '</tr></table>' : ''),
         ]);*/
+    }
+
+    /**
+     * @return mixed
+     */
+    private function get_sender_email_address_from_id(int $id)
+    {
+        // resolve/beautify sender (use name instead of value of the option_value)
+        $from_addresses = CRM_Core_OptionGroup::values('from_email_address');
+        if (isset($from_addresses)) {
+            return $from_addresses[$id];
+        } else {
+            reset($from_addresses);
+            return $from_addresses;
+        }
     }
 }

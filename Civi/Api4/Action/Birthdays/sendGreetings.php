@@ -40,7 +40,6 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
           $result[] = [
               'error' => ts("There is a problem collecting birthday contacts")  // TODO: Add error
           ];
-          exit(); // TODO FIXME ?
       }
 
       $mailer = new \CRM_Birthdays_Mailer();
