@@ -4,8 +4,9 @@
 {include file="CRM/common/formButtons.tpl" location="top"}
 </div>
 <h2><ts>General</ts></h2>
-<div id="help">{ts}The <a href="https://github.com/systopia/de.systopia.birthdays">de.systopia.birthdays</a>
-extension allows you to build a report on upcoming birthdays and provices an API for sending birthday greetings
+<div id="help">{ts}This extension (<a href="https://github.com/systopia/de.systopia.birthdays">de.systopia
+        .birthdays</a>) allows
+                                                                                                             you to build a report on upcoming birthdays and provices an API for sending birthday greetings
 automatically via e-mail.{/ts}</div>
 <br>
 <h2><ts>Setup for automatical mailings</ts></h2>
