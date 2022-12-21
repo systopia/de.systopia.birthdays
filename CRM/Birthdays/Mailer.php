@@ -77,10 +77,13 @@ class CRM_Birthdays_Mailer
     }
 
 
-
-
     /**
+     * @param $target_id
+     * @param $title
+     * @param $description
      * @return void
+     * @throws CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     private function create_activity($target_id, $title, $description): void
     {
@@ -127,9 +130,10 @@ class CRM_Birthdays_Mailer
     }
 
     /**
+     * @param int $id
      * @return mixed
      */
-    private function get_sender_email_address_from_id(int $id)
+    private function get_sender_email_address_from_id(int $id): mixed
     {
         // resolve/beautify sender (use name instead of value of the option_value)
         $from_addresses = CRM_Core_OptionGroup::values('from_email_address');
