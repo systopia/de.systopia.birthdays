@@ -76,7 +76,7 @@
 </h2>
 <div id="help">{ts}There is a contact filter which only selects contacts with:{/ts}<br>
     <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
-            whenever you add or change things changes-->
+            whenever you add or change things here-->
         <li>{ts}contacts which are part of the birthday group{/ts}</li>
         <li><code>contact_type</code> = 'Individual'</li>
         <li><code>opt_out</code> = 0</li>
