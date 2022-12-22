@@ -20,10 +20,16 @@
         Select and save a template at this page.
         <br>
         <b>Step 2:</b>
-        You need to configure CiviCRM's "Scheduled Jobs" in order to send birthday messages
+        You need to configure CiviCRM's "Scheduled Jobs" (
+        <code>/civicrm/admin/job</code>
+        ) in order to send birthday
+        messages
         automatically.
         This can be found in "Administration Console". Please select the "Birthdays" API call in combination with
-        "sendGreetings" and fill in details and an execution time of this job.
+        "sendgreetings" (lowercase) and select the "daily" execution time of this job. "Command parameters" field
+        can be
+        left
+        empty.
         <br>
     {/ts}</div>
 <br>
