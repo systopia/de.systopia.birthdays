@@ -15,8 +15,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-declare(strict_types = 1);
-
 namespace Civi\Api4\Action\Birthdays;
 
 use Civi\Api4\Generic\Result;
@@ -30,26 +28,27 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
    */
   public function _run(Result $result): void {
 
-      $from_email_addresses = \CRM_Core_OptionGroup::values('from_email_address');
-
-
       try {
           $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
           $contacts = $birthday_contacts->get_birthday_contacts_of_today();
       } catch (\Exception $exception) {
+          $contacts = 0;
           $result[] = [
-              'error' => ts("There is a problem collecting birthday contacts")  // TODO: Add error
+              'error' => ts("There is a problem collecting birthday contacts: $exception")
           ];
       }
-
-      $mailer = new \CRM_Birthdays_Mailer();
-      $error_count = $mailer->send_mails_and_write_activity($contacts);
+      if (!empty($contacts)) {
+          $mailer = new \CRM_Birthdays_Mailer();
+          $error_count = $mailer->send_mails_and_write_activity($contacts);
+      } else {
+          $error_count = 0;
+      }
 
       $contacts_count = count($contacts);
       $send_count = $contacts_count - $error_count;
 
       $result[] = [
-          'status' => ts("Executed: $send_count out of $contacts_count mails have been sent")
+          'status' => ts("Executed: $send_count out of $contacts_count mails/activities processed")
       ];
   }
 }

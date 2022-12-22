@@ -24,13 +24,25 @@
  *
  * @return array
  *   API3 response
- * @throws API_Exception
- * @throws CiviCRM_API3_Exception|CRM_Core_Exception
+ *
  */
 function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
-    $results = \Civi\Api4\Birthdays::sendGreetings()
-        ->execute();
+    try {
+        $results = \Civi\Api4\Birthdays::sendGreetings()
+            ->execute();
+        $error = [];
 
-    return civicrm_api3_create_success($results, $params, 'birthdays', 'sendGreetings');
+        if ($results->first()['error']) {
+            foreach ($results as $results_sub) {
+                foreach ($results_sub as $result_key => $result_value) {
+                    $error[$result_key] = $result_value;
+                }
+            }
+            return civicrm_api3_create_error('error', $error);
+        }
+        return civicrm_api3_create_success($results, $params, 'birthdays', 'sendgreetings');
+    } catch (Exception $exception) {
+        return civicrm_api3_create_error(ts("Error found in APIv3 wrapper calling APIv4: $exception"));
+    }
 }

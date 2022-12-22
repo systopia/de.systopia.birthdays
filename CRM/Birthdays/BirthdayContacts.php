@@ -32,18 +32,17 @@ class CRM_Birthdays_BirthdayContacts
      */
     public function get_birthday_contacts_of_today(): array
     {
-        throw new Exception('fixme test');
         try {
-            // FIXME!!: only today!!
-
-            /* Important:
-                Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings whenever
-                this query changes
-            */
-            $sql = "SELECT civicrm_contact.id, civicrm_contact.birth_date, civicrm_email.email FROM civicrm_contact
+            /*
+             * Important:
+             * Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings whenever
+             * whenever this query changes
+             */
+            $sql = "SELECT civicrm_contact.id AS contact_id, civicrm_contact.birth_date AS birth_date, civicrm_email.email AS email FROM civicrm_contact
                         INNER JOIN civicrm_group_contact group_contact ON civicrm_contact.id = group_contact.contact_id
                         INNER JOIN civicrm_email ON civicrm_contact.id = civicrm_email.contact_id
-                            WHERE civicrm_contact.birth_date IS NOT NULL
+                            WHERE DAY(birth_date) = DAY(CURDATE())
+                              AND MONTH(birth_date) = MONTH(CURDATE())
                               AND civicrm_contact.contact_type = 'Individual'
                               AND civicrm_contact.is_opt_out = 0
                               AND civicrm_contact. do_not_email = 0
@@ -52,12 +51,15 @@ class CRM_Birthdays_BirthdayContacts
             $query = CRM_Core_DAO::executeQuery($sql);
             $query_result = [];
             while ($query->fetch()) {
-                $query_result[$query->id] = [$query->birth_date, $query->email];
+                $query_result[$query->contact_id] =
+                    [
+                        'birth_date' => $query->birth_date,
+                        'email' => $query->email
+                    ];
             }
             return $query_result;
         } catch (Exception  $exception) {
-            // todo write $exception to logs or activity
-            throw new Exception();
+            throw new Exception("SQL query failed: $exception");
         }
     }
 
@@ -74,8 +76,8 @@ class CRM_Birthdays_BirthdayContacts
                 ->execute();
             return $groups[0]['id'];
         } catch (Exception $exception) {
-            \Civi::log()->debug('Birthdays: Default group called birthday_greeting_recipients_group not found');
-            throw new \API_Exception('Birthdays: Default group called birthday_greeting_recipients_group not found');
+            \Civi::log()->debug("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
+            throw new \API_Exception("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
         }
     }
 
