@@ -68,7 +68,9 @@
 <h2>
     <ts>Sender email selection</ts>
 </h2>
-<div id="help">{ts}Please select an outgoing email address for birthday greeting emails{/ts}</div>
+<div id="help">{ts}Please select an outgoing email address for birthday greeting emails<br>
+        Those email addressed can be added using the "Administration Console" --> "From Email Address Options"{/ts}
+    <br>Path: <code>/civicrm/admin/options/from_email_address</code></div>
 <div class="crm-section">
     <div class="label">{$form.birthday_sender_email_address_id.label}</div>
     <div class="content">{$form.birthday_sender_email_address_id.html}</div>
