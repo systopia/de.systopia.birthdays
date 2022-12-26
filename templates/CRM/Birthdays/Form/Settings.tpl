@@ -10,7 +10,10 @@
         <a href="https://github.com/systopia/de.systopia.birthdays">de.systopia.birthdays</a>
         ) allows
         you to build a report on upcoming birthdays and provides an API for sending birthday greetings
-        automatically via e-mail.{/ts}</div>
+        automatically via e-mail.
+        <br>
+        Please note: With default settings no email will be sent after upgrading to this verison. Mails only will be
+        sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs{/ts}</div>
 <br>
 <h2>
     <ts>Setup for automatical mailings</ts>
@@ -68,7 +71,8 @@
 <h2>
     <ts>Sender email selection</ts>
 </h2>
-<div id="help">{ts}Please select an outgoing email address for birthday greeting emails<br>
+<div id="help">{ts}Please select an outgoing email address for birthday greeting emails
+        <br>
         Those email addressed can be added using the "Administration Console" --> "From Email Address Options"{/ts}
     <br>Path: <code>/civicrm/admin/options/from_email_address</code></div>
 <div class="crm-section">
