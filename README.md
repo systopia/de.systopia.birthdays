@@ -26,7 +26,7 @@ Extension Settings"
 An activity is written every for successful / faild email greetings
 ![image](docs/images/birthday_activity.png)
 
----
+## Localisation
 
 The extension is currently localised for English and German, but it since the
 infrastructure is there, adding another language should be pretty easy. We're
