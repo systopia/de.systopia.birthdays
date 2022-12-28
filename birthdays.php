@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | Birthday Report                                        |
-| Copyright (C) 2016 SYSTOPIA                            |
+| Copyright (C) 2022 SYSTOPIA                            |
 | Author: B. Endres (endres@systopia.de)                 |
 +--------------------------------------------------------+
 | This program is released as free software under the    |
