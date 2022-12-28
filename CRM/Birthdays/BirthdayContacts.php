@@ -35,7 +35,7 @@ class CRM_Birthdays_BirthdayContacts
         try {
             /*
              * Important:
-             * Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings whenever
+             * Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings
              * whenever this query changes
              */
             $sql = "SELECT civicrm_contact.id AS contact_id, civicrm_contact.birth_date AS birth_date, civicrm_email.email AS email FROM civicrm_contact
