@@ -30,31 +30,40 @@ class CRM_Birthdays_BirthdayContacts
     /**
      * @throws Exception
      */
-    public function get_birthday_contacts_of_today(): array
+    public function get_birthday_contacts_of_today($is_debug = false): array
     {
         try {
+            if ($is_debug) {
+                $limit = $is_debug ? 'LIMIT 10' : '';
+                $day_filter = ''; // just show 10 contacts no matter which birthdate
+            } else {
+                $limit = '';
+                $day_filter = "AND DAY(birth_date) = DAY(CURDATE())
+                              AND MONTH(birth_date) = MONTH(CURDATE())";
+            }
+
             /*
              * Important:
              * Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings
              * whenever this query changes
              */
+
             $sql = "SELECT civicrm_contact.id AS contact_id, civicrm_contact.birth_date AS birth_date, civicrm_email.email AS email FROM civicrm_contact
                         INNER JOIN civicrm_group_contact group_contact ON civicrm_contact.id = group_contact.contact_id
                         INNER JOIN civicrm_email ON civicrm_contact.id = civicrm_email.contact_id
-                            WHERE DAY(birth_date) = DAY(CURDATE())
-                              AND MONTH(birth_date) = MONTH(CURDATE())
-                              AND civicrm_contact.contact_type = 'Individual'
+                              WHERE civicrm_contact.contact_type = 'Individual'
+                              {$day_filter}
                               AND civicrm_contact.is_opt_out = 0
                               AND civicrm_contact. do_not_email = 0
                               AND group_contact.group_id = {$this->group_id}
-                              AND civicrm_email.is_primary = 1";
+                              AND civicrm_email.is_primary = 1 {$limit}";
             $query = CRM_Core_DAO::executeQuery($sql);
             $query_result = [];
             while ($query->fetch()) {
                 $query_result[$query->contact_id] =
                     [
                         'birth_date' => $query->birth_date,
-                        'email' => $query->email
+                        'email' => $is_debug ? 'test@example.com' : $query->email
                     ];
             }
             return $query_result;
