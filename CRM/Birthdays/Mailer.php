@@ -105,7 +105,7 @@ class CRM_Birthdays_Mailer
      * @param int $id
      * @return mixed
      */
-    private function get_sender_email_address_from_id(int $id): mixed
+    private function get_sender_email_address_from_id(int $id)
     {
         // this is something like: "to database" <database@domain.com>
         $email_from_name_combination_string = CRM_Core_OptionGroup::values('from_email_address', NULL, NULL, NULL, ' AND value = ' . $id);
