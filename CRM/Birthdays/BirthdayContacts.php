@@ -30,11 +30,11 @@ class CRM_Birthdays_BirthdayContacts
     /**
      * @throws Exception
      */
-    public function get_birthday_contacts_of_today($is_debug = false): array
+    public function get_birthday_contacts_of_today($is_debug_email = ''): array
     {
         try {
-            if ($is_debug) {
-                $limit = $is_debug ? 'LIMIT 10' : '';
+            if (!empty($is_debug_email)) {
+                $limit = 'LIMIT 10';
                 $day_filter = ''; // just show 10 contacts no matter which birthdate
             } else {
                 $limit = '';
@@ -63,7 +63,7 @@ class CRM_Birthdays_BirthdayContacts
                 $query_result[$query->contact_id] =
                     [
                         'birth_date' => $query->birth_date,
-                        'email' => $is_debug ? 'test@example.com' : $query->email
+                        'email' => $is_debug_email ?: $query->email
                     ];
             }
             return $query_result;
