@@ -92,7 +92,7 @@ class CRM_Birthdays_Mailer
     {
         Activity::create()
             ->addValue('activity_type_id', 3) // = email
-            ->addValue('activity_type_id:label', 'Email')
+            ->addValue('activity_type_id:label', 'E-Mail')
             ->addValue('subject', ts($title))
             ->addValue('details', $description)
             ->addValue('source_contact_id', $target_id)
