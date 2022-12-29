@@ -28,6 +28,14 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
    */
   public function _run(Result $result): void {
 
+      /*
+       * A debug email can be set here which leads to:
+       * - writing of successful and failed activities will be suppressed
+       * - all emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
+       * - day filter is de-activated which allows to send up to 10 mails
+       */
+      $is_debug_email = '';
+
       try {
           $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
           $contacts = $birthday_contacts->get_birthday_contacts_of_today(''); // set output email to enable debug mode
@@ -39,7 +47,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       }
       if (!empty($contacts)) {
           $mailer = new \CRM_Birthdays_Mailer();
-          $error_count = $mailer->send_mails_and_write_activity($contacts);
+          $error_count = $mailer->send_mails_and_write_activity($contacts, empty($is_debug_email));
       } else {
           $error_count = 0;
       }

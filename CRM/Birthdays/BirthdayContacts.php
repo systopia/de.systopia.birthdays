@@ -35,7 +35,7 @@ class CRM_Birthdays_BirthdayContacts
         try {
             if (!empty($is_debug_email)) {
                 $limit = 'LIMIT 10';
-                $day_filter = ''; // just show 10 contacts no matter which birthdate
+                $day_filter = 'AND birth_date IS NOT NULL'; // just show up to 10 contacts no matter which birthdate
             } else {
                 $limit = '';
                 $day_filter = "AND DAY(birth_date) = DAY(CURDATE())
