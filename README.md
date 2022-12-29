@@ -13,7 +13,7 @@ With version 1.5 this extension now provides an API for sending birthday greetin
 CiviCRM's scheduled jobs.
 
 Please note: With default settings no email will be sent after upgrading to this verison. Mails only will be
-sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs
+sent if triggering an APIv3 or APIv4 birthday action manually or by using scheduled jobs
 
 ### Settings Menu
 This page provides infos and settings for configuring the email template and outoing email adress. 
