@@ -42,7 +42,11 @@ class CRM_Birthdays_Mailer
 
     /**
      * @param $contacts
+     * @param $write_activity
      * @return int error count
+     * @throws API_Exception
+     * @throws CRM_Core_Exception
+     * @throws UnauthorizedException
      */
     public function send_mails_and_write_activity($contacts, $write_activity): int
     {
@@ -86,7 +90,7 @@ class CRM_Birthdays_Mailer
      * @param $description
      * @return void
      * @throws API_Exception
-     * @throws UnauthorizedException
+     * @throws UnauthorizedException|CRM_Core_Exception
      */
     private function create_activity($target_id, $title, $description): void
     {
