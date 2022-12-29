@@ -122,7 +122,6 @@
             <li>{ts}day filter is de-activated which selects up to 10 mails where a birth date is set{/ts}</li>
         </ul>
     {ts}Set <code>$is_debug_email = '';</code> to de-aktivate debug mode.{/ts}
-    </div>
 </div>
 
 

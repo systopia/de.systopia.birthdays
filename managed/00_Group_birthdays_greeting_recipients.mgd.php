@@ -3,7 +3,7 @@ return [
     [
         'name' => 'Group_birthday_greeting_recipients',
         'entity' => 'Group',
-        'cleanup' => 'never',
+        'cleanup' => 'always',
         'update' => 'unmodified',
         'params' => [
             'version' => 4,
