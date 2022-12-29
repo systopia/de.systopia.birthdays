@@ -117,10 +117,11 @@
         <p>{ts}A debug email can be set there which leads to:{/ts}</p>
         <ul> <!-- Please sync this documentation with mentioned php class path-->
             <li>{ts}writing of successful and failed activities will be suppressed{/ts}</li>
-            <li>{ts}all emails will be redirected to this email set there ( $is_debug_email =
-                    'all_mails_to@thisdomain.com'; ){/ts}</li>
+            <li>{ts}all emails will be redirected to this email set there ( <code>$is_debug_email =
+                    'all_mails_to@thisdomain.com';</code> ){/ts}</li>
             <li>{ts}day filter is de-activated which selects up to 10 mails where a birth date is set{/ts}</li>
         </ul>
+    {ts}Set <code>$is_debug_email = '';</code> to de-aktivate debug mode.{/ts}
     </div>
 </div>
 
