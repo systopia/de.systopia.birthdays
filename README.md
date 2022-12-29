@@ -6,7 +6,7 @@ This is a simple CiviCRM report giving you a list of the upcoming birthdays of
 your contacts. Simply install the extension, create a new report, and use
 "Available for Dashboard" to give you the list upon login.
 
-![image](docs/images/birthday_report.png)
+![image](/docs/images/birthday_report.png)
 
 ## Automatical birthday mailings (NEW feature)
 With version 1.5 this extension now provides an API for sending birthday greetings automatically via e-mail using 
@@ -20,11 +20,11 @@ This page provides infos and settings for configuring the email template and out
 It can be found in 
 "adminstration console" --> "Birthdays 
 Extension Settings" 
-![image](docs/images/birthday_seetings.png)
+![image](/docs/images/birthday_seetings.png)
 
 ### Activities
 An activity is written every for successful / faild email greetings
-![image](docs/images/birthday_activity.png)
+![image](/docs/images/birthday_activity.png)
 
 ## Localisation
 
