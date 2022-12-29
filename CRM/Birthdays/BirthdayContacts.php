@@ -44,7 +44,9 @@ class CRM_Birthdays_BirthdayContacts
 
             /*
              * Important:
-             * Please sync documentation text in localhost/alle/civicrm/admin/birthdays/settings
+             * Please sync documentation text here:
+             * /templates/CRM/Birthdays/Form/Settings.tpl
+             * which represents following url: /civicrm/admin/birthdays/settings
              * whenever this query changes
              */
 
