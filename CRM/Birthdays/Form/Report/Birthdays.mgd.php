@@ -15,6 +15,7 @@ return [
       'description' => ts('Report on upcoming birthdays', ['domain' => 'de.systopia.birthdays']),
       'class_name' => 'CRM_Birthdays_Form_Report_Birthdays',
       'report_url' => 'contact/birthdays',
+      'cleanup'=> 'always',
       'component' => '',
     ],
   ],
