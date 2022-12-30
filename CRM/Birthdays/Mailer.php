@@ -112,8 +112,9 @@ class CRM_Birthdays_Mailer
     private function get_sender_email_address_from_id(int $id): ?string
     {
         // this is something like: "to database" <database@domain.com>
-        $email_from_name_combination_string = CRM_Core_OptionGroup::values('from_email_address', NULL, NULL, NULL, ' AND value = ' . $id);
+        $email_name_combined_with_email_address_string =
+            CRM_Core_OptionGroup::values('from_email_address', NULL, NULL, NULL, ' AND value = ' . $id);
 
-        return CRM_Utils_Mail::pluckEmailFromHeader($email_from_name_combination_string[$id]);
+        return CRM_Utils_Mail::pluckEmailFromHeader($email_name_combined_with_email_address_string[$id]);
     }
 }
