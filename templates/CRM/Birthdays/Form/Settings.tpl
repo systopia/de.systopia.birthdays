@@ -7,12 +7,12 @@
     {ts}General{/ts}
 </h2>
 <div id="help">{ts}This open source extension
-        ( <a href="https://github.com/systopia/de.systopia.birthdays#readme">de .systopia.birthdays</a> )
+        ( <a href="https://github.com/systopia/de.systopia.birthdays#readme">de.systopia.birthdays</a> )
         allows you to build a report on upcoming birthdays and provides an API for sending birthday
         greetings automatically via e-mail.{/ts}
     <br>
-    {ts}Please note: With default settings no email will be sent after upgrading to this verison.
-        Mails only will besent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs.{/ts}
+    {ts}Please note: With default settings no email will be sent after upgrading to this version.
+        Mails only will be sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs.{/ts}
 </div>
 <br>
 <h2>
@@ -42,7 +42,7 @@
 </h2>
 <div id="help">
     {ts}Please select a previously created or edited template for birthday greeting emails.<br>
-Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}<br>
+    Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}<br>
 </div>
 <div class="crm-section">
     <div class="label">{$form.message_template_id.label}</div>
@@ -51,7 +51,7 @@ Make sure to reload this page if your template is not listed here. Templates nee
 </div>
 <br>
 <h2>
-    {ts}Step 3: Sender email preperation{/ts}
+    {ts}Step 3: Sender email preparation{/ts}
 </h2>
 <div id="help">{ts}This step is optional if you are happy with the provided options in the upcomming section.{/ts}
     <br>
@@ -67,7 +67,7 @@ Make sure to reload this page if your template is not listed here. Templates nee
     {ts}Step 4: Sender email selection{/ts}
 </h2>
 <div id="help">{ts}Please select an outgoing email address for birthday greeting emails.{/ts}<br>
-    {ts}If this is empty please set up an email address as described in the prvious sectoin{/ts}
+    {ts}If this is empty please set up an email address as described in the previous section{/ts}
     <br>
 </div>
 <div class="crm-section">
@@ -125,7 +125,7 @@ Make sure to reload this page if your template is not listed here. Templates nee
     {ts}Step 8: Testing{/ts}
 </h2>
 <div id="help">
-    {ts}Check if you want to use the special debug mode descibed in the next chapter to avoid traces
+    {ts}Check if you want to use the special debug mode described in the next chapter to avoid traces
     in your system{/ts}<br>
     {ts}Again use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "
     <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
@@ -150,7 +150,7 @@ Make sure to reload this page if your template is not listed here. Templates nee
 <div id="help"><b>{ts}A debug mode can be set programatically:{/ts}</b><br>
     {ts}Navigate to:{/ts} <code>/de.systopia.birthdays/CRM/Birthdays/BirthdayContacts.php</code><br>
     {ts}Set:<code>$is_debug_email = 'all-birthday-mails-go-to@this-domain.com';</code>using an code editor.{/ts}
-    <p>{ts}This changes the extensions behaviour to:{/ts}</p>
+    <p>{ts}This changes the extensions behavior to:{/ts}</p>
     <ul> <!-- Please sync this documentation with mentioned php class path-->
         <li>{ts}Adding "successful" or "failed" activities will be suppressed{/ts}</li>
         <li>{ts}All emails will be redirected to this email set above{/ts}</li>
