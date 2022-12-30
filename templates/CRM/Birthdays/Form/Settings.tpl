@@ -49,6 +49,9 @@
     <div class="content">{$form.message_template_id.html}</div>
     <div class="clear"></div>
 </div>
+<div class="crm-submit-buttons">
+    {include file="CRM/common/formButtons.tpl" location="bottom"}
+</div>
 <br>
 <h2>
     {ts}Step 3: Sender email preparation{/ts}
@@ -74,6 +77,9 @@
     <div class="label">{$form.birthday_sender_email_address_id.label}</div>
     <div class="content">{$form.birthday_sender_email_address_id.html}</div>
     <div class="clear"></div>
+</div>
+<div class="crm-submit-buttons">
+    {include file="CRM/common/formButtons.tpl" location="bottom"}
 </div>
 <br>
 <h2>
