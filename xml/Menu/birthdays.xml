@@ -6,6 +6,6 @@
     <title>Birthdays Extension Settings</title>
     <access_arguments>administer CiviCRM</access_arguments>
     <adminGroup>Communications</adminGroup>
-    <desc>Configure template for automatic birthday email notifications</desc>
+    <desc>Configure template and outgoing email address for automatic birthday email notifications</desc>
   </item>
 </menu>
