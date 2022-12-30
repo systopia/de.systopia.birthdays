@@ -16,10 +16,8 @@ Please note: With default settings no email will be sent after upgrading to this
 sent if triggering an APIv3 or APIv4 birthday action manually or by using scheduled jobs
 
 ### Settings Menu
-This page provides infos and settings for configuring the email template and outoing email adress. 
-It can be found in 
-"adminstration console" --> "Birthdays 
-Extension Settings" 
+This page provides a step by step integrated settings guide on how to setup your Civi for auto birthday email 
+notifications
 ![image](/docs/images/birthday_seetings.png)
 
 ### Activities
