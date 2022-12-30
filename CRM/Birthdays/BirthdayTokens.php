@@ -29,10 +29,11 @@ class CRM_Birthdays_BirthdayTokens
             $contacts = \Civi\Api4\Contact::get()
                 ->addSelect('id', 'birth_date')
                 ->addWhere('id', 'IN', $contact_ids)
+                ->addWhere('birth_date', 'IS NOT NULL')
                 ->execute();
             foreach ($contacts  as $key => $contact_info ) {
-                $age = self::calculate_birthday($contact_info['birth_date']);
-                $values[$contact_info['id']]['contact.age'] = $age;
+                $values[$contact_info['id']]['contact.age'] =
+                    self::calculate_birthday($contact_info['birth_date']);
             }
         } catch (Exception $exception) {
             Civi::log()->debug("Birthdays: Failed to fetch and  calculate age: $exception");
