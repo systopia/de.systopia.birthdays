@@ -70,7 +70,7 @@ class CRM_Birthdays_BirthdayContacts
             }
             return $query_result;
         } catch (Exception  $exception) {
-            throw new Exception("SQL query failed: $exception");
+            throw new Exception("Birthdays: SQL query failed: $exception");
         }
     }
 
