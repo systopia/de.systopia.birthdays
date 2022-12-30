@@ -137,8 +137,8 @@
     <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
     {ts}Find the previous created birthday job in this list{/ts}<br>
     {ts}Click: "more"{/ts}<br>
-    {ts}Click: "Execute Now" <b>Warning: Actual emails will be sent to the contacts email addresses
-    if everything works as expected!</b>{/ts}<br>
+    {ts}Click: "Execute Now" <b>(Warning: Actual emails will be sent to the contacts email addresses
+    if everything works as expected!)</b>{/ts}<br>
     {ts}Your previoulsy selected contacts should now receive an email with birthday greetings{/ts}
     {ts}Make sure to check what type of activity description had been added to your selected contacts.{/ts}
     <br>
