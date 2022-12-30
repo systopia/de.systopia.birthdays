@@ -41,8 +41,9 @@ class CRM_Birthdays_BirthdayTokens
     }
 
     /**
-     * @param string $iso_birth_date iso birthdate
-     * @return int
+     * Calculates age of given ISO date string
+     * @param string $iso_birth_date ISO birthdate
+     * @return int age
      */
     private static function calculate_birthday(string $iso_birth_date): int
     {
