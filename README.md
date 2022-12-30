@@ -18,6 +18,8 @@ sent if triggering an APIv3 or APIv4 birthday action manually or by using schedu
 ### Settings Menu
 This page provides a step by step integrated settings guide on how to setup your Civi for auto birthday email 
 notifications
+
+Naviage to: "Administer" --> "Administration Console" --> "Birthdays Extension Settings"
 ![image](/docs/images/birthday_settings.png)
 
 ### Activities
