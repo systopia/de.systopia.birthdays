@@ -15,6 +15,21 @@
 
 require_once 'birthdays.civix.php';
 
+
+/**
+ * Hook implementation: New Tokens
+ */
+function birthdays_civicrm_tokens( &$tokens ) {
+    CRM_Birthdays_BirthdayTokens::addTokens($tokens);
+}
+
+/**
+ * Hook implementation: New Tokens
+ */
+function birthdays_civicrm_tokenValues(&$values, $contact_ids, $job = null, $tokens = [], $context = null) {
+    CRM_Birthdays_BirthdayTokens::tokenValues($values, $contact_ids, $job, $tokens, $context);
+}
+
 /**
  * Implements hook_civicrm_config().
  *
