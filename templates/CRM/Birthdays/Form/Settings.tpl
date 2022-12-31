@@ -160,7 +160,7 @@
     <ul> <!-- Please sync this documentation with mentioned php class path-->
         <li>{ts}Adding "successful" or "failed" activities will be suppressed{/ts}</li>
         <li>{ts}All emails will be redirected to this email set above{/ts}</li>
-        <li>{ts}A filter is de-activated which selects up to 10 mails where a random birth date is set{/ts}</li>
+        <li>{ts}A filter is de-activated which selects the first 10 contacts/mails where a birth date is set{/ts}</li>
     </ul>
     <br>
     {ts}Set an empty string <code>$is_debug_email = '';</code> to de-activate debug mode.{/ts}

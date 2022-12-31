@@ -30,9 +30,9 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
 
       /*
        * A debug email can be set here which leads to:
-       * - writing of successful and failed activities will be suppressed
-       * - all emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
-       * - day filter is de-activated which allows to send up to 10 mails
+       * - Adding "successful" or "failed" activities will be suppressed
+       * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
+       * - A filter is de-activated which selects the first 10 contacts/mails where a birth date is set
        */
       $is_debug_email = '';
 
