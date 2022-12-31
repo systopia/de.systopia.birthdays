@@ -17,7 +17,7 @@
 
 
 /**
- * birthdays.sendGreetings
+ * birthdays.sendgreetings
  *
  * @param array $params
  *   API call parameters
