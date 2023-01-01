@@ -58,5 +58,8 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       $result[] = [
           'status' => ts("Executed: $send_count out of $contacts_count mails/activities processed")
       ];
+      $result[] = [
+          'error' => "testssss"
+      ];
   }
 }
