@@ -38,7 +38,7 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
                 $return_info[$result_key] = $result_value;
             }
         }
-        if ($results['error']) return civicrm_api3_create_error('error', $return_info['error']);
+        if ($return_info['error']) return civicrm_api3_create_error("Birthdays: Rethrow error from APIv4: {$return_info['error']}");
 
         return civicrm_api3_create_success($return_info, $params, 'birthdays', 'sendgreetings');
     } catch (Exception $exception) {
