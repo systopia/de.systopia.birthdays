@@ -31,17 +31,16 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
     try {
         $results = \Civi\Api4\Birthdays::sendGreetings()
             ->execute();
-        $error = [];
+        $return_info = [];
 
-        if ($results->first()['error']) {
-            foreach ($results as $results_sub) {
-                foreach ($results_sub as $result_key => $result_value) {
-                    $error[$result_key] = $result_value;
-                }
+        foreach ($results as $results_sub) {
+            foreach ($results_sub as $result_key => $result_value) {
+                $return_info[$result_key] = $result_value;
             }
-            return civicrm_api3_create_error('error', $error);
         }
-        return civicrm_api3_create_success($results, $params, 'birthdays', 'sendgreetings');
+        if ($results['error']) return civicrm_api3_create_error('error', $return_info['error']);
+
+        return civicrm_api3_create_success($return_info, $params, 'birthdays', 'sendgreetings');
     } catch (Exception $exception) {
         return civicrm_api3_create_error(ts("Error found in APIv3 wrapper calling APIv4: $exception"));
     }
