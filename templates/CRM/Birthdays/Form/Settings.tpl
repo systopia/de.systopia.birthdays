@@ -59,8 +59,8 @@
 <div id="help">{ts}This step is optional if you are happy with the provided options in the upcomming section.{/ts}
     <br>
     <br>
-    {ts}Those email addressed can be added using the topbar: "Administer" --> "Administration Console" -->{/ts} "
-    <a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}From Email Addresses{/ts}</a>"<br><br>
+    {ts}Those email addressed can be added using the topbar: "Administer" --> "Administration Console" -->{/ts}
+    "<a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}From Email Addresses{/ts}</a>"<br><br>
     {ts}Please talk to your sysadmin if there are additional steps needed in order to add emails
     there to avoid problems.{/ts}<br>
     {ts}Check if this is a noreply address or if you would like to monitor this email inbox.{/ts}
