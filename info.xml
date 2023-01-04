@@ -2,7 +2,7 @@
 <extension key="de.systopia.birthdays" type="module">
   <file>birthdays</file>
   <name>Birthdays</name>
-  <description>Provides tools to keep track of your contacts' birthdays.</description>
+  <description>Provides tools to keep track of your contacts' birthdays and send birthday mails.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>SYSTOPIA</author>
