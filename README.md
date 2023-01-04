@@ -24,7 +24,11 @@ Naviage to: "Administer" --> "Administration Console" --> "Birthdays Extension S
 
 ### Activities
 An activity is written every for successful / faild email greetings
-![image](/docs/images/birthday_activity.png)
+![image](/docs/images/birthday_activities.png)
+
+Activity content
+![image](/docs/images/birthday_acitivty.png)
+
 
 ## Localisation
 
