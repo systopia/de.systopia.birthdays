@@ -124,7 +124,12 @@
     {ts}Leave "Command parameters" empty{/ts}<br>
     {ts}Scheduled Run Date: Can be left empty while testing.{/ts}<br>
     {ts}Is this Scheduled Job active?: Can be left de-activated while testing.{/ts}<br>
-    {ts}Click: "Save"{/ts}
+    {ts}Click: "Save"{/ts}<br>
+    {ts}<b>Warning:</b> Using scheduled jobs setting <code>runInNonProductionEnvironment=TRUE</code>
+        in a development
+        <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">{ts}emails set to
+            "redirected to database"{/ts}</a> will <u>send an actual email</u>
+        skipping db redirection!{/ts}
 </div>
 <br>
 <h2>
@@ -137,7 +142,7 @@
     <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
     {ts}Find the previous created birthday job in this list{/ts}<br>
     {ts}Click: "more"{/ts}<br>
-    {ts}Click: "Execute Now" <b>(Warning: Actual emails will be sent to the contacts email addresses
+    {ts}Click: "Execute Now" <b>(Warning: <u>Actual emails</u> will be sent to the contacts email addresses
     if everything works as expected!)</b>{/ts}<br>
     {ts}Your previoulsy selected contacts should now receive an email with birthday greetings{/ts}
     {ts}Make sure to check what type of activity description had been added to your selected contacts.{/ts}
