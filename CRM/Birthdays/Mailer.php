@@ -54,9 +54,9 @@ class CRM_Birthdays_Mailer
         foreach ($contacts as $contact_id => $contact_info) {
             try {
                 $this->send_mail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
-                $write_activity ?: $this->create_activity($contact_id, ts('Successful birthday greeting mail'), ts('Successful birthday greeting mail!'));
+                if ($write_activity) $this->create_activity($contact_id, ts('Successful birthday greeting mail'), ts('Successful birthday greeting mail! Template ID %1 has been used.', [$this->template_id]));
             } catch (Exception $exception) {
-                $write_activity ?: $this->create_activity($contact_id, ts('FAILED birthday greeting mail'), ts("Failed birthday greeting mail: " . $exception));
+                if ($write_activity) $this->create_activity($contact_id, ts('FAILED birthday greeting mail'), ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [$this->template_id, $exception]));
                 ++$error_count;
             }
         }
