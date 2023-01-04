@@ -28,7 +28,7 @@ class CRM_Birthdays_Mailer
      */
     public function __construct()
     {
-        $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE); // todo if null?
+        $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE);
         if (empty($this->template_id)) {
             throw new Exception('Birthdays: Message template not found. Please set a template in birthday settings');
         }
