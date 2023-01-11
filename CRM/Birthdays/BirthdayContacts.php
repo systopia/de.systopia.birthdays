@@ -56,7 +56,8 @@ class CRM_Birthdays_BirthdayContacts
                               WHERE civicrm_contact.contact_type = 'Individual'
                               {$day_filter}
                               AND civicrm_contact.is_opt_out = 0
-                              AND civicrm_contact. do_not_email = 0
+                              AND civicrm_contact.do_not_email = 0
+                              AND civicrm_contact.is_deceased = 0
                               AND group_contact.group_id = {$this->group_id}
                               AND civicrm_email.is_primary = 1 {$limit}";
             $query = CRM_Core_DAO::executeQuery($sql);
