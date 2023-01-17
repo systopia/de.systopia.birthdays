@@ -30,8 +30,7 @@
 </h2>
 <div id="help">
     {ts}Those can be found in:{/ts}<br>
-    {ts}Topbar --> "Mailings" -->{/ts} "<a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}Message
-            Templates{/ts}</a>"
+    {ts}Topbar --> "Mailings" -->{/ts} "<a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}MessageTemplates{/ts}</a>"
     <br>
     <br>
     {ts}Tokens can be used here as expected.{/ts}
@@ -61,8 +60,7 @@
     <br>
     {ts}Those email addressed can be added using the topbar: "Administer" --> "Administration Console" -->{/ts}
     "<a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}From Email Addresses{/ts}</a>"<br><br>
-    {ts}Please talk to your sysadmin if there are additional steps needed in order to add emails
-    there to avoid problems.{/ts}<br>
+    {ts}Please talk to your sysadmin if there are additional steps needed in order to add emails there to avoid problems.{/ts}<br>
     {ts}Check if this is a noreply address or if you would like to monitor this email inbox.{/ts}
 </div>
 <br>
@@ -89,9 +87,7 @@
     <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
             whenever you add or change things here-->
         <li>{ts}contacts which are part of the programmatically prepared birthday group{/ts}</li>
-        <li>{ts}contacts with a birthday which is equal with the date of execution
-                (unless debug mode is set - see below)
-            {/ts}</li>
+        <li>{ts}contacts with a birthday which is equal with the date of execution (unless debug mode is set - see below){/ts}</li>
         <li><code>contact_type</code> = 'Individual'</li>
         <li><code>opt_out</code> = 0</li>
         <li><code>do_not_email</code> = 0</li>
@@ -103,8 +99,7 @@
     {ts}Step 6: Add some test contacts{/ts}
 </h2>
 <div id="help">
-    {ts}Keep section "filter criteria" above in mind and add some test contacts to the birthday greeting group
-    and set their birthday to today.{/ts}<br>
+    {ts}Keep section "filter criteria" above in mind and add some test contacts to the birthday greeting group and set their birthday to today.{/ts}<br>
     {ts}Use the topbar to navigate to: "Contacts" -->{/ts}
     "<a href="{crmURL p='civicrm/group' q='reset=1'}">{ts}Manage Groups{/ts}</a>"<br>
     {ts}This group was programatically created by this extension by installation.{/ts}
@@ -126,30 +121,26 @@
     {ts}Is this Scheduled Job active?: Can be left de-activated while testing.{/ts}<br>
     {ts}Click: "Save"{/ts}<br>
     {ts}<b>Warning:</b> Using scheduled jobs setting <code>runInNonProductionEnvironment=TRUE</code>
-        in a development
-        <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">{ts}emails set to
-            "redirected to database"{/ts}</a> will <u>send an actual email</u>
-        skipping db redirection!{/ts}
+        in a development{/ts} <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">{ts}emails set to "redirected to database"{/ts}</a>
+    {ts}will <u>send an actual email</u>skipping db redirection!{/ts}
 </div>
 <br>
 <h2>
     {ts}Step 8: Testing{/ts}
 </h2>
 <div id="help">
-    {ts}Check if you want to use the special debug mode described in the next chapter to avoid traces
-    in your system{/ts}<br>
+    {ts}Check if you want to use the special debug mode described in the next chapter to avoid traces in your system{/ts}<br>
     {ts}Again use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "
     <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
     {ts}Find the previous created birthday job in this list{/ts}<br>
     {ts}Click: "more"{/ts}<br>
-    {ts}Click: "Execute Now" <b>(Warning: <u>Actual emails</u> will be sent to the contacts email addresses
-    if everything works as expected!)</b>{/ts}<br>
+    {ts}Click: "Execute Now" <b>(Warning: <u>Actual emails</u> will be sent to the contacts email addresses if everything works as expected!)</b>{/ts}<br>
     {ts}Your previoulsy selected contacts should now receive an email with birthday greetings{/ts}
     {ts}Make sure to check what type of activity description had been added to your selected contacts.{/ts}
     <br>
     {ts}If you are familiar with executing API commands you also can use{/ts}
-    <a href="{crmURL p='/civicrm/api4#/explorer/Birthdays/sendGreetings' q=''}">APIv4</a>{ts}
-    to trigger sending of mails.{/ts}
+    <a href="{crmURL p='/civicrm/api4#/explorer/Birthdays/sendGreetings' q=''}">APIv4</a>
+    {ts}to trigger sending of mails.{/ts}
 </div>
 <br>
 
@@ -192,11 +183,11 @@
     {ts}Extension development{/ts}
 </h2>
 <div id="help">
-    {ts}If you bring development skills feel free to
-        <a href="https://github.com/systopia/de.systopia.birthdays/pulls">leave a pull request</a>
-        and extend this open source extension or contact
+    {ts}If you bring development skills feel free to{/ts}
+        <a href="https://github.com/systopia/de.systopia.birthdays/pulls">{ts}leave a pull request{/ts}</a>
+        {ts}and extend this open source extension or contact{/ts}
         <a href="mailto:info@systopia.de">info@systopia.de</a>
-        for contract work.{/ts}
+        {ts}for contract work.{/ts}
 </div>
 <br>
 {* FOOTER *}
