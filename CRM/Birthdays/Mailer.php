@@ -17,7 +17,7 @@
 
 use Civi\API\Exception\UnauthorizedException;
 use Civi\Api4\Activity;
-use CRM_Birthdays_ExtensionUtil as E;;
+use CRM_Birthdays_ExtensionUtil as E;
 
 class CRM_Birthdays_Mailer
 {
