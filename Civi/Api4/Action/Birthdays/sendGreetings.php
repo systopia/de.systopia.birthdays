@@ -18,6 +18,7 @@
 namespace Civi\Api4\Action\Birthdays;
 
 use Civi\Api4\Generic\Result;
+use CRM_Defaulteventmessages_ExtensionUtil as E;
 
 final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
 
@@ -42,7 +43,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       } catch (\Exception $exception) {
           $contacts = [];
           $result[] = [
-              'error' => ts("There is a problem collecting birthday contacts: $exception")
+              'error' => E::ts("There is a problem collecting birthday contacts: $exception")
           ];
       }
       if (!empty($contacts)) {
@@ -56,7 +57,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       $send_count = $contacts_count - $error_count;
 
       $result[] = [
-          'status' => ts("Executed: $send_count out of $contacts_count mails/activities processed")
+          'status' => E::ts("Executed: $send_count out of $contacts_count mails/activities processed")
       ];
   }
 }

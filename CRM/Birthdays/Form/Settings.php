@@ -29,7 +29,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
         $this->add(
             'select', // field type
             'message_template_id', // field name
-            ts('Select template'), // field label
+            E::ts('Select template'), // field label
             $this->get_message_templates(), // list of options
             TRUE, // is required
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]

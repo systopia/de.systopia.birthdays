@@ -1,4 +1,5 @@
 <?php
+use CRM_Defaulteventmessages_ExtensionUtil as E;
 return [
     [
         'name' => 'Group_birthday_greeting_recipients',
@@ -9,8 +10,8 @@ return [
             'version' => 4,
             'values' => [
                 'name' => 'birthday_greeting_recipients_group',
-                'title' => ts('Birthday greeting recipients group'),
-                'description' => ts('Every contact in this group is elected to get a birthday email if birthday is set correctly'),
+                'title' => E::ts('Birthday greeting recipients group'),
+                'description' => E::ts('Every contact in this group is elected to get a birthday email if birthday is set correctly'),
                 'data_type' => NULL,
                 'is_reserved' => TRUE,
                 'is_active' => TRUE,

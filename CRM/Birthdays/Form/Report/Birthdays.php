@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+use CRM_Defaulteventmessages_ExtensionUtil as E;
+
 /**
  * Report on upcoming birthdays
  *
@@ -41,61 +43,61 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'required' => TRUE,
           ],
           'sort_name' => [
-            'title' => ts('Contact Name', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Name'),
             'required' => TRUE,
             'default' => TRUE,
           ],
           'contact_type' => [
-            'title' => ts('Contact Type', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Type'),
           ],
           'contact_sub_type' => [
-            'title' => ts('Contact Subtype', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Subtype'),
           ],
           'first_name' => [
-            'title' => ts('First Name', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('First Name'),
           ],
           'last_name' => [
-            'title' => ts('Last Name', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Last Name'),
           ],
           'birth_date' => [
-            'title' => ts('Birth Date', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Birth Date'),
             'type' => CRM_Utils_Type::T_DATE,
           ],
           'birthday' => [
-            'title' => ts('Birthday', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Birthday'),
             'type' => CRM_Utils_Type::T_DATE,
             'required' => TRUE,
             'default' => TRUE,
           ],
           'age' => [
-            'title' => ts('Age', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Age'),
           ],
         ],
         'filters' => [
           'sort_name' => [
-            'title' => ts('Contact Name', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Name'),
             'operator' => 'like',
           ],
           'id' => [
             'no_display' => TRUE,
           ],
           'birth_date' => [
-            'title' => ts('Birth Date', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Birth Date'),
             'type' => CRM_Utils_Type::T_DATE,
           ],
           'birthday' => [
-            'title' => ts('Birthday', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Birthday'),
             'type' => CRM_Utils_Type::T_DATE,
           ],
           'age' => [
-            'title' => ts('Age', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Age'),
             'type' => CRM_Utils_Type::T_INT,
           ],
           'contact_type' => [
-            'title' => ts('Contact Type', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Type'),
           ],
           'contact_sub_type' => [
-            'title' => ts('Contact Subtype', ['domain' => 'de.systopia.birthdays']),
+            'title' => E::ts('Contact Subtype'),
           ],
         ],
         'grouping' => 'contact-fields',
@@ -119,7 +121,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
   }
 
   function preProcess() {
-    $this->assign('reportTitle', ts('Birthday Report', ['domain' => 'de.systopia.birthdays']));
+    $this->assign('reportTitle', E::ts('Birthday Report'));
     parent::preProcess();
   }
 
@@ -266,7 +268,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           $this->_absoluteUrl
         );
         $rows[$rowNum]['civicrm_contact_sort_name_link'] = $url;
-        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = ts("View Contact Summary for this Contact.", ['domain' => 'de.systopia.birthdays']);
+        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = E::ts("View Contact Summary for this Contact.");
         $entryFound = TRUE;
       }
 

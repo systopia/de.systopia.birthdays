@@ -1,5 +1,7 @@
 <?php
 
+use CRM_Defaulteventmessages_ExtensionUtil as E;
+
 class CRM_Birthdays_BirthdayTokens
 {
     /**
@@ -9,7 +11,7 @@ class CRM_Birthdays_BirthdayTokens
     public static function addTokens(&$tokens): void
     {
         $tokens["contact"] = [
-            "contact.age" => ts("Age")
+            "contact.age" => E::ts("Age")
         ];
     }
 

@@ -17,6 +17,7 @@
 
 use Civi\API\Exception\UnauthorizedException;
 use Civi\Api4\Activity;
+use CRM_Defaulteventmessages_ExtensionUtil as E;
 
 class CRM_Birthdays_Mailer
 {
@@ -54,9 +55,9 @@ class CRM_Birthdays_Mailer
         foreach ($contacts as $contact_id => $contact_info) {
             try {
                 $this->send_mail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
-                if ($write_activity) $this->create_activity($contact_id, ts('Successful birthday greeting mail'), ts('Successful birthday greeting mail! Template ID %1 has been used.', [$this->template_id]));
+                if ($write_activity) $this->create_activity($contact_id, E::ts('Successful birthday greeting mail'), E::ts('Successful birthday greeting mail! Template ID %1 has been used.', [$this->template_id]));
             } catch (Exception $exception) {
-                if ($write_activity) $this->create_activity($contact_id, ts('FAILED birthday greeting mail'), ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [$this->template_id, $exception]));
+                if ($write_activity) $this->create_activity($contact_id, E::ts('FAILED birthday greeting mail'), E::ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [$this->template_id, $exception]));
                 ++$error_count;
             }
         }
@@ -97,7 +98,7 @@ class CRM_Birthdays_Mailer
         Activity::create()
             ->addValue('activity_type_id', 3) // = email
             ->addValue('activity_type_id:label', 'E-Mail')
-            ->addValue('subject', ts($title))
+            ->addValue('subject', E::ts($title))
             ->addValue('details', $description)
             ->addValue('source_contact_id', $target_id)
             ->addValue('target_contact_id', $target_id)
