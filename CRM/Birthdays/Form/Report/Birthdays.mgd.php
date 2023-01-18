@@ -4,7 +4,7 @@
 // database as appropriate. For more details, see "hook_civicrm_managed" at:
 // https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
 
-use CRM_Defaulteventmessages_ExtensionUtil as E;
+use CRM_Birthdays_ExtensionUtil as E;
 
 return [
   0 => 

@@ -1,5 +1,5 @@
 <?php
-use CRM_Defaulteventmessages_ExtensionUtil as E;
+use CRM_Birthdays_ExtensionUtil as E;
 return [
     [
         'name' => 'Group_birthday_greeting_recipients',
