@@ -76,7 +76,7 @@ class CRM_Birthdays_BirthdayContacts
     }
 
     /**
-     * @throws API_Exception
+     * @throws Exception
      */
     private function get_group_id_from_api(): int
     {
@@ -91,7 +91,7 @@ class CRM_Birthdays_BirthdayContacts
             return $group_id;
         } catch (Exception $exception) {
             \Civi::log()->debug("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
-            throw new \API_Exception("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
+            throw new Exception("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
         }
     }
 
