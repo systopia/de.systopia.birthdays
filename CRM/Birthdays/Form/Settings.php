@@ -14,8 +14,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
 
     public function buildQuickForm()
     {
-        $this->setDefaults(['birthday_sender_email_address_id' => Civi::settings()->get
-        (self::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID)]);
+        $this->setDefaults(['birthday_sender_email_address_id' => Civi::settings()->get(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID)]);
         $this->add(
             'select',
             "birthday_sender_email_address_id",
