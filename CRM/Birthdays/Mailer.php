@@ -21,8 +21,8 @@ use CRM_Birthdays_ExtensionUtil as E;
 
 class CRM_Birthdays_Mailer
 {
-    private int $template_id;
-    private string $email_address_from;
+    private ?int $template_id;
+    private ?string $email_address_from;
 
     /**
      * @throws Exception
@@ -34,8 +34,13 @@ class CRM_Birthdays_Mailer
             throw new Exception('Birthdays: Message template not found. Please set a template in birthday settings');
         }
 
-        $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
-        $this->email_address_from = $this->get_sender_email_address_from_id($email_id);
+        try {
+            $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
+            $this->email_address_from = $this->get_sender_email_address_from_id($email_id);
+        } catch (TypeError $typeError) {
+            throw new Exception('Birthdays: Pre selected outgoing email not found. Please set am outgoing email address in birthday settings');
+        }
+
         if (empty($this->email_address_from)) {
             throw new Exception('Birthdays: Pre selected outgoing email not found. Please set am outgoing email address in birthday settings');
         }
@@ -90,7 +95,6 @@ class CRM_Birthdays_Mailer
      * @param $title
      * @param $description
      * @return void
-     * @throws API_Exception
      * @throws UnauthorizedException|CRM_Core_Exception
      */
     private function create_activity($target_id, $title, $description): void
