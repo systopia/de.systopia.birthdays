@@ -15,6 +15,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use CRM_Birthdays_ExtensionUtil as E;
+
 class CRM_Birthdays_BirthdayContacts
 {
     private int $group_id;
@@ -24,7 +26,11 @@ class CRM_Birthdays_BirthdayContacts
      */
     public function __construct()
     {
-        $this->group_id = $this->get_group_id_from_api();
+        try {
+            $this->group_id = $this->get_group_id_from_api();
+        } catch (Exception $exception) {
+            throw new Exception(E::ts('Birthdays: Group not found!'));
+        }
     }
 
     /**
