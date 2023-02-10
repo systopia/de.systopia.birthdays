@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| Birthday Report                                        |
+| SYSTOPIA Birthdays Integration                         |
 | Copyright (C) 2016 SYSTOPIA                            |
 | Author: B. Endres (endres@systopia.de)                 |
 +--------------------------------------------------------+

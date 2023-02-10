@@ -1,7 +1,7 @@
 <?php
 
 /*-------------------------------------------------------+
-| Birthdays Integration                                  |
+| SYSTOPIA Birthdays Integration                         |
 | Copyright (C) 2023 SYSTOPIA                            |
 | Author: J. Franz (franz@systopia.de)                   |
 +--------------------------------------------------------+
