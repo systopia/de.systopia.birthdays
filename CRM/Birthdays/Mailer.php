@@ -115,13 +115,17 @@ class CRM_Birthdays_Mailer
      */
     private function createActivity($target_id, $title, $description): void
     {
-        Activity::create()
-            ->addValue('activity_type_id', 3) // = email
-            ->addValue('subject', E::ts($title))
-            ->addValue('details', $description)
-            ->addValue('source_contact_id', 'user_contact_id')
-            ->addValue('target_contact_id', $target_id)
-            ->execute();
+        try {
+            Activity::create()
+                ->addValue('activity_type_id', 3) // = email
+                ->addValue('subject', E::ts($title))
+                ->addValue('details', $description)
+                ->addValue('source_contact_id', 'user_contact_id')
+                ->addValue('target_contact_id', $target_id)
+                ->execute();
+        } catch (Exception $exception) {
+            Civi::log()->debug(E::LONG_NAME . ' ' . "Unable to write activity: $exception");
+        }
     }
 
     /**
