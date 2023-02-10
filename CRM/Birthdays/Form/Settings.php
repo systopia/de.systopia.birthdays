@@ -74,7 +74,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
                 $list[$tpl_key] = $tpl_value['msg_subject'];
             }
         } catch (Exception $exception) {
-            Civi::log()->debug(E::LONG_NAME . ": " . "getMessageTemplates method call failed: $exception");
+            Civi::log()->debug(E::LONG_NAME . " " . "getMessageTemplates method call failed: $exception");
         }
 
         return $list;

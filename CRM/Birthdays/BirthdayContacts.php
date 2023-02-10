@@ -77,7 +77,7 @@ class CRM_Birthdays_BirthdayContacts
             }
             return $query_result;
         } catch (Exception  $exception) {
-            throw new Exception(E::LONG_NAME . ": " . "SQL query failed: $exception");
+            throw new Exception(E::LONG_NAME . " " . "SQL query failed: $exception");
         }
     }
 
