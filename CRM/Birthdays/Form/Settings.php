@@ -63,13 +63,15 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
         $list = [];
         try {
             $messageTemplates = \Civi\Api4\MessageTemplate::get()
-                ->addSelect('id', 'msg_title')
+                ->addSelect('msg_subject')
                 ->addWhere('is_active', '=', TRUE)
                 ->addWhere('workflow_id', 'IS EMPTY')
                 ->setLimit(25)
                 ->execute();
-            foreach ($messageTemplates as $messageTemplate) {
-                $list[$messageTemplate['id']] = $messageTemplate['msg_title'];
+            $messageTemplates->indexBy('id');
+            $messageTemplates->column('msg_subject');
+            foreach ($messageTemplates as $tpl_key => $tpl_value) {
+                $list[$tpl_key] = $tpl_value['msg_subject'];
             }
         } catch (Exception $exception) {
             Civi::log()->debug("Birthdays: getTemplates API call failed: $exception");
