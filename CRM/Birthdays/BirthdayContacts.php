@@ -22,14 +22,14 @@ class CRM_Birthdays_BirthdayContacts
     private int $group_id;
 
     /**
-     * @throws API_Exception
+     * @throws Exception
      */
     public function __construct()
     {
         try {
             $this->group_id = $this->getGroupIdFromApi();
         } catch (Exception $exception) {
-            throw new Exception(E::ts(E::LONG_NAME . ' ' . "Group not found!"));
+            throw new Exception(E::LONG_NAME . ' ' . E::ts('Default group called birthday_greeting_recipients_group not found: %1', [1 => $exception]));
         }
     }
 
@@ -86,17 +86,11 @@ class CRM_Birthdays_BirthdayContacts
      */
     private function getGroupIdFromApi(): int
     {
-        try {
-            $group_id = \Civi\Api4\Group::get()
-                ->addSelect('id')
-                ->addWhere('name', '=', 'birthday_greeting_recipients_group')
-                ->execute()
-                ->single();
-            return $group_id['id'];
-        } catch (Exception $exception) {
-            \Civi::log()->debug(E::LONG_NAME . ": " . "Default group called birthday_greeting_recipients_group not found: $exception");
-            throw new Exception(E::LONG_NAME . ": " . "Default group called birthday_greeting_recipients_group not found: $exception");
-        }
+        $group_id = \Civi\Api4\Group::get()
+            ->addSelect('id')
+            ->addWhere('name', '=', 'birthday_greeting_recipients_group')
+            ->execute()
+            ->single();
+        return $group_id['id'];
     }
-
 }
