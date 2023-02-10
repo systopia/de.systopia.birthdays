@@ -29,7 +29,7 @@ class CRM_Birthdays_BirthdayContacts
         try {
             $this->group_id = $this->getGroupIdFromApi();
         } catch (Exception $exception) {
-            throw new Exception(E::ts(E::LONG_NAME . ": " . "Group not found!"));
+            throw new Exception(E::ts(E::LONG_NAME . ' ' . "Group not found!"));
         }
     }
 
