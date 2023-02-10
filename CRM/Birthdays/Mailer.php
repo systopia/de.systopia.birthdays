@@ -86,10 +86,16 @@ class CRM_Birthdays_Mailer
     private function sendMail($contact_id, $from_email_address, $to_email_address, $template_id): void
     {
         try {
+            $contacts = \Civi\Api4\Contact::get()
+                ->addSelect('display_name')
+                ->addWhere('id', '=', 1)
+                ->execute()
+                ->single();
+            $to_name = $contacts['display_name'];
             civicrm_api3('MessageTemplate', 'send', [
                 'check_permissions' => 0,
                 'id'                => $template_id,
-                'to_name'           => civicrm_api3('Contact', 'getvalue', ['id' => $contact_id, 'return' => 'display_name']),
+                'to_name'           => $to_name,
                 'from'              => trim($from_email_address),
                 'contact_id'        => $contact_id,
                 'to_email'          => trim($to_email_address),
