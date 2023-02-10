@@ -27,7 +27,7 @@ class CRM_Birthdays_BirthdayContacts
     public function __construct()
     {
         try {
-            $this->group_id = $this->get_group_id_from_api();
+            $this->group_id = $this->getGroupIdFromApi();
         } catch (Exception $exception) {
             throw new Exception(E::ts('Birthdays: Group not found!'));
         }
@@ -36,7 +36,7 @@ class CRM_Birthdays_BirthdayContacts
     /**
      * @throws Exception
      */
-    public function get_birthday_contacts_of_today($is_debug_email = ''): array
+    public function getBirthdayContactsOfToday($is_debug_email = ''): array
     {
         try {
             if (!empty($is_debug_email)) {
@@ -84,7 +84,7 @@ class CRM_Birthdays_BirthdayContacts
     /**
      * @throws Exception
      */
-    private function get_group_id_from_api(): int
+    private function getGroupIdFromApi(): int
     {
         try {
             $groups = \Civi\Api4\Group::get()

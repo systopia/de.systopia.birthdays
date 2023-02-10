@@ -19,7 +19,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             'select',
             "birthday_sender_email_address_id",
             E::ts("Send From"),
-            $this->get_sender_email_addresses(),
+            $this->getSenderEmailAddresses(),
             true,
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]
         );
@@ -29,7 +29,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             'select', // field type
             'message_template_id', // field name
             E::ts('Select template'), // field label
-            $this->get_message_templates(), // list of options
+            $this->getMessageTemplates(), // list of options
             TRUE, // is required
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]
         );
@@ -58,7 +58,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
         parent::postProcess();
     }
 
-    public function get_message_templates(): array
+    public function getMessageTemplates(): array
     {
         $list = [];
         try {
@@ -81,7 +81,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
     /**
      * Get a list of the available/allowed sender email addresses
      */
-    protected function get_sender_email_addresses(): array
+    protected function getSenderEmailAddresses(): array
     {
         $dropdown_list = [];
         $from_email_addresses = CRM_Core_OptionGroup::values('from_email_address');

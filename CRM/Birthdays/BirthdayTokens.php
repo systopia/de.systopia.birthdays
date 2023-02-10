@@ -35,7 +35,7 @@ class CRM_Birthdays_BirthdayTokens
                 ->execute();
             foreach ($contacts  as $key => $contact_info ) {
                 $values[$contact_info['id']]['contact.age'] =
-                    self::calculate_birthday($contact_info['birth_date']);
+                    self::calculateBirthday($contact_info['birth_date']);
             }
         } catch (Exception $exception) {
             Civi::log()->debug("Birthdays: Failed to fetch and  calculate age: $exception");
@@ -47,7 +47,7 @@ class CRM_Birthdays_BirthdayTokens
      * @param string $iso_birth_date ISO birthdate
      * @return int age
      */
-    private static function calculate_birthday(string $iso_birth_date): int
+    private static function calculateBirthday(string $iso_birth_date): int
     {
         return date_diff(date_create($iso_birth_date), date_create('now'))->y;
     }

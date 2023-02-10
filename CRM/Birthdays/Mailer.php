@@ -36,7 +36,7 @@ class CRM_Birthdays_Mailer
 
         try {
             $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
-            $this->email_address_from = $this->get_sender_email_address_from_id($email_id);
+            $this->email_address_from = $this->getSenderEmailAddressFromId($email_id);
         } catch (TypeError $typeError) {
             throw new Exception('Birthdays: Pre selected outgoing email not found. Please set am outgoing email address in birthday settings');
         }
@@ -54,15 +54,15 @@ class CRM_Birthdays_Mailer
      * @throws CRM_Core_Exception
      * @throws UnauthorizedException
      */
-    public function send_mails_and_write_activity($contacts, $write_activity): int
+    public function sendMailsAndWriteActivity($contacts, $write_activity): int
     {
         $error_count = 0;
         foreach ($contacts as $contact_id => $contact_info) {
             try {
-                $this->send_mail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
-                if ($write_activity) $this->create_activity($contact_id, E::ts('Successful birthday greeting mail'), E::ts('Successful birthday greeting mail! Template ID %1 has been used.', [$this->template_id]));
+                $this->sendMail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
+                if ($write_activity) $this->createActivity($contact_id, E::ts('Successful birthday greeting mail'), E::ts('Successful birthday greeting mail! Template ID %1 has been used.', [$this->template_id]));
             } catch (Exception $exception) {
-                if ($write_activity) $this->create_activity($contact_id, E::ts('FAILED birthday greeting mail'), E::ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [$this->template_id, $exception]));
+                if ($write_activity) $this->createActivity($contact_id, E::ts('FAILED birthday greeting mail'), E::ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [$this->template_id, $exception]));
                 ++$error_count;
             }
         }
@@ -73,7 +73,7 @@ class CRM_Birthdays_Mailer
      * @throws CRM_Core_Exception
      * @throws Exception
      */
-    private function send_mail($contact_id, $from_email_address, $to_email_address, $template_id): void
+    private function sendMail($contact_id, $from_email_address, $to_email_address, $template_id): void
     {
         try {
             civicrm_api3('MessageTemplate', 'send', [
@@ -97,7 +97,7 @@ class CRM_Birthdays_Mailer
      * @return void
      * @throws UnauthorizedException|CRM_Core_Exception
      */
-    private function create_activity($target_id, $title, $description): void
+    private function createActivity($target_id, $title, $description): void
     {
         Activity::create()
             ->addValue('activity_type_id', 3) // = email
@@ -113,7 +113,7 @@ class CRM_Birthdays_Mailer
      * @param int $id
      * @return string|null
      */
-    private function get_sender_email_address_from_id(int $id): ?string
+    private function getSenderEmailAddressFromId(int $id): ?string
     {
         // this is something like: "to database" <database@domain.com>
         $email_name_combined_with_email_address_string =
