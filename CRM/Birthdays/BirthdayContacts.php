@@ -90,7 +90,7 @@ class CRM_Birthdays_BirthdayContacts
             $groups = \Civi\Api4\Group::get()
                 ->addSelect('id')
                 ->addWhere('name', '=', 'birthday_greeting_recipients_group')
-                ->setLimit(2)
+                ->setLimit(1)
                 ->execute();
             $group_id = $groups[0]['id'];
             if (!is_int($group_id)) throw new Exception("Birthdays: Non int value for 'birthday_greeting_recipients_group' group given");
