@@ -11,7 +11,7 @@ class CRM_Birthdays_BirthdayTokens
     public static function addTokens(&$tokens): void
     {
         $tokens["contact"] = [
-            "contact.age" => E::ts("Age")
+            "contact.ageold" => E::ts("Age")
         ];
     }
 
@@ -34,7 +34,7 @@ class CRM_Birthdays_BirthdayTokens
                 ->addWhere('birth_date', 'IS NOT NULL')
                 ->execute();
             foreach ($contacts  as $key => $contact_info ) {
-                $values[$contact_info['id']]['contact.age'] =
+                $values[$contact_info['id']]['contact.ageold'] =
                     self::calculateBirthday($contact_info['birth_date']);
             }
         } catch (Exception $exception) {
