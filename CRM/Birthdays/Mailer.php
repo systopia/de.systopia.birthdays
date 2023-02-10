@@ -31,18 +31,18 @@ class CRM_Birthdays_Mailer
     {
         $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE);
         if (empty($this->template_id)) {
-            throw new Exception('Birthdays: Message template not found. Please set a template in birthday settings');
+            throw new Exception(E::LONG_NAME . ": " . "Message template not found. Please set a template in birthday settings");
         }
 
         try {
             $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
             $this->email_address_from = $this->getSenderEmailAddressFromId($email_id);
         } catch (TypeError $typeError) {
-            throw new Exception('Birthdays: Pre selected outgoing email not found. Please set an outgoing email address in birthday settings');
+            throw new Exception(E::LONG_NAME . ": " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings");
         }
 
         if (empty($this->email_address_from)) {
-            throw new Exception('Birthdays: Pre selected outgoing email not found. Please set an outgoing email address in birthday settings');
+            throw new Exception(E::LONG_NAME . ": " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings");
         }
     }
 
@@ -85,7 +85,7 @@ class CRM_Birthdays_Mailer
                 'to_email'          => trim($to_email_address),
             ]);
         } catch (Exception $exception) {
-            throw new Exception("Birthdays: MessageTemplate exception: $exception");
+            throw new Exception(E::LONG_NAME . ": " . "MessageTemplate exception: $exception");
         }
     }
 

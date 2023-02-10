@@ -29,7 +29,7 @@ class CRM_Birthdays_BirthdayContacts
         try {
             $this->group_id = $this->getGroupIdFromApi();
         } catch (Exception $exception) {
-            throw new Exception(E::ts('Birthdays: Group not found!'));
+            throw new Exception(E::ts(E::LONG_NAME . ": " . "Group not found!"));
         }
     }
 
@@ -77,7 +77,7 @@ class CRM_Birthdays_BirthdayContacts
             }
             return $query_result;
         } catch (Exception  $exception) {
-            throw new Exception("Birthdays: SQL query failed: $exception");
+            throw new Exception(E::LONG_NAME . ": " . "SQL query failed: $exception");
         }
     }
 
@@ -94,8 +94,8 @@ class CRM_Birthdays_BirthdayContacts
                 ->single();
             return $group_id['id'];
         } catch (Exception $exception) {
-            \Civi::log()->debug("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
-            throw new Exception("Birthdays: Default group called birthday_greeting_recipients_group not found: $exception");
+            \Civi::log()->debug(E::LONG_NAME . ": " . "Default group called birthday_greeting_recipients_group not found: $exception");
+            throw new Exception(E::LONG_NAME . ": " . "Default group called birthday_greeting_recipients_group not found: $exception");
         }
     }
 

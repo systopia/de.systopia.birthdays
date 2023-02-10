@@ -15,6 +15,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use CRM_Birthdays_ExtensionUtil as E;
 
 /**
  * birthdays.sendgreetings
@@ -38,11 +39,11 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
                 $return_info[$result_key] = $result_value;
             }
         }
-        if ($return_info['error']) return civicrm_api3_create_error("Birthdays: Rethrow error from APIv4: {$return_info['error']}");
+        if ($return_info['error']) return civicrm_api3_create_error(E::LONG_NAME . ": Rethrow error from APIv4: {$return_info['error']}");
 
         return civicrm_api3_create_success($return_info, $params, 'birthdays', 'sendgreetings');
     } catch (Exception $exception) {
         $short_ex = $exception->getMessage();
-        return civicrm_api3_create_error(ts("Error found in APIv3 wrapper calling APIv4: $short_ex"));
+        return civicrm_api3_create_error(ts(E::LONG_NAME . ": Error found in APIv3 wrapper calling APIv4: $short_ex"));
     }
 }
