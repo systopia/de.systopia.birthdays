@@ -22,7 +22,6 @@ use CRM_Birthdays_ExtensionUtil as E;
 
 final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
 
-
     /**
    * @inheritDoc
    *
