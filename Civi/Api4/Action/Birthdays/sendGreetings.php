@@ -42,7 +42,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       } catch (\Exception $exception) {
           $contacts = [];
           $result[] = [
-              'error' => E::ts("There is a problem collecting birthday contacts: $exception")
+              'error' => E::ts('There is a problem collecting birthday contacts: %1', [1 => $exception])
           ];
       }
       if (!empty($contacts)) {
@@ -56,7 +56,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       $send_count = $contacts_count - $error_count;
 
       $result[] = [
-          'status' => E::ts("Executed: $send_count out of $contacts_count mails/activities processed")
+          'status' => E::ts('Executed: %1 out of %2 mails/activities processed', [1 => $send_count, 2 => $contacts_count])
       ];
   }
 }
