@@ -105,7 +105,6 @@ class CRM_Birthdays_Mailer
             ->addValue('details', $description)
             ->addValue('source_contact_id', $target_id)
             ->addValue('target_contact_id', $target_id)
-            ->addValue('is_auto', TRUE)
             ->execute();
     }
 
