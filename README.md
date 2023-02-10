@@ -12,11 +12,11 @@ your contacts. Simply install the extension, create a new report, and use
 With version 1.5 this extension now provides an API for sending birthday greetings automatically via e-mail using 
 CiviCRM's scheduled jobs.
 
-Please note: With default settings no email will be sent after upgrading to this verison. Mails only will be
-sent if triggering an APIv3 or APIv4 birthday action manually or by using scheduled jobs
+Please note: With default settings no e-mail will be sent after upgrading to this verison. E-Mail only will be
+sent if triggering an APIv3 or APIv4 birthday action manually or by using scheduled jobs.
 
 ### Settings Menu
-This page provides a step by step integrated settings guide on how to setup your Civi for auto birthday email 
+This page provides a step by step integrated settings guide on how to setup your Civi for auto birthday email.
 notifications
 
 Naviage to: "Administer" --> "Administration Console" --> "Birthdays Extension Settings"
