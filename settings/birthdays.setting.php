@@ -14,7 +14,7 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
-use CRM_Civioffice_ExtensionUtil as E;
+use CRM_Birthdays_ExtensionUtil as E;
 
 return [
     'Birthdays_Message_Template_ID' => [
