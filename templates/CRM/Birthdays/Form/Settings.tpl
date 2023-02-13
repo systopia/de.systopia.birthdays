@@ -47,7 +47,7 @@
     {ts}Topbar --> "Mailings" -->{/ts} "<a href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}MessageTemplates{/ts}</a>"
     <br>
     <br>
-    {ts}Tokens can be used here as expected.{/ts}
+    {ts}Tokens can be used here if SMARTY is enabled.{/ts}
 </div>
 <br>
 <h2>
@@ -136,7 +136,7 @@
     {ts}Click: "Save"{/ts}<br>
     {ts}<b>Warning:</b> Using scheduled jobs setting <code>runInNonProductionEnvironment=TRUE</code>
         in a development{/ts} <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">{ts}emails set to "redirected to database"{/ts}</a>
-    {ts}will <u>send an actual email</u>skipping db redirection!{/ts}
+    {ts}will <u>send an actual email</u> skipping db redirection in some cases!{/ts}
 </div>
 <br>
 <h2>
@@ -165,7 +165,7 @@
 </h2>
 <div id="help"><b>{ts}A debug mode can be set programatically:{/ts}</b><br>
     {ts}Navigate to:{/ts} <code>/de.systopia.birthdays/CRM/Birthdays/BirthdayContacts.php</code><br>
-    {ts}Set:<code>$is_debug_email = 'all-birthday-mails-go-to@this-domain.com';</code>using an code editor.{/ts}
+    {ts}Set:<code>$is_debug_email = 'all-birthday-mails-go-to@this-domain.com';</code> using an code editor.{/ts}
     <p>{ts}This changes the extensions behavior to:{/ts}</p>
     <ul> <!-- Please sync this documentation with mentioned php class path-->
         <li>{ts}Adding "successful" or "failed" activities will be suppressed{/ts}</li>
