@@ -200,7 +200,7 @@
     {ts}If you bring development skills feel free to{/ts}
         <a href="https://github.com/systopia/de.systopia.birthdays/pulls">{ts}leave a pull request{/ts}</a>
         {ts}and extend this open source extension or contact{/ts}
-        <a href="mailto:info@systopia.de">info@systopia.de</a>
+        <a href="mailto:info@systopia.de?subject=Birthdays%Extension">info@systopia.de</a>
         {ts}for contract work.{/ts}
 </div>
 <br>
