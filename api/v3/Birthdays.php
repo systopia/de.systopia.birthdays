@@ -30,24 +30,18 @@ use CRM_Birthdays_ExtensionUtil as E;
 function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
     try {
-        $results = \Civi\Api4\Birthdays::sendGreetings()
-            ->execute();
-        $return_info = [];
+        $api_status_info = \Civi\Api4\Birthdays::sendGreetings()
+            ->execute()->first();
 
-        foreach ($results as $results_sub) {
-            foreach ($results_sub as $result_key => $result_value) {
-                $return_info[$result_key] = $result_value;
-            }
-        }
-        if ($return_info['error']) {
+        if ($api_status_info['error']) {
             return civicrm_api3_create_error(
                 E::LONG_NAME . ' ' . E::ts(
                     "Rethrow error from APIv4: %1",
-                    [1 => $return_info['error']]
+                    [1 => $api_status_info['error']]
                 ));
         }
 
-        return civicrm_api3_create_success($return_info, $params, 'birthdays', 'sendgreetings');
+        return civicrm_api3_create_success($api_status_info, $params, 'birthdays', 'sendgreetings');
     } catch (Exception $exception) {
         $short_ex = $exception->getMessage();
         return civicrm_api3_create_error(
