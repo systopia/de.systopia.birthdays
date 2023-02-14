@@ -116,7 +116,6 @@ class CRM_Birthdays_Mailer
      * @param $title
      * @param $description
      * @return void
-     * @throws UnauthorizedException|CRM_Core_Exception
      */
     private function createActivity($target_id, $title, $description): void
     {
