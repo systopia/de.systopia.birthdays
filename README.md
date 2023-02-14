@@ -1,4 +1,4 @@
-# Birthday Report
+# Birthday Tools
 Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.
 
 ## Report

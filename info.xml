@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <extension key="de.systopia.birthdays" type="module">
   <file>birthdays</file>
-  <name>Birthdays</name>
+  <name>Birthdays Tools</name>
   <description>Provides tools to keep track of your contacts' birthdays, e.g. a report and automatic greetings via e-mail.</description>
   <license>AGPL-3.0</license>
   <maintainer>
