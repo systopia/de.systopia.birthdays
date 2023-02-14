@@ -20,43 +20,49 @@ namespace Civi\Api4\Action\Birthdays;
 use Civi\Api4\Generic\Result;
 use CRM_Birthdays_ExtensionUtil as E;
 
-final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
+final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
+{
 
     /**
-   * @inheritDoc
-   *
-   */
-  public function _run(Result $result): void {
+     * @inheritDoc
+     *
+     */
+    public function _run(Result $result): void
+    {
+        /*
+         * A debug email can be set here which leads to:
+         * - Adding "successful" or "failed" activities will be suppressed
+         * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
+         * - A filter is de-activated which selects the first 10 contacts/mails where a birthdate is set
+         */
+        $is_debug_email = 'catch@all.de';
 
-      /*
-       * A debug email can be set here which leads to:
-       * - Adding "successful" or "failed" activities will be suppressed
-       * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
-       * - A filter is de-activated which selects the first 10 contacts/mails where a birthdate is set
-       */
-      $is_debug_email = 'catch@all.de';
+        try {
+            $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
+            $contacts = $birthday_contacts->getBirthdayContactsOfToday(
+                $is_debug_email
+            ); // set output email to enable debug mode
+        } catch (\Exception $exception) {
+            $contacts = [];
+            $result[] = [
+                'error' => E::ts('There is a problem collecting birthday contacts: %1', [1 => $exception])
+            ];
+        }
+        if (!empty($contacts)) {
+            $mailer = new \CRM_Birthdays_Mailer();
+            $error_count = $mailer->sendMailsAndWriteActivity($contacts, empty($is_debug_email));
+        } else {
+            $error_count = 0;
+        }
 
-      try {
-          $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
-          $contacts = $birthday_contacts->getBirthdayContactsOfToday($is_debug_email); // set output email to enable debug mode
-      } catch (\Exception $exception) {
-          $contacts = [];
-          $result[] = [
-              'error' => E::ts('There is a problem collecting birthday contacts: %1', [1 => $exception])
-          ];
-      }
-      if (!empty($contacts)) {
-          $mailer = new \CRM_Birthdays_Mailer();
-          $error_count = $mailer->sendMailsAndWriteActivity($contacts, empty($is_debug_email));
-      } else {
-          $error_count = 0;
-      }
+        $contacts_count = count($contacts);
+        $send_count = $contacts_count - $error_count;
 
-      $contacts_count = count($contacts);
-      $send_count = $contacts_count - $error_count;
-
-      $result[] = [
-          'status' => E::ts('Executed: %1 out of %2 mails/activities processed', [1 => $send_count, 2 => $contacts_count])
-      ];
-  }
+        $result[] = [
+            'status' => E::ts(
+                'Executed: %1 out of %2 mails/activities processed',
+                [1 => $send_count, 2 => $contacts_count]
+            )
+        ];
+    }
 }
