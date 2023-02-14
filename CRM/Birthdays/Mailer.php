@@ -38,11 +38,11 @@ class CRM_Birthdays_Mailer
             $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
             $this->email_address_from = $this->getSenderEmailAddressFromId($email_id);
         } catch (TypeError $typeError) {
-            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings");
+            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings $typeError");
         }
 
         if (empty($this->email_address_from)) {
-            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings");
+            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email is empty. Please set an outgoing email address in birthday settings");
         }
     }
 
