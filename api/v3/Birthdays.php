@@ -50,6 +50,8 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
         return civicrm_api3_create_success($return_info, $params, 'birthdays', 'sendgreetings');
     } catch (Exception $exception) {
         $short_ex = $exception->getMessage();
-        return civicrm_api3_create_error(E::LONG_NAME . ' ' . E::ts("Error found in APIv3 wrapper calling APIv4: %1", [1 => $short_ex]));
+        return civicrm_api3_create_error(
+            E::LONG_NAME . ' ' . E::ts("Error found in APIv3 wrapper calling APIv4: %1", [1 => $short_ex])
+        );
     }
 }
