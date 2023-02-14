@@ -10,14 +10,14 @@ use CRM_Birthdays_ExtensionUtil as E;
 class CRM_Birthdays_Form_Settings extends CRM_Core_Form
 {
     const BIRTHDAYS_MESSAGE_TEMPLATE = 'Birthdays_Message_Template_ID';
-    const BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID = 'Birthdays_Sender_Email_Address';
+    const BIRTHDAYS_SENDER_EMAIL_ADDRESS = 'Birthdays_Sender_Email_Address';
 
     public function buildQuickForm()
     {
-        $this->setDefaults(['birthday_sender_email_address_id' => Civi::settings()->get(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID)]);
+        $this->setDefaults(['birthday_sender_email_address' => Civi::settings()->get(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS)]);
         $this->add(
             'select',
-            "birthday_sender_email_address_id",
+            "birthday_sender_email_address",
             E::ts("Send From"),
             array('' => E::ts('- Default -')) + CRM_Core_BAO_Email::domainEmails(),
             true,
@@ -48,7 +48,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
     {
         $values = $this->exportValues();
 
-        Civi::settings()->set(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID, $values['birthday_sender_email_address_id']);
+        Civi::settings()->set(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS, $values['birthday_sender_email_address']);
 
         Civi::settings()->set(self::BIRTHDAYS_MESSAGE_TEMPLATE, intval($values['message_template_id']));
 

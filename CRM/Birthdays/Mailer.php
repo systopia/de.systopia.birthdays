@@ -35,8 +35,13 @@ class CRM_Birthdays_Mailer
         }
 
         try {
-            $email_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS_ID);
-            $this->email_address_from = $this->getSenderEmailAddressFromId($email_id);
+            $email_name_mix = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);
+            /*
+             * Examples:
+             * - Input: "to database" <database@domain.com>
+             * - Output: database@domain.com
+             */
+            $this->email_address_from = CRM_Utils_Mail::pluckEmailFromHeader($email_name_mix);
         } catch (TypeError $typeError) {
             throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings $typeError");
         }
@@ -126,18 +131,5 @@ class CRM_Birthdays_Mailer
         } catch (Exception $exception) {
             Civi::log()->debug(E::LONG_NAME . ' ' . "Unable to write activity: $exception");
         }
-    }
-
-    /**
-     * @param int $id
-     * @return string|null
-     */
-    private function getSenderEmailAddressFromId(int $id): ?string
-    {
-        // this is something like: "to database" <database@domain.com>
-        $email_name_combined_with_email_address_string =
-            CRM_Core_OptionGroup::values('from_email_address', NULL, NULL, NULL, ' AND value = ' . $id);
-
-        return CRM_Utils_Mail::pluckEmailFromHeader($email_name_combined_with_email_address_string[$id]);
     }
 }

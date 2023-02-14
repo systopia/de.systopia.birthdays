@@ -86,8 +86,8 @@
     <br>
 </div>
 <div class="crm-section">
-    <div class="label">{$form.birthday_sender_email_address_id.label}</div>
-    <div class="content">{$form.birthday_sender_email_address_id.html}</div>
+    <div class="label">{$form.birthday_sender_email_address.label}</div>
+    <div class="content">{$form.birthday_sender_email_address.html}</div>
     <div class="clear"></div>
 </div>
 <div class="crm-submit-buttons">
