@@ -19,7 +19,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             'select',
             "birthday_sender_email_address_id",
             E::ts("Send From"),
-            $this->getSenderEmailAddresses(),
+            array('' => E::ts('- Default -')) + CRM_Core_BAO_Email::domainEmails(),
             true,
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]
         );
@@ -75,18 +75,5 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
         }
 
         return $list;
-    }
-
-    /**
-     * Get a list of the available/allowed sender email addresses
-     */
-    protected function getSenderEmailAddresses(): array
-    {
-        $dropdown_list = [];
-        $from_email_addresses = CRM_Core_OptionGroup::values('from_email_address');
-        foreach ($from_email_addresses as $key => $from_email_address) {
-            $dropdown_list[$key] = htmlentities($from_email_address);
-        }
-        return $dropdown_list;
     }
 }
