@@ -41,9 +41,6 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
                 'isDefault' => TRUE,
             ],
         ]);
-
-        // export form elements
-        // $this->assign('elementNames', $this->getRenderableElementNames()); not needed?
         parent::buildQuickForm();
     }
 
