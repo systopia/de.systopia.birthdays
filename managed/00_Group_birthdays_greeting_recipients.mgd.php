@@ -4,7 +4,7 @@ return [
     [
         'name' => 'Group_birthday_greeting_recipients',
         'entity' => 'Group',
-        'cleanup' => 'always',
+        'cleanup' => 'never',
         'update' => 'unmodified',
         'params' => [
             'version' => 4,
