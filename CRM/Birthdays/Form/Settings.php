@@ -9,8 +9,8 @@ use CRM_Birthdays_ExtensionUtil as E;
  */
 class CRM_Birthdays_Form_Settings extends CRM_Core_Form
 {
-    const BIRTHDAYS_MESSAGE_TEMPLATE = 'Birthdays_Message_Template_ID';
-    const BIRTHDAYS_SENDER_EMAIL_ADDRESS = 'Birthdays_Sender_Email_Address';
+    public const BIRTHDAYS_MESSAGE_TEMPLATE = 'Birthdays_Message_Template_ID';
+    public const BIRTHDAYS_SENDER_EMAIL_ADDRESS = 'Birthdays_Sender_Email_Address';
 
     public function buildQuickForm()
     {
