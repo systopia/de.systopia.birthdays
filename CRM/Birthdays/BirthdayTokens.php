@@ -38,7 +38,7 @@ class CRM_Birthdays_BirthdayTokens
                     self::calculateBirthday($contact_info['birth_date']);
             }
         } catch (Exception $exception) {
-            Civi::log()->debug(E::LONG_NAME . " " . "Failed to fetch and  calculate age: $exception");
+            Civi::log()->debug(E::LONG_NAME . " " . "Failed to fetch and calculate age: $exception");
         }
     }
 
