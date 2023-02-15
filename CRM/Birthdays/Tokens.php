@@ -41,7 +41,7 @@ class CRM_Birthdays_Tokens extends AbstractTokenSubscriber
 
         return [
             'contact' => [
-                'age' =>$contact_info->age()
+                'age' => $contact_info->age()
             ]
         ];
     }
