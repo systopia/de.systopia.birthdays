@@ -37,14 +37,16 @@ class CRM_Birthdays_ContactInfo
     /**
      * Calculates age of given ISO date string
      * @param string $iso_birth_date ISO birthdate
-     * @return int age
      * @throws Exception
      */
-    private function calculateBirthday(string $iso_birth_date)// problematic?
+    private function calculateBirthday(string $iso_birth_date): int
     {
         return date_diff(date_create($iso_birth_date), date_create('now'))->y;
     }
 
+    /**
+     * @throws Exception
+     */
     public function age(): string
     {
         $age = $this->calculateBirthday($this->contact_iso_birthdate);
