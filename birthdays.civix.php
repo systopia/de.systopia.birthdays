@@ -113,7 +113,6 @@ function _birthdays_civix_civicrm_config(&$config = NULL) {
   $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
   set_include_path($include_path);
   _birthdays_civix_mixin_polyfill();
-  \Civi::dispatcher()->addSubscriber(new CRM_Birthdays_Tokens('birthdays'));
 }
 
 /**

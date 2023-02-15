@@ -37,6 +37,7 @@ function birthdays_civicrm_tokenValues(&$values, $contact_ids, $job = null, $tok
  */
 function birthdays_civicrm_config(&$config) {
   _birthdays_civix_civicrm_config($config);
+  \Civi::dispatcher()->addSubscriber(new CRM_Birthdays_Tokens('birthdays'));
 }
 
 /**
