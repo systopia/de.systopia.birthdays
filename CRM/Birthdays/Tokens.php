@@ -26,24 +26,24 @@ class CRM_Birthdays_Tokens extends AbstractTokenSubscriber
         parent::__construct($entity, $tokenNames);
     }
 
-    public static function getTokens() {
-        $var['contact.age'] = E::ts('Contact Age (Birthdays Extension)');
-        return $var;
+    public static function getTokens(): array
+    {
+        return ['contact.age' => E::ts('Contact Age (Birthdays Extension)')];
     }
 
-    public function prefetch(TokenValueEvent $e)
+    /**
+     * @throws Exception
+     */
+    public function prefetch(TokenValueEvent $e): array
     {
-        $contact_id = $e->getTokenProcessor()->rowContexts[0]['contact']['contact_id'];;
+        $contact_id = $e->getTokenProcessor()->rowContexts[0]['contact']['contact_id'];
+        $contact_info = new CRM_Birthdays_ContactInfo($contact_id);
 
-        $contact_age = $contact_id; //fixme fetch age
-
-        $token_values = [
+        return [
             'contact' => [
-                'age' => $contact_age
+                'age' =>$contact_info->age()
             ]
         ];
-
-        return $token_values;
     }
 
     public function evaluateToken(TokenRow $row, $entity, $field, $prefetch = null)
