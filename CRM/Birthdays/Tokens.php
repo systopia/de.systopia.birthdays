@@ -33,8 +33,14 @@ class CRM_Birthdays_Tokens extends AbstractTokenSubscriber
 
     public function prefetch(TokenValueEvent $e)
     {
+        $contact_id = $e->getTokenProcessor()->rowContexts[0]['contact']['contact_id'];;
+
+        $contact_age = $contact_id; //fixme fetch age
+
         $token_values = [
-            'contact.age' => $e->getTokenProcessor()->rowContexts[0]['contact.age']
+            'contact' => [
+                'age' => $contact_age
+            ]
         ];
 
         return $token_values;
