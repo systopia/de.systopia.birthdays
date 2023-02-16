@@ -39,7 +39,7 @@ class CRM_Birthdays_BirthdayContacts
      * Debug mode allows you to send mails to a pre defined email.
      * For details see sendGreetings::_run
      */
-    public function getBirthdayContactsOfToday($is_debug_email = ''): array
+    public function getBirthdayContactsOfToday($is_debug_email): array
     {
         try {
             if (!empty($is_debug_email)) {
