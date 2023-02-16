@@ -91,12 +91,12 @@ class CRM_Birthdays_Mailer
     private function sendMail($contact_id, $from_email_address, $to_email_address, $template_id): void
     {
         try {
-            $contacts = \Civi\Api4\Contact::get()
+            $contact = \Civi\Api4\Contact::get() // fixme singular?
                 ->addSelect('display_name')
-                ->addWhere('id', '=', 1)
+                ->addWhere('id', '=', $contact_id)
                 ->execute()
                 ->single();
-            $to_name = $contacts['display_name'];
+            $to_name = $contact['display_name'];
             civicrm_api3('MessageTemplate', 'send', [
                 'check_permissions' => 0,
                 'id'                => $template_id,
