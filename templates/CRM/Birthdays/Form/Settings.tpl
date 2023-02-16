@@ -54,8 +54,9 @@
             {ts}Step 2: Select a template{/ts}
         </h1>
         <div id="help">
-            {ts}Please select a previously created or edited template for birthday greeting emails.<br>
-        Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}
+            {ts}Please select a previously created or edited template for birthday greeting emails.
+                <br>
+                Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}
             <br>
         </div>
         <div class="crm-section">
@@ -103,7 +104,7 @@
     <h1>
         {ts}Step 5: Make sure to understand filter criteria{/ts}
     </h1>
-    <div id="help"><b>{ts}The contact filter currently filters contacts with:{/ts}</b><br>
+    <div id="help"><b>{ts}The contact filter currently filters these contacts:{/ts}</b><br>
         <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
             whenever you add or change things here-->
             <li>{ts}contacts which are part of the programmatically prepared birthday group{/ts}</li>
@@ -141,65 +142,86 @@
         {ts}Scheduled Run Date: Can be left empty while testing.{/ts}<br>
         {ts}Is this Scheduled Job active?: Can be left de-activated while testing.{/ts}<br>
         {ts}Click: "Save"{/ts}<br>
-        {ts}
-            <b>Warning:</b>
-            Using scheduled jobs setting
-            <code>runInNonProductionEnvironment=TRUE</code>
-            in a development{/ts} <a
-                href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">{ts}emails set to "redirected to database"{/ts}</a>
+        <b>{ts}Warning:{/ts}</b>
+        {ts}Using scheduled jobs setting{/ts}
+        <code>runInNonProductionEnvironment=TRUE</code>
+        {ts}in a development{/ts} <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">
+            {ts}emails set to "redirected to database"{/ts}</a>
         {ts}will<u>send an actual email</u>skipping db redirection in some cases!{/ts}
     </div>
     <br>
     <h1>
-        {ts}Step 8: Testing{/ts}
+        {ts}Step 8a: Testing it by using scheduled jobs{/ts}
     </h1>
     <div id="help">
-        {ts}Check if you want to use the special debug mode described in the next chapter to avoid traces in your system{/ts}
+        {ts}Check if you want to use the special debug mode described in the next chapter to avoid traces in
+            your system.{/ts}
         <br>
-        {ts}Again use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "
+        <br>
+        {ts}Otherwise use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "
         <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
         {ts}Find the previous created birthday job in this list{/ts}<br>
         {ts}Click: "more"{/ts}<br>
         {ts}Click: "Execute Now" <b>(Warning: <u>Actual emails</u> will be sent to the contacts email addresses if
         everything works as expected!)</b>{/ts}<br>
-        {ts}Your previoulsy selected contacts should now receive an email with birthday greetings{/ts}
+        {ts}Your previously selected contacts should now receive an email with birthday greetings.{/ts}
         {ts}Make sure to check what type of activity description had been added to your selected contacts.{/ts}
-        <br>
-        {ts}If you are familiar with executing API commands you also can use{/ts}
-        <a href="{crmURL p='/civicrm/api4#/explorer/Birthdays/sendGreetings' q=''}">APIv4</a>
-        {ts}to trigger sending of mails.{/ts}
     </div>
     <br>
     <br>
     <h1>
-        {ts}Test / debug mode (!! Sysadmins only !!){/ts}
-    </h1>
-    <div id="help"><b>{ts}A debug mode can be set programatically:{/ts}</b><br>
-        {ts}Navigate to:{/ts} <code>/de.systopia.birthdays/CRM/Birthdays/BirthdayContacts.php</code><br>
-        {ts}Set:<code>$is_debug_email = 'all-birthday-mails-go-to@this-domain.com';</code>using an code editor.{/ts}
-        <p>{ts}This changes the extensions behavior to:{/ts}</p>
-        <ul> <!-- Please sync this documentation with mentioned php class path-->
-            <li>{ts}Adding "successful" or "failed" activities will be suppressed{/ts}</li>
-            <li>{ts}All emails will be redirected to this email set above{/ts}</li>
-            <li>{ts}A filter is de-activated which selects the first 10 contacts/mails where a birth date is set{/ts}</li>
-        </ul>
-        <br>
-        {ts}Set an empty string<code>$is_debug_email = '';</code>to de-activate debug mode.{/ts}
-    </div>
-    <br>
-    <h1>
-        {ts}Final activation{/ts}
+        {ts}Step 8b: Test it by using the API{/ts}
     </h1>
     <div id="help">
-        {ts}Again use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "
-        <a href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".<br>
-        {ts}Again find the previous created birthday job in this list{/ts}<br>
-        {ts}Again click: "more"{/ts}<br>
-        {ts}Is this Scheduled Job active?: Set a first execution date and time.{/ts}<br>
-        {ts}Click: "Save"{/ts}<br>
-        {ts}Again find the previous created birthday job in this list{/ts}<br>
-        {ts}Again click: "more"{/ts}<br>
-        {ts}Click: "Enable". This enables the daily sending of birthday mails for your instance.{/ts}<br>
+        <h2>{ts}Preparation{/ts}</h2>
+        <p>{ts}Navigate to the {/ts}<a href="{crmURL p='/civicrm/api4' q=''}">APIv4 Explorer</a>
+            {ts}in your "Administration" menu and select:{/ts}</p>
+        <ul> <!-- Please sync this documentation with mentioned php class path-->
+            <li>{ts}Birthdays as your Entitiy{/ts}</li>
+            <li>{ts}sendGreetings as your Action{/ts}</li>
+        </ul>
+        <br>
+        <h2>{ts}Parameters{/ts}</h2>
+        <p>{ts}Currently there are two parameter available to set debug options.{/ts}</p>
+        <br>
+        <b><i>disable_acitivites</i> {ts}checkbox{/ts}</b><br>
+        {ts}This allows to set these modes for this testing session:{/ts}
+        <ul> <!-- Please sync this documentation with mentioned php class path-->
+            <li>{ts}true: "successful" or "failed" activities will be suppressed{/ts}</li>
+            <li>{ts}false: "successful" or "failed" activities will be added to contacts{/ts}</li>
+        </ul>
+        <br>
+        <br>
+        <b><i>debug_email</i> {ts}text field{/ts}</b><br>
+        {ts}Please add a real email address here. It will only be used for this testing session.{/ts}
+        {ts}For example set 'all-birthday-mails-go-to@this-domain.com' as your test email.{/ts}
+        <p>{ts}Setting an address here changes the extensions behavior to:{/ts}</p>
+        <ul> <!-- Please sync this documentation with mentioned php class path-->
+            <li>{ts}All emails will be redirected to this email set above{/ts}</li>
+            <li>{ts}The previous described filter is de-activated{/ts}</li>
+            <li>{ts}10 contacts/mails will be selected where a birthdate is set{/ts}</li>
+        </ul>
+        <br>
+    </div>
+    <br>
+    <h1>
+        {ts}Step 9: Final activation{/ts}
+    </h1>
+    <div id="help">
+        <p>{ts}If previous tests were successful we can now activate it for automated sending:{/ts}</p>
+        <ul>
+            <li>{ts}Again use the topbar to navigate to: "Administer" --> "Administration Console" -->{/ts} "<a
+                        href="{crmURL p='/civicrm/admin/job' q='reset=1'}">{ts}Scheduled Jobs{/ts}</a>".
+            </li>
+            <li>{ts}Again find the previous created birthday job in this list{/ts}</li>
+            <li>{ts}Again click: "more"{/ts}</li>
+            <li>{ts}Is this Scheduled Job active?: Set a first execution date and time.{/ts}</li>
+            <li>{ts}Click: "Save"{/ts}</li>
+            <li>{ts}Again find the previous created birthday job in this list{/ts}</li>
+            <li>{ts}Again click: "more"{/ts}</li>
+            <li>{ts}Click: "Enable"{/ts}</li>
+        </ul>
+        {ts}This enables the daily sending of birthday mails for your instance.{/ts}
     </div>
     <br>
     <hr>
@@ -213,5 +235,7 @@
         {ts}and extend this open source extension or contact{/ts}
         <a href="mailto:info@systopia.de?subject=Birthdays%Extension">info@systopia.de</a>
         {ts}for contract work.{/ts}
+        {ts}Bugs can be reported to {/ts}<a href="https://github.com/systopia/de.systopia.birthdays/issues">
+            {ts}using GitHubs issue list{/ts}</a> {ts}if they aren't listed there already.{/ts}
     </div>
 {/crmScope}
