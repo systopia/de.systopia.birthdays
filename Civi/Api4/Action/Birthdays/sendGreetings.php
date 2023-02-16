@@ -35,7 +35,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
          * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
          * - A filter is de-activated which selects the first 10 contacts/mails where a birthdate is set
          */
-        $is_debug_email = 'catch@all.de';
+        $is_debug_email = '';
 
         try {
             $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
