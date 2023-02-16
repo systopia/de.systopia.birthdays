@@ -21,7 +21,7 @@ birthday action manually or by using scheduled jobs.
 This page provides a step by step integrated settings guide on how to setup
 your Civi for automated birthday email notifications
 
-Naviage to: "Administer" --> "Administration Console" 
+Navigate to: "Administer" --> "Administration Console" 
 --> "Birthdays Extension Settings"
 ![image](/docs/images/birthday_settings.png)
 
