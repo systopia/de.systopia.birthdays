@@ -63,7 +63,6 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
                 ->addSelect('msg_subject')
                 ->addWhere('is_active', '=', TRUE)
                 ->addWhere('workflow_id', 'IS EMPTY')
-                ->setLimit(25)
                 ->execute();
             $messageTemplates->indexBy('id');
             $messageTemplates->column('msg_subject');
