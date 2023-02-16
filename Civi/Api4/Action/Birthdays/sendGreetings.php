@@ -39,9 +39,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
 
         try {
             $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
-            $contacts = $birthday_contacts->getBirthdayContactsOfToday(
-                $is_debug_email
-            ); // set output email to enable debug mode
+            $contacts = $birthday_contacts->getBirthdayContactsOfToday($is_debug_email);
         } catch (\Exception $exception) {
             $contacts = [];
             $result[] = [
