@@ -24,9 +24,15 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
 {
 
     /**
-     * @inheritDoc
+     * Birthday::sendmessage() API
      *
+     * These parameters allow you to dry run your birthday mailing setup
+     *
+     * @see \Civi\Api4\Generic\AbstractAction
+     *
+     * @package Civi\Api4\Action\Birthdays
      */
+
 
     /**
      * Debug email can be set for testing.
@@ -51,12 +57,6 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
 
     public function _run(Result $result): void
     {
-        /*
-         * A debug email can be set here which leads to:
-         * - Adding "successful" or "failed" activities will be suppressed
-         * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
-         * - A filter is de-activated which selects the first 10 contacts/mails where a birthdate is set
-         */
         try {
             $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
             $contacts = $birthday_contacts->getBirthdayContactsOfToday($this->debug_email);

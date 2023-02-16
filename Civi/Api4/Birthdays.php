@@ -22,7 +22,13 @@ namespace Civi\Api4;
 use Civi\Api4\Generic\AbstractEntity;
 use Civi\Api4\Generic\BasicGetFieldsAction;
 use Civi\Api4\Action\Birthdays\sendGreetings;
-
+/**
+ * Birthday API
+ *
+ * @see https://github.com/systopia/de.systopia.birthdays#birthday-report
+ *
+ * @package Civi\Api4
+ */
 final class Birthdays extends AbstractEntity {
 
     public static function sendGreetings($checkPermissions = true): SendGreetings {
