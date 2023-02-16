@@ -25,6 +25,10 @@ Naviage to: "Administer" --> "Administration Console"
 --> "Birthdays Extension Settings"
 ![image](/docs/images/birthday_settings.png)
 
+### Received message
+This is how a message could look like
+![image](/docs/images/birthday_inbox.png)
+
 ### Activities
 An activity is written every for successful / faild email greetings
 ![image](/docs/images/birthday_activities.png)
