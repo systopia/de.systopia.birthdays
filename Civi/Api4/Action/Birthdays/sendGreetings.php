@@ -27,6 +27,28 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
      * @inheritDoc
      *
      */
+
+    /**
+     * Debug email can be set for testing.
+     *
+     * All emails will be redirected to this email set using debug_email. Example: all_mails_to@thisdomain.com
+     *
+     * WARNING: Chances are you want to disable activities using this option
+     *
+     * @var string
+     */
+    protected string $debug_email = '';
+
+    /**
+     * Acitivites can be enabled or disabled here.
+     *
+     * - true:  "successful" or "failed" activities will be suppressed
+     * - false: "successful" or "failed" activities will be added to contacts
+     *
+     * @var bool
+     */
+    protected bool $disable_acitivites = false;
+
     public function _run(Result $result): void
     {
         /*
@@ -35,11 +57,9 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
          * - All emails will be redirected to this email set here ( $is_debug_email = 'all_mails_to@thisdomain.com'; )
          * - A filter is de-activated which selects the first 10 contacts/mails where a birthdate is set
          */
-        $is_debug_email = '';
-
         try {
             $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
-            $contacts = $birthday_contacts->getBirthdayContactsOfToday($is_debug_email);
+            $contacts = $birthday_contacts->getBirthdayContactsOfToday($this->debug_email);
         } catch (\Exception $exception) {
             $contacts = [];
             $result[] = [
@@ -48,7 +68,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
         }
         if (!empty($contacts)) {
             $mailer = new \CRM_Birthdays_Mailer();
-            $error_count = $mailer->sendMailsAndWriteActivity($contacts, empty($is_debug_email));
+            $error_count = $mailer->sendMailsAndWriteActivity($contacts, !$this->disable_acitivites);
         } else {
             $error_count = 0;
         }
