@@ -108,11 +108,12 @@
         <ul> <!-- Please sync sql query documentation in CRM/Birthdays/BirthdayContacts.php
             whenever you add or change things here-->
             <li>{ts}contacts which are part of the programmatically prepared birthday group{/ts}</li>
-            <li>{ts}contacts with a birthday which is equal with the date of execution (unless debug mode is set - see below){/ts}</li>
-            <li><code>contact_type</code> = 'Individual'</li>
-            <li><code>opt_out</code> = 0</li>
-            <li><code>do_not_email</code> = 0</li>
-            <li>{ts}Contact has a primary email address set{/ts}</li>
+            <li>{ts}contacts with a birthday which is equal with the date of execution{/ts}</li>
+            <li><code>contact_type</code> = 'Individual' ({ts}Contact type is individual{/ts})</li>
+            <li><code>opt_out = 0</code> ({ts}There is no op-out option set{/ts})</li>
+            <li><code>do_not_email = 0</code> ({ts}There is no do_not_email option set{/ts})</li>
+            <li><code>is_deceased = 0</code> ({ts}Contact is not marked as deceased{/ts})</li>
+            <li><code>is_primary= 1</code> ({ts}Only use contacts with primary email set{/ts})</li>
         </ul>
     </div>
     <br>
