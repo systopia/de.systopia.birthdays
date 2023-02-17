@@ -177,7 +177,7 @@
         <p>{ts}Navigate to the {/ts}<a href="{crmURL p='/civicrm/api4' q=''}">APIv4 Explorer</a>
             {ts}in your "Administration" menu and select:{/ts}</p>
         <ul> <!-- Please sync this documentation with mentioned php class path-->
-            <li>{ts}Birthdays as your Entitiy{/ts}</li>
+            <li>{ts}Birthdays as your Entity{/ts}</li>
             <li>{ts}sendGreetings as your Action{/ts}</li>
         </ul>
         <br>
