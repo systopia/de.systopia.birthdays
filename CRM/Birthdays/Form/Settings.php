@@ -19,7 +19,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             'select',
             "birthday_sender_email_address",
             E::ts("Send From"),
-            array('' => E::ts('- Default -')) + CRM_Core_BAO_Email::domainEmails(),
+            ['' => E::ts('- Default -')] + CRM_Core_BAO_Email::domainEmails(),
             true,
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]
         );

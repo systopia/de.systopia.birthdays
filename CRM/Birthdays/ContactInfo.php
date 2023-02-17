@@ -17,7 +17,6 @@ class CRM_Birthdays_ContactInfo
 
     /**
      * @param $contact_id
-     * @return string
      * @throws Exception
      */
     private function getBirthDateOfContactId($contact_id): string

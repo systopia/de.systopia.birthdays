@@ -115,7 +115,6 @@ class CRM_Birthdays_Mailer
      * @param $target_id
      * @param $title
      * @param $description
-     * @return void
      */
     private function createActivity($target_id, $title, $description): void
     {
