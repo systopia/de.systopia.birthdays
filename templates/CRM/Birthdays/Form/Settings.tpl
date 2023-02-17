@@ -147,7 +147,7 @@
         <code>runInNonProductionEnvironment=TRUE</code>
         {ts}in a development{/ts} <a href="{crmURL p='/civicrm/admin/setting/smtp' q='reset=1'}">
             {ts}emails set to "redirected to database"{/ts}</a>
-        {ts}will<u>send an actual email</u>skipping db redirection in some cases!{/ts}
+        {ts}will <u>send an actual email</u> skipping db redirection in some cases!{/ts}
     </div>
     <br>
     <h1>
