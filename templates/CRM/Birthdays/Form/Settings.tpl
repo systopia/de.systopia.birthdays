@@ -186,7 +186,7 @@
         <br>
         <b><i>disable_acitivites</i> {ts}checkbox{/ts}</b><br>
         {ts}This allows to set these modes for this testing session:{/ts}
-        <ul> <!-- Please sync this documentation with mentioned php class path-->
+        <ul>
             <li>{ts}true: "successful" or "failed" activities will be suppressed{/ts}</li>
             <li>{ts}false: "successful" or "failed" activities will be added to contacts{/ts}</li>
         </ul>
@@ -196,7 +196,7 @@
         {ts}Please add a real email address here. It will only be used for this testing session.{/ts}
         {ts}For example set 'all-birthday-mails-go-to@this-domain.com' as your test email.{/ts}
         <p>{ts}Setting an address here changes the extensions behavior to:{/ts}</p>
-        <ul> <!-- Please sync this documentation with mentioned php class path-->
+        <ul> <!-- Please sync this documentation whenever code behaviour changes -->
             <li>{ts}All emails will be redirected to this email set above{/ts}</li>
             <li>{ts}The previous described filter is de-activated{/ts}</li>
             <li>{ts}10 contacts/mails will be selected where a birthdate is set{/ts}</li>
