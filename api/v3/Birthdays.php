@@ -17,6 +17,32 @@
 
 use CRM_Birthdays_ExtensionUtil as E;
 
+
+/**
+ * Birthdays::sendmessage() API v3
+ *
+ * This API is calling an API v4
+ *
+ * These parameters allow you to dry run your birthday mailing setup
+ *
+ **/
+function _civicrm_api3_birthdays_sendgreetings_spec(&$params) {
+    $params['debug_email'] = [
+        'name'         => 'debug_email',
+        'api.required' => 0,
+        'type'         => CRM_Utils_Type::T_STRING,
+        'title'        => E::ts('Set a debug email address (default: empty)'),
+        'description'  => E::ts('A debug email is used to redirect all mails to this address')
+    ];
+    $params['disable_acitivites'] = [
+        'name'         => 'disable_acitivites',
+        'api.required' => 0,
+        'type'         => CRM_Utils_Type::T_BOOLEAN,
+        'title'        => E::ts('Option to disable activities (default: no)'),
+        'description'  => E::ts('Should activities be disabled?')
+    ];
+}
+
 /**
  * birthdays.sendgreetings
  *
@@ -30,8 +56,14 @@ use CRM_Birthdays_ExtensionUtil as E;
 function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
     try {
+        $debug_email = $params['debug_email'] ?: '';
+        $disable_acitivites = boolval($params['disable_acitivites']);
+
         $api_status_info = \Civi\Api4\Birthdays::sendGreetings()
-            ->execute()->first();
+            ->setDisable_acitivites($disable_acitivites)
+            ->setDebug_email($debug_email)
+            ->execute()
+            ->first();
 
         if ($api_status_info['error']) {
             return civicrm_api3_create_error(
