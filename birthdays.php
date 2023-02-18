@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+use CRM_Birthdays_ExtensionUtil as E;
+
 require_once 'birthdays.civix.php';
 
 /**
@@ -50,4 +52,16 @@ function birthdays_civicrm_enable() {
  */
 function birthdays_civicrm_entityTypes(&$entityTypes) {
   _birthdays_civix_civicrm_entityTypes($entityTypes);
+}
+
+function birthdays_civicrm_navigationMenu(&$menu) {
+    _birthdays_civix_insert_navigation_menu($menu, 'Administer/Communications', [
+        'label' => E::ts('Birthday Settings'),
+        'url' => 'civicrm/admin/birthdays',
+        'permission' => 'administer CiviCRM',
+        'operator' => 'OR',
+        'separator' => 0,
+        'icon' => 'crm-i fa-file-text',
+        'active' => 1
+    ]);
 }
