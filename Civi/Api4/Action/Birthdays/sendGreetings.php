@@ -24,7 +24,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
 {
 
     /**
-     * Birthdays::sendmessage() API
+     * Birthdays::sendmessage() API v4
      *
      * These parameters allow you to dry run your birthday mailing setup
      *
