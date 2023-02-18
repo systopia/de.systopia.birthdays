@@ -32,7 +32,7 @@ This is how a message could look like
 ![image](docs/images/birthday_inbox.png)
 
 ### Activities
-An activity is written every for successful / faild email greetings
+An activity is written every for successful / failed email greetings
 ![image](docs/images/birthday_activities.png)
 
 Activity content
