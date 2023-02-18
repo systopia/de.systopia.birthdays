@@ -53,7 +53,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
      *
      * @var bool
      */
-    protected bool $disable_acitivites = false;
+    protected bool $disable_activities = false;
 
     public function _run(Result $result): void
     {
@@ -68,7 +68,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
         }
         if (!empty($contacts)) {
             $mailer = new \CRM_Birthdays_Mailer();
-            $error_count = $mailer->sendMailsAndWriteActivity($contacts, !$this->disable_acitivites);
+            $error_count = $mailer->sendMailsAndWriteActivity($contacts, !$this->disable_activities);
         } else {
             $error_count = 0;
         }

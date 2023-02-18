@@ -34,8 +34,8 @@ function _civicrm_api3_birthdays_sendgreetings_spec(&$params) {
         'title'        => E::ts('Set a debug email address (default: empty)'),
         'description'  => E::ts('A debug email is used to redirect all mails to this address')
     ];
-    $params['disable_acitivites'] = [
-        'name'         => 'disable_acitivites',
+    $params['disable_activities'] = [
+        'name'         => 'disable_activities',
         'api.required' => 0,
         'type'         => CRM_Utils_Type::T_BOOLEAN,
         'title'        => E::ts('Option to disable activities (default: no)'),
@@ -57,10 +57,10 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
     try {
         $debug_email = $params['debug_email'] ?: '';
-        $disable_acitivites = boolval($params['disable_acitivites']);
+        $disable_activities = boolval($params['disable_activities']);
 
         $api_status_info = \Civi\Api4\Birthdays::sendGreetings()
-            ->setDisable_acitivites($disable_acitivites)
+            ->setDisable_activities($disable_activities)
             ->setDebug_email($debug_email)
             ->execute()
             ->first();
