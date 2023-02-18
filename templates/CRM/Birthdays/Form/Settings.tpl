@@ -1,5 +1,5 @@
 {*-------------------------------------------------------+
-| SYSTOPIA Birthday Tools                                |
+| SYSTOPIA Birthday                                      |
 | Copyright (C) 2023 SYSTOPIA                            |
 | Author: J. Franz (franz@systopia.de)                   |
 +--------------------------------------------------------+

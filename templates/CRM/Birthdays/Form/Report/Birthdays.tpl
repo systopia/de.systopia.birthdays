@@ -1,5 +1,5 @@
 {*-------------------------------------------------------+
-| SYSTOPIA Birthday Tools                                |
+| SYSTOPIA Birthday                                      |
 | Copyright (C) 2020 SYSTOPIA                            |
 | Author: J. Schuppe (schuppe@systopia.de)               |
 +--------------------------------------------------------+

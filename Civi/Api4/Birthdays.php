@@ -23,7 +23,7 @@ use Civi\Api4\Generic\AbstractEntity;
 use Civi\Api4\Generic\BasicGetFieldsAction;
 use Civi\Api4\Action\Birthdays\sendGreetings;
 /**
- * Birthday API
+ * Birthdays API
  *
  * @see https://github.com/systopia/de.systopia.birthdays#birthday-report
  *
