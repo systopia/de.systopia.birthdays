@@ -31,7 +31,9 @@ class CRM_Birthdays_Mailer
     {
         $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE);
         if (empty($this->template_id)) {
-            throw new Exception(E::LONG_NAME . " " . "Message template not found. Please set a template in birthday settings");
+            throw new Exception(
+                E::LONG_NAME . " " . "Message template not found. Please set a template in birthday settings"
+            );
         }
 
         try {
@@ -43,11 +45,15 @@ class CRM_Birthdays_Mailer
              */
             $this->email_address_from = CRM_Utils_Mail::pluckEmailFromHeader($email_name_mix);
         } catch (TypeError $typeError) {
-            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings $typeError");
+            throw new Exception(
+                E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings $typeError"
+            );
         }
 
         if (empty($this->email_address_from)) {
-            throw new Exception(E::LONG_NAME . " " . "Pre selected outgoing email is empty. Please set an outgoing email address in birthday settings");
+            throw new Exception(
+                E::LONG_NAME . " " . "Pre selected outgoing email is empty. Please set an outgoing email address in birthday settings"
+            );
         }
     }
 
@@ -69,14 +75,22 @@ class CRM_Birthdays_Mailer
                     $this->createActivity(
                         $contact_id,
                         E::ts('Successful birthday greeting mail'),
-                        E::ts('Successful birthday greeting mail! Template ID %1 has been used.', [1 => $this->template_id]));
+                        E::ts(
+                            'Successful birthday greeting mail! Template ID %1 has been used.',
+                            [1 => $this->template_id]
+                        )
+                    );
                 }
             } catch (Exception $exception) {
                 if ($write_activity) {
                     $this->createActivity(
                         $contact_id,
                         E::ts('FAILED birthday greeting mail'),
-                        E::ts("Failed sending an birthday greeting mail with template ID nr %1. Error: %2", [1 => $this->template_id, 2 => $exception]));
+                        E::ts(
+                            "Failed sending an birthday greeting mail with template ID nr %1. Error: %2",
+                            [1 => $this->template_id, 2 => $exception]
+                        )
+                    );
                 }
                 ++$error_count;
             }
@@ -98,11 +112,11 @@ class CRM_Birthdays_Mailer
                 ->single();
             civicrm_api3('MessageTemplate', 'send', [
                 'check_permissions' => 0,
-                'id'                => $template_id,
-                'to_name'           => $contact['display_name'],
-                'from'              => trim($from_email_address),
-                'contact_id'        => $contact_id,
-                'to_email'          => trim($to_email_address),
+                'id' => $template_id,
+                'to_name' => $contact['display_name'],
+                'from' => trim($from_email_address),
+                'contact_id' => $contact_id,
+                'to_email' => trim($to_email_address),
             ]);
         } catch (Exception $exception) {
             throw new Exception(E::LONG_NAME . " " . "MessageTemplate exception: $exception");

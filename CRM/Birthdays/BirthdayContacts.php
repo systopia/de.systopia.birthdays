@@ -29,7 +29,12 @@ class CRM_Birthdays_BirthdayContacts
         try {
             $this->group_id = $this->getGroupIdFromApi();
         } catch (Exception $exception) {
-            throw new Exception(E::LONG_NAME . ' ' . E::ts('Default group called birthday_greeting_recipients_group not found: %1', [1 => $exception]));
+            throw new Exception(
+                E::LONG_NAME . ' ' . E::ts(
+                    'Default group called birthday_greeting_recipients_group not found: %1',
+                    [1 => $exception]
+                )
+            );
         }
     }
 

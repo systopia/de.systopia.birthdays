@@ -14,7 +14,9 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
 
     public function buildQuickForm()
     {
-        $this->setDefaults(['birthday_sender_email_address' => Civi::settings()->get(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS)]);
+        $this->setDefaults(
+            ['birthday_sender_email_address' => Civi::settings()->get(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS)]
+        );
         $this->add(
             'select',
             "birthday_sender_email_address",
@@ -30,7 +32,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             'message_template_id', // field name
             E::ts('Select template'), // field label
             $this->getMessageTemplates(), // list of options
-            TRUE, // is required
+            true, // is required
             ['class' => 'huge crm-select2', 'placeholder' => E::ts("-select-")]
         );
 
@@ -38,7 +40,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
             [
                 'type' => 'submit',
                 'name' => E::ts('Submit'),
-                'isDefault' => TRUE,
+                'isDefault' => true,
             ],
         ]);
         parent::buildQuickForm();
@@ -61,7 +63,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form
         try {
             $messageTemplates = \Civi\Api4\MessageTemplate::get()
                 ->addSelect('msg_subject')
-                ->addWhere('is_active', '=', TRUE)
+                ->addWhere('is_active', '=', true)
                 ->addWhere('workflow_id', 'IS EMPTY')
                 ->execute();
             $messageTemplates->indexBy('id');
