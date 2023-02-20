@@ -61,9 +61,6 @@ class CRM_Birthdays_Mailer
      * @param $contacts
      * @param $write_activity
      * @return int error count
-     * @throws API_Exception
-     * @throws CRM_Core_Exception
-     * @throws UnauthorizedException
      */
     public function sendMailsAndWriteActivity($contacts, $write_activity): int
     {

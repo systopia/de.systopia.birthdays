@@ -15,6 +15,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Civi\API\Exception\UnauthorizedException;
+use Civi\Api4\Contact;
+use Civi\Api4\Group;
 use CRM_Birthdays_ExtensionUtil as E;
 
 class CRM_Birthdays_BirthdayContacts
@@ -64,7 +67,10 @@ class CRM_Birthdays_BirthdayContacts
              * whenever this query changes
              */
 
-            $sql = "SELECT civicrm_contact.id AS contact_id, civicrm_contact.birth_date AS birth_date, civicrm_email.email AS email FROM civicrm_contact
+            $sql = "SELECT civicrm_contact.id AS contact_id, 
+                        civicrm_contact.birth_date AS birth_date,
+                        civicrm_email.email AS email
+                    FROM civicrm_contact
                         INNER JOIN civicrm_group_contact group_contact ON civicrm_contact.id = group_contact.contact_id
                         INNER JOIN civicrm_email ON civicrm_contact.id = civicrm_email.contact_id
                               WHERE civicrm_contact.contact_type = 'Individual'
@@ -95,11 +101,31 @@ class CRM_Birthdays_BirthdayContacts
      */
     private function getGroupIdFromApi(): int
     {
-        $group_id = \Civi\Api4\Group::get()
+        $group_id = Group::get()
             ->addSelect('id')
             ->addWhere('name', '=', 'birthday_greeting_recipients_group')
             ->execute()
             ->single();
         return $group_id['id'];
+    }
+
+
+    /**
+     * @throws UnauthorizedException
+     * @throws CRM_Core_Exception
+     * @throws Exception
+     */
+    public function groupHasBirthDateContacts(): bool
+    {
+        $group_id = $this->getGroupIdFromApi();
+
+        $contact_cont = Contact::get()
+            ->addJoin('GroupContact AS group_contact', 'LEFT', ['group_contact.contact_id', '=', 'id'])
+            ->addWhere('group_contact.group_id', '=', $group_id)
+            ->addWhere('birth_date', 'IS NOT NULL')
+            ->setLimit(1)
+            ->execute()->count();
+
+        return $contact_cont > 0;
     }
 }

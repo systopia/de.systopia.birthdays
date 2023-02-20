@@ -57,17 +57,27 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
 
     public function _run(Result $result): void
     {
+        $error_count = 1;
         try {
             $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
             $contacts = $birthday_contacts->getBirthdayContactsOfToday($this->debug_email);
+
+            if (!$birthday_contacts->groupHasBirthDateContacts()) {
+                $result[] = [
+                    'error' => E::ts(
+                        "There are no contacts in the birthday group or 
+                        there are contacts where no birth date is set."
+                    )
+                ];
+            }
         } catch (\Exception $exception) {
             $contacts = [];
             $result[] = [
                 'error' => E::ts('There is a problem collecting birthday contacts: %1', [1 => $exception])
             ];
         }
+        $mailer = new \CRM_Birthdays_Mailer();
         if (!empty($contacts)) {
-            $mailer = new \CRM_Birthdays_Mailer();
             $error_count = $mailer->sendMailsAndWriteActivity($contacts, !$this->disable_activities);
         } else {
             $error_count = 0;
