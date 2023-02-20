@@ -46,7 +46,7 @@
                 href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}MessageTemplates{/ts}</a>"
         <br>
         <br>
-        {ts}Tokens can be used here if SMARTY is enabled.{/ts}
+        {ts}Tokens can be used here. This extension implements an age token which can be found in the token dropdown menu.
     </div>
     <br>
     <div class="crm-block crm-form-block">
