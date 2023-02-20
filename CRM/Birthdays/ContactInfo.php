@@ -48,11 +48,6 @@ class CRM_Birthdays_ContactInfo
      */
     public function age(): string
     {
-        $age = $this->calculateBirthday($this->contact_iso_birthdate);
-
-        if (empty($age)) {
-            throw new Exception("Age cannot be 0");
-        }
-        return $age;
+        return $this->calculateBirthday($this->contact_iso_birthdate);
     }
 }
