@@ -61,7 +61,7 @@ function birthdays_civicrm_navigationMenu(&$menu) {
         'permission' => 'administer CiviCRM',
         'operator' => 'OR',
         'separator' => 0,
-        'icon' => 'crm-i fa-file-text',
+        'icon' => 'crm-i fa-calendar-o',
         'active' => 1
     ]);
 }
