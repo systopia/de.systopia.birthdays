@@ -18,7 +18,7 @@ return [
       'description' => E::ts('Report on upcoming birthdays'),
       'class_name' => 'CRM_Birthdays_Form_Report_Birthdays',
       'report_url' => 'contact/birthdays',
-      'cleanup'=> 'never',
+       'cleanup'=> 'always',
       'component' => '',
     ],
   ],
