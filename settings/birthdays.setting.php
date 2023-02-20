@@ -29,7 +29,6 @@ return [
         'html_type' => 'select',
         'html_attributes' => [
             'class' => 'crm-select2',
-            'multiple' => 1,
         ]
     ],
     'Birthdays_Sender_Email_Address' => [
@@ -44,7 +43,6 @@ return [
         'html_type' => 'select',
         'html_attributes' => [
             'class' => 'crm-select2',
-            'multiple' => 1,
         ]
     ]
 ];
