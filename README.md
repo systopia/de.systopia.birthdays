@@ -24,7 +24,7 @@ your Civi for automated birthday email notifications
 Navigate to (either or):
 - "Administer" --> "Communication"--> "Birthday Settings"
 - "Administer" --> "Administration Console"--> "Birthdays Extension Settings"
-- 
+
 ![image](docs/images/birthday_settings.png)
 
 ### Received message
