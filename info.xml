@@ -2,11 +2,11 @@
 <extension key="de.systopia.birthdays" type="module">
   <file>birthdays</file>
   <name>Birthdays</name>
-  <description>Provides tools to keep track of your contacts' birthdays.</description>
+  <description>Provides tools to keep track of your contacts' birthdays, e.g. a report and automatic greetings via e-mail.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>SYSTOPIA</author>
-    <email>endres@systopia.de</email>
+    <email>info@systopia.de</email>
   </maintainer>
   <urls>
     <url desc="Main Extension Page">https://github.com/systopia/de.systopia.birthdays</url>
@@ -18,17 +18,19 @@
   <version>1.5-dev</version>
   <develStage>dev</develStage>
   <compatibility>
-    <ver>5.0</ver>
+    <ver>5.44</ver>
   </compatibility>
-  <comments>Provides a report on upcoming birthdays</comments>
+  <comments>Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.</comments>
   <civix>
     <namespace>CRM/Birthdays</namespace>
-    <format>22.10.0</format>
+    <format>22.12.1</format>
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
+    <mixin>menu-xml@1.0.0</mixin>
   </mixins>
   <classloader>
-    <psr0 prefix="CRM_" path="."/>
+    <psr0 prefix="CRM_" path=""/>
+    <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
 </extension>
