@@ -46,7 +46,7 @@
                 href="{crmURL p='civicrm/admin/messageTemplates' q='reset=1'}">{ts}MessageTemplates{/ts}</a>"
         <br>
         <br>
-        {ts}Tokens can be used here. This extension implements an age token which can be found in the token dropdown menu.
+        {ts}Tokens can be used here. This extension implements {literal}{birthdays.contact.age}{/literal} as an age token which also can be found in the token dropdown menu.{/ts}
     </div>
     <br>
     <div class="crm-block crm-form-block">
