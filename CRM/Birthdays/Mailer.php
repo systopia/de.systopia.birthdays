@@ -68,13 +68,35 @@ class CRM_Birthdays_Mailer
         foreach ($contacts as $contact_id => $contact_info) {
             try {
                 $this->sendMail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
+
                 if ($write_activity) {
+                    $template_url = CRM_Utils_System::url(
+                        'civicrm/admin/messageTemplates/add?action=update',
+                        "id=$this->template_id&reset=1"
+                    );
+
+                    $template_info_link_text = E::ts(
+                        "%1 to edit or see the template. Please note: This might have been changed since sending",
+                        [
+                            1 => E::ts(
+                                "<a href='%1'>%2</a>",
+                                [
+                                    1 => $template_url,
+                                    2 => E::ts('Click here')
+                                ]
+                            )
+                        ]
+                    );
+
                     $this->createActivity(
                         $contact_id,
                         E::ts('Successful birthday greeting mail'),
                         E::ts(
-                            'Successful birthday greeting mail! Template ID %1 has been used.',
-                            [1 => $this->template_id]
+                            "Successful birthday greeting mail! Template ID %1 has been used.%2",
+                            [
+                                1 => $this->template_id,
+                                2 => $this->mayEditTemplates() ? '<br>' . $template_info_link_text : ''
+                            ]
                         )
                     );
                 }
@@ -139,5 +161,10 @@ class CRM_Birthdays_Mailer
         } catch (Exception $exception) {
             Civi::log()->debug(E::LONG_NAME . ' ' . "Unable to write activity: $exception");
         }
+    }
+
+    private function mayEditTemplates(): bool
+    {
+        return CRM_Core_Permission::check('edit message templates');
     }
 }
