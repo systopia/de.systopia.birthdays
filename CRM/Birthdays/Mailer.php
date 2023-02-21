@@ -69,12 +69,20 @@ class CRM_Birthdays_Mailer
             try {
                 $this->sendMail($contact_id, $this->email_address_from, $contact_info['email'], $this->template_id);
                 if ($write_activity) {
+                    $tpl_info = $this->getMessageTemplate($this->template_id);
+
                     $this->createActivity(
                         $contact_id,
-                        E::ts('Successful birthday greeting mail'),
                         E::ts(
-                            'Successful birthday greeting mail! Template ID %1 has been used.',
-                            [1 => $this->template_id]
+                            '"%1" birthday message sent successfully',
+                            [1 => $tpl_info['msg_title']]
+                        ),
+                        E::ts(
+                            '<b>Subject: %1</b><br><br>%2',
+                            [
+                                1 => $tpl_info['subject'],
+                                2 => $tpl_info['msg_html']
+                            ]
                         )
                     );
                 }
@@ -138,6 +146,31 @@ class CRM_Birthdays_Mailer
                 ->execute();
         } catch (Exception $exception) {
             Civi::log()->debug(E::LONG_NAME . ' ' . "Unable to write activity: $exception");
+        }
+    }
+
+    /**
+     * Returns an array with template data
+     *
+     * e.g.:
+     * [
+     *      'msg_title'
+     *      'msg_subject'
+     *      'msg_html'
+     *      ...
+     * ]
+     *
+     * @throws Exception
+     */
+    private function getMessageTemplate($id): array
+    {
+        try {
+            return \Civi\Api4\MessageTemplate::get()
+                ->addWhere('id', '=', $id)
+                ->execute()
+                ->single();
+        } catch (UnauthorizedException|CRM_Core_Exception $e) {
+            throw new Exception(E::LONG_NAME . " " . "Unable to fetch message template $id. Error: $e");
         }
     }
 }
