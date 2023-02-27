@@ -14,9 +14,9 @@
     <url desc="Support">https://github.com/systopia/de.systopia.birthdays/issues</url>
     <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate/>
-  <version>1.5-dev</version>
-  <develStage>dev</develStage>
+  <releaseDate>2023-02-20</releaseDate>
+  <version>1.5.0-alpha1</version>
+  <develStage>alpha</develStage>
   <compatibility>
     <ver>5.44</ver>
   </compatibility>
