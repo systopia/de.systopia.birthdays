@@ -6,7 +6,7 @@ theme:
     name: material
 
 nav:
-    - 'Introduction': introduction.md
+    - 'Introduction': index.md
     - 'Report': report.md
     - 'Birthday mailings': birthday_mailings.md
     - 'Localisation': localisation.md
