@@ -1,19 +1,26 @@
 site_name: Birthdays
 repo_url: https://github.com/systopia/de.systopia.birthdays
-theme: material
+site_description: 'Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.'
+site_author: 'SYSTOPIA'
+theme:
+    name: material
 
-pages:
-- Home: index.md
+nav:
+    - 'Introduction': index.md
 
 markdown_extensions:
-- attr_list
-- admonition
-- def_list
-- codehilite
-- toc:
-    permalink: true
-- pymdownx.superfences
-- pymdownx.inlinehilite
-- pymdownx.tilde
-- pymdownx.betterem
-- pymdownx.mark
+    - attr_list
+    - admonition
+    - def_list
+    - codehilite
+    - toc:
+          permalink: True
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - pymdownx.tilde
+    - pymdownx.betterem
+    - pymdownx.mark
+
+plugins:
+    - search:
+          lang: en
