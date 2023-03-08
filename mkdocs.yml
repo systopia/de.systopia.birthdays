@@ -6,7 +6,10 @@ theme:
     name: material
 
 nav:
-    - 'Introduction': index.md
+    - 'Introduction': introduction.md
+    - 'Report': report.md
+    - 'Birthday mailings': birthday_mailings.md
+    - 'Localisation': localisation.md
 
 markdown_extensions:
     - attr_list
