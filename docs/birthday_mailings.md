@@ -11,8 +11,8 @@ This page provides a step by step integrated settings guide on how to set up
 your Civi for automated birthday email notifications
 
 Navigate to (either or):
-- "Administer" --> "Communication"--> "Birthday Settings"
-- "Administer" --> "Administration Console"--> "Birthdays Extension Settings"
+- "Administer" --> "Communication" --> "Birthday Settings"  
+- "Administer" --> "Administration Console" --> "Birthdays Extension Settings"  
 
 ![image](images/birthday_settings.png)
 
