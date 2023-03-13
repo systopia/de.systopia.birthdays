@@ -14,7 +14,7 @@
     <url desc="Support">https://github.com/systopia/de.systopia.birthdays/issues</url>
     <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate></releaseDate>
+  <releaseDate/>
   <version>1.5-dev</version>
   <develStage>dev</develStage>
   <compatibility>
@@ -23,11 +23,12 @@
   <comments>Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.</comments>
   <civix>
     <namespace>CRM/Birthdays</namespace>
-    <format>22.12.1</format>
+    <format>23.02.1</format>
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
     <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.0</mixin>
   </mixins>
   <classloader>
     <psr0 prefix="CRM_" path=""/>

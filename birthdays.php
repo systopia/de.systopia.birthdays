@@ -45,15 +45,6 @@ function birthdays_civicrm_enable() {
   _birthdays_civix_civicrm_enable();
 }
 
-/**
- * Implements hook_civicrm_entityTypes().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
- */
-function birthdays_civicrm_entityTypes(&$entityTypes) {
-  _birthdays_civix_civicrm_entityTypes($entityTypes);
-}
-
 function birthdays_civicrm_navigationMenu(&$menu) {
     _birthdays_civix_insert_navigation_menu($menu, 'Administer/Communications', [
         'label' => E::ts('Birthday Settings'),
