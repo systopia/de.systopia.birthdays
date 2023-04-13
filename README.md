@@ -12,4 +12,4 @@ With version 1.5 this extension now provides an API for sending
 birthday greetings automatically via e-mail using CiviCRM's scheduled jobs.
 
 ## Documentation:
-https://docs.civicrm.org/birthdays/en/latest
+https://docs.civicrm.org/birthdays/en/latest (automatic publishing)
