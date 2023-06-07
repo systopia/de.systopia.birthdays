@@ -68,10 +68,14 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'type' => CRM_Utils_Type::T_DATE,
             'required' => TRUE,
             'default' => TRUE,
+          ], 'age' => [
+                'title' => E::ts('Age'),
           ],
-          'age' => [
-            'title' => E::ts('Age'),
-          ],
+          'is_deceased' => [
+            'title' => E::ts('Verstorben?'),
+            'type' => CRM_Utils_Type::T_BOOLEAN,
+            'default' => false,
+          ]
         ],
         'filters' => [
           'sort_name' => [
@@ -99,6 +103,9 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           'contact_sub_type' => [
             'title' => E::ts('Contact Subtype'),
           ],
+          'is_deceased' => [
+            'title' => E::ts('Verstorben?'),
+          ]
         ],
         'grouping' => 'contact-fields',
       ],
