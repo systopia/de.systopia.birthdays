@@ -18,17 +18,18 @@
   <version>1.6-dev</version>
   <develStage>dev</develStage>
   <compatibility>
-    <ver>5.44</ver>
+    <ver>5.45</ver>
   </compatibility>
   <comments>Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.</comments>
   <civix>
     <namespace>CRM/Birthdays</namespace>
-    <format>23.02.1</format>
+    <format>24.09.1</format>
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
     <mixin>menu-xml@1.0.0</mixin>
-    <mixin>smarty-v2@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.3</mixin>
+    <mixin>entity-types-php@2.0.0</mixin>
   </mixins>
   <classloader>
     <psr0 prefix="CRM_" path=""/>
