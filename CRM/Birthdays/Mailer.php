@@ -129,7 +129,7 @@ class CRM_Birthdays_Mailer
     private function createActivity($target_id, $title, $description): void
     {
         try {
-            Activity::create()
+            Activity::create(FALSE)
                 ->addValue('activity_type_id', 3) // = email
                 ->addValue('subject', E::ts($title))
                 ->addValue('details', $description)
