@@ -52,7 +52,7 @@ function birthdays_civicrm_navigationMenu(&$menu) {
         'permission' => 'administer CiviCRM',
         'operator' => 'OR',
         'separator' => 0,
-        'icon' => 'crm-i fa-calendar-o',
+        'icon' => 'crm-i fa-birthday-cake',
         'active' => 1
     ]);
 }
