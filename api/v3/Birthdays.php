@@ -56,8 +56,8 @@ function _civicrm_api3_birthdays_sendgreetings_spec(&$params) {
 function civicrm_api3_birthdays_sendgreetings(array $params): array
 {
     try {
-        $debug_email = $params['debug_email'] ?: '';
-        $disable_activities = boolval($params['disable_activities']);
+        $debug_email = $params['debug_email'] ?? '';
+        $disable_activities = (bool) ($params['disable_activities'] ?? NULL);
 
         $api_status_info = \Civi\Api4\Birthdays::sendGreetings()
             ->setDisable_activities($disable_activities)
@@ -65,7 +65,7 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
             ->execute()
             ->first();
 
-        if ($api_status_info['error']) {
+        if ((bool) ($api_status_info['error'] ?? NULL)) {
             return civicrm_api3_create_error(
                 E::LONG_NAME . ' ' . E::ts(
                     "Rethrow error from APIv4: %1",
