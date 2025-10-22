@@ -143,12 +143,12 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             if ($fieldName == 'birthday') {
               $select[] = "DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR) AS birthday";
               $this->_columnHeaders["birthday"]['title'] = $field['title'];
-              $this->_columnHeaders["birthday"]['type'] = CRM_Utils_Array::value('type', $field);
+              $this->_columnHeaders["birthday"]['type'] = $field['type'] ?? NULL;
 
             } elseif ($fieldName == 'age') {
               $select[] = "(YEAR(DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR)) - YEAR({$this->_aliases['civicrm_contact']}.birth_date)) AS age";
               $this->_columnHeaders["age"]['title'] = $field['title'];
-              $this->_columnHeaders["age"]['type'] = CRM_Utils_Array::value('type', $field);
+              $this->_columnHeaders["age"]['type'] = $field['type'] ?? NULL;
 
             } else {
               if ($tableName == 'civicrm_email') {
@@ -157,7 +157,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
               $select[] = "{$field['dbAlias']} as {$tableName}_{$fieldName}";
               $this->_columnHeaders["{$tableName}_{$fieldName}"]['title'] = $field['title'];
-              $this->_columnHeaders["{$tableName}_{$fieldName}"]['type'] = CRM_Utils_Array::value('type', $field);
+              $this->_columnHeaders["{$tableName}_{$fieldName}"]['type'] = $field['type'] ?? NULL;
             }
           }
         }
@@ -204,20 +204,20 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           }
 
           if (CRM_Utils_Array::value('operatorType', $field) & CRM_Utils_Type::T_DATE) {
-            $relative = CRM_Utils_Array::value("{$fieldName}_relative", $this->_params);
-            $from     = CRM_Utils_Array::value("{$fieldName}_from", $this->_params);
-            $to       = CRM_Utils_Array::value("{$fieldName}_to", $this->_params);
+            $relative = $this->_params["{$fieldName}_relative"] ?? NULL;
+            $from     = $this->_params["{$fieldName}_from"] ?? NULL;
+            $to       = $this->_params["{$fieldName}_to"] ?? NULL;
 
             $clause = $this->dateClause($field['name'], $relative, $from, $to, $field['type']);
           }
           else {
-            $op = CRM_Utils_Array::value("{$fieldName}_op", $this->_params);
+            $op = $this->_params["{$fieldName}_op"] ?? NULL;
             if ($op) {
               $clause = $this->whereClause($field,
                 $op,
-                CRM_Utils_Array::value("{$fieldName}_value", $this->_params),
-                CRM_Utils_Array::value("{$fieldName}_min", $this->_params),
-                CRM_Utils_Array::value("{$fieldName}_max", $this->_params)
+                $this->_params["{$fieldName}_value"] ?? NULL,
+                $this->_params["{$fieldName}_min"] ?? NULL,
+                $this->_params["{$fieldName}_max"] ?? NULL
               );
             }
           }
