@@ -41,6 +41,20 @@ function _civicrm_api3_birthdays_sendgreetings_spec(&$params) {
         'title'        => E::ts('Option to disable activities (default: no)'),
         'description'  => E::ts('Should activities be disabled?')
     ];
+    $params['custom_sender_email'] = [
+        'name'         => 'custom_sender_email',
+        'api.required' => 0,
+        'type'         => CRM_Utils_Type::T_STRING,
+        'title'        => E::ts('Custom sender email address'),
+        'description'  => E::ts('Override the default sender email address from settings')
+    ];
+    $params['target_group_id'] = [
+        'name'         => 'target_group_id',
+        'api.required' => 0,
+        'type'         => CRM_Utils_Type::T_INT,
+        'title'        => E::ts('Target group ID'),
+        'description'  => E::ts('Override the default birthday group with a custom group ID')
+    ];
 }
 
 /**
@@ -58,10 +72,14 @@ function civicrm_api3_birthdays_sendgreetings(array $params): array
     try {
         $debug_email = $params['debug_email'] ?? '';
         $disable_activities = (bool) ($params['disable_activities'] ?? NULL);
+        $custom_sender_email = $params['custom_sender_email'] ?? '';
+        $target_group_id = (int) ($params['target_group_id'] ?? 0);
 
         $api_status_info = \Civi\Api4\Birthdays::sendGreetings()
             ->setDisable_activities($disable_activities)
             ->setDebug_email($debug_email)
+            ->setCustom_sender_email($custom_sender_email)
+            ->setTarget_group_id($target_group_id)
             ->execute()
             ->first();
 

@@ -46,7 +46,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
     protected string $debug_email = '';
 
     /**
-     * Acitivites can be enabled or disabled here.
+     * Activities can be enabled or disabled here.
      *
      * - true:  "successful" or "failed" activities will be suppressed
      * - false: "successful" or "failed" activities will be added to contacts
@@ -55,17 +55,35 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
      */
     protected bool $disable_activities = false;
 
+    /**
+     * Custom sender email address
+     *
+     * Override the default sender email address from settings
+     *
+     * @var string
+     */
+    protected string $custom_sender_email = '';
+
+    /**
+     * Target group ID
+     *
+     * Override the default birthday group with a custom group ID
+     *
+     * @var int
+     */
+    protected int $target_group_id = 0;
+
     public function _run(Result $result): void
     {
         $error_count = 1;
         try {
-            $birthday_contacts = new \CRM_Birthdays_BirthdayContacts();
+            $birthday_contacts = new \CRM_Birthdays_BirthdayContacts($this->target_group_id);
             $contacts = $birthday_contacts->getBirthdayContactsOfToday($this->debug_email);
 
             if (!$birthday_contacts->groupHasBirthDateContacts()) {
                 $result[] = [
                     'error' => E::ts(
-                        "There are no contacts in the birthday group or 
+                        "There are no contacts in the target group or 
                         there are contacts where no birth date is set."
                     )
                 ];
@@ -76,7 +94,8 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction
                 'error' => E::ts('There is a problem collecting birthday contacts: %1', [1 => $exception])
             ];
         }
-        $mailer = new \CRM_Birthdays_Mailer();
+        
+        $mailer = new \CRM_Birthdays_Mailer($this->custom_sender_email);
         if (!empty($contacts)) {
             $error_count = $mailer->sendMailsAndWriteActivity($contacts, !$this->disable_activities);
         } else {

@@ -25,9 +25,10 @@ class CRM_Birthdays_Mailer
     private ?string $email_address_from;
 
     /**
+     * @param string $custom_sender_email Optional custom sender email to override settings
      * @throws Exception
      */
-    public function __construct()
+    public function __construct(string $custom_sender_email = '')
     {
         $this->template_id = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_MESSAGE_TEMPLATE);
         if (empty($this->template_id)) {
@@ -37,13 +38,19 @@ class CRM_Birthdays_Mailer
         }
 
         try {
-            $email_name_mix = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);
-            /*
-             * Examples:
-             * - Input: "to database" <database@domain.com>
-             * - Output: database@domain.com
-             */
-            $this->email_address_from = CRM_Utils_Mail::pluckEmailFromHeader($email_name_mix);
+            if (!empty($custom_sender_email)) {
+                // Use custom sender email if provided
+                $this->email_address_from = $custom_sender_email;
+            } else {
+                // Use sender email from settings
+                $email_name_mix = Civi::settings()->get(CRM_Birthdays_Form_Settings::BIRTHDAYS_SENDER_EMAIL_ADDRESS);
+                /*
+                 * Examples:
+                 * - Input: "to database" <database@domain.com>
+                 * - Output: database@domain.com
+                 */
+                $this->email_address_from = CRM_Utils_Mail::pluckEmailFromHeader($email_name_mix);
+            }
         } catch (TypeError $typeError) {
             throw new Exception(
                 E::LONG_NAME . " " . "Pre selected outgoing email not found. Please set an outgoing email address in birthday settings $typeError"

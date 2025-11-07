@@ -25,19 +25,46 @@ class CRM_Birthdays_BirthdayContacts
     private int $group_id;
 
     /**
+     * @param int $custom_group_id Optional custom group ID to override default
      * @throws Exception
      */
-    public function __construct()
+    public function __construct(int $custom_group_id = 0)
     {
         try {
-            $this->group_id = $this->getGroupIdFromApi();
+            if ($custom_group_id > 0) {
+                // Validate that the custom group exists
+                $this->group_id = $this->validateGroupId($custom_group_id);
+            } else {
+                // Use default birthday group
+                $this->group_id = $this->getGroupIdFromApi();
+            }
         } catch (Exception $exception) {
             throw new Exception(
                 E::LONG_NAME . ' ' . E::ts(
-                    'Default group called birthday_greeting_recipients_group not found: %1',
+                    'Group not found: %1',
                     [1 => $exception]
                 )
             );
+        }
+    }
+
+    /**
+     * Validate that the given group ID exists
+     * @param int $group_id
+     * @return int
+     * @throws Exception
+     */
+    private function validateGroupId(int $group_id): int
+    {
+        try {
+            $group = Group::get()
+                ->addSelect('id')
+                ->addWhere('id', '=', $group_id)
+                ->execute()
+                ->single();
+            return $group['id'];
+        } catch (Exception $exception) {
+            throw new Exception("Group with ID {$group_id} not found: {$exception}");
         }
     }
 
@@ -109,19 +136,17 @@ class CRM_Birthdays_BirthdayContacts
         return $group_id['id'];
     }
 
-
     /**
+     * Check if the current group has contacts with birth dates
      * @throws UnauthorizedException
      * @throws CRM_Core_Exception
      * @throws Exception
      */
     public function groupHasBirthDateContacts(): bool
     {
-        $group_id = $this->getGroupIdFromApi();
-
         $contact_cont = Contact::get()
             ->addJoin('GroupContact AS group_contact', 'LEFT', ['group_contact.contact_id', '=', 'id'])
-            ->addWhere('group_contact.group_id', '=', $group_id)
+            ->addWhere('group_contact.group_id', '=', $this->group_id)
             ->addWhere('birth_date', 'IS NOT NULL')
             ->setLimit(1)
             ->execute()->count();
