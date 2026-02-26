@@ -1,7 +1,8 @@
 site_name: Birthdays
-repo_url: https://github.com/systopia/de.systopia.birthdays
 site_description: 'Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.'
 site_author: 'SYSTOPIA'
+repo_url: https://github.com/systopia/de.systopia.birthdays
+
 theme:
     name: material
 

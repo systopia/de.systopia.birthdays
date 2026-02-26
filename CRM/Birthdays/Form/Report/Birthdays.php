@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Birthdays_ExtensionUtil as E;
 
 /**
@@ -26,14 +28,19 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
   protected $_emailField = FALSE;
 
-  protected $_summary = NULL;
+  protected mixed $_summary = NULL;
 
+  /**
+   * @phpstan-ignore property.defaultValue
+   */
   protected $_customGroupExtends = ['Contact', 'Individual'];
 
+  /**
+   * @phpstan-ignore missingType.property
+   */
   protected $_customGroupGroupBy = FALSE;
 
-
-  function __construct() {
+  public function __construct() {
     $this->_columns = [
       'civicrm_contact' => [
         'dao' => 'CRM_Contact_DAO_Contact',
@@ -68,14 +75,15 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'type' => CRM_Utils_Type::T_DATE,
             'required' => TRUE,
             'default' => TRUE,
-          ], 'age' => [
-                'title' => E::ts('Age'),
+          ],
+          'age' => [
+            'title' => E::ts('Age'),
           ],
           'is_deceased' => [
             'title' => E::ts('Verstorben?'),
             'type' => CRM_Utils_Type::T_BOOLEAN,
-            'default' => false,
-          ]
+            'default' => FALSE,
+          ],
         ],
         'filters' => [
           'sort_name' => [
@@ -105,7 +113,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
           ],
           'is_deceased' => [
             'title' => E::ts('Verstorben?'),
-          ]
+          ],
         ],
         'grouping' => 'contact-fields',
       ],
@@ -121,37 +129,46 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         ],
         'grouping' => 'contact-fields',
       ],
-        ] + $this->getAddressColumns(['group_by' => FALSE]);
+    ] + $this->getAddressColumns(['group_by' => FALSE]);
     $this->_groupFilter = TRUE;
     $this->_tagFilter = TRUE;
     parent::__construct();
   }
 
-  function preProcess() {
+  public function preProcess(): void {
     $this->assign('reportTitle', E::ts('Birthday Report'));
     parent::preProcess();
   }
 
-  function select() {
+  // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh,Generic.Metrics.NestingLevel.TooHigh
+  public function select(): void {
     $select = $this->_columnHeaders = [];
 
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('fields', $table)) {
         foreach ($table['fields'] as $fieldName => $field) {
-          if (CRM_Utils_Array::value('required', $field) || CRM_Utils_Array::value($fieldName, $this->_params['fields'])) {
+          /** @phpstan-ignore staticMethod.deprecated */
+          if ((bool) CRM_Utils_Array::value('required', $field)
+            /** @phpstan-ignore staticMethod.deprecated */
+            || (bool) CRM_Utils_Array::value($fieldName, $this->_params['fields'])
+          ) {
 
-            if ($fieldName == 'birthday') {
+            if ($fieldName === 'birthday') {
+              // phpcs:ignore Generic.Files.LineLength.TooLong
               $select[] = "DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR) AS birthday";
-              $this->_columnHeaders["birthday"]['title'] = $field['title'];
-              $this->_columnHeaders["birthday"]['type'] = $field['type'] ?? NULL;
+              $this->_columnHeaders['birthday']['title'] = $field['title'];
+              $this->_columnHeaders['birthday']['type'] = $field['type'] ?? NULL;
 
-            } elseif ($fieldName == 'age') {
+            }
+            elseif ($fieldName === 'age') {
+              // phpcs:ignore Generic.Files.LineLength.TooLong
               $select[] = "(YEAR(DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR)) - YEAR({$this->_aliases['civicrm_contact']}.birth_date)) AS age";
-              $this->_columnHeaders["age"]['title'] = $field['title'];
-              $this->_columnHeaders["age"]['type'] = $field['type'] ?? NULL;
+              $this->_columnHeaders['age']['title'] = $field['title'];
+              $this->_columnHeaders['age']['type'] = $field['type'] ?? NULL;
 
-            } else {
-              if ($tableName == 'civicrm_email') {
+            }
+            else {
+              if ($tableName === 'civicrm_email') {
                 $this->_emailField = TRUE;
               }
 
@@ -164,12 +181,10 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
       }
     }
 
-    $this->_select = "SELECT " . implode(', ', $select) . " ";
+    $this->_select = 'SELECT ' . implode(', ', $select) . ' ';
   }
 
-  function from() {
-    $this->_from = NULL;
-
+  public function from(): void {
     $this->_from = "FROM  civicrm_contact {$this->_aliases['civicrm_contact']} {$this->_aclFrom}";
 
     //used when email field is selected
@@ -190,20 +205,29 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $this->joinPhoneFromContact();
   }
 
-  function where() {
+  // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
+  public function where(): void {
     $clauses = [];
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('filters', $table)) {
         foreach ($table['filters'] as $fieldName => $field) {
           $clause = NULL;
-          if ($fieldName == 'birthday') {
+          if ($fieldName === 'birthday') {
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             $field['name'] = "CAST(DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR) AS DATETIME)";
           }
-          elseif ($fieldName == 'age') {
+          elseif ($fieldName === 'age') {
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             $field['dbAlias'] = "(YEAR(DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR)) - YEAR({$this->_aliases['civicrm_contact']}.birth_date)) ";
           }
 
-          if (CRM_Utils_Array::value('operatorType', $field) & CRM_Utils_Type::T_DATE) {
+          /**
+           * @var int $operatorType
+           * @phpstan-ignore staticMethod.deprecated
+           */
+          $operatorType = CRM_Utils_Array::value('operatorType', $field);
+          /** @phpstan-ignore if.condNotBoolean */
+          if ($operatorType & CRM_Utils_Type::T_DATE) {
             $relative = $this->_params["{$fieldName}_relative"] ?? NULL;
             $from     = $this->_params["{$fieldName}_from"] ?? NULL;
             $to       = $this->_params["{$fieldName}_to"] ?? NULL;
@@ -222,7 +246,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             }
           }
 
-          if (!empty($clause)) {
+          if (NULL !== $clause && $clause !== '') {
             $clauses[] = $clause;
           }
         }
@@ -233,24 +257,26 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $clauses[] = "({$this->_aliases['civicrm_contact']}.birth_date IS NOT NULL)";
 
     // no deleted contacts (see https://github.com/systopia/de.systopia.birthdays/issues/10)
+    // phpcs:ignore Generic.Files.LineLength.TooLong
     $clauses[] = "(({$this->_aliases['civicrm_contact']}.is_deleted IS NULL) OR ({$this->_aliases['civicrm_contact']}.is_deleted = 0))";
 
-    $this->_where = "WHERE " . implode(' AND ', $clauses);
+    $this->_where = 'WHERE ' . implode(' AND ', $clauses);
 
     if ($this->_aclWhere) {
       $this->_where .= " AND {$this->_aclWhere} ";
     }
   }
 
-  function orderBy() {
-    $this->_orderBy = " ORDER BY birthday ASC ";
+  public function orderBy(): void {
+    $this->_orderBy = ' ORDER BY birthday ASC ';
   }
 
-  function postProcess() {
+  public function postProcess(): void {
 
     $this->beginPostProcess();
 
     // get the acl clauses built before we assemble the query
+    /** @phpstan-ignore method.deprecated */
     $this->buildACLClause($this->_aliases['civicrm_contact']);
     $sql = $this->buildQuery(TRUE);
 
@@ -262,7 +288,10 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     $this->endPostProcess($rows);
   }
 
-  function alterDisplay(&$rows) {
+  /**
+   * @phpstan-ignore missingType.iterableValue
+   */
+  public function alterDisplay(&$rows): void {
     // custom code to alter rows
     $entryFound = FALSE;
     foreach ($rows as $rowNum => $row) {
@@ -270,12 +299,12 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
         $row['civicrm_contact_sort_name'] &&
         array_key_exists('civicrm_contact_id', $row)
       ) {
-        $url = CRM_Utils_System::url("civicrm/contact/view",
+        $url = CRM_Utils_System::url('civicrm/contact/view',
           'reset=1&cid=' . $row['civicrm_contact_id'],
           $this->_absoluteUrl
         );
         $rows[$rowNum]['civicrm_contact_sort_name_link'] = $url;
-        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = E::ts("View Contact Summary for this Contact.");
+        $rows[$rowNum]['civicrm_contact_sort_name_hover'] = E::ts('View Contact Summary for this Contact.');
         $entryFound = TRUE;
       }
 
@@ -289,13 +318,17 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
   /**
    * Override getOperationPair to add 'in', 'not in' for 'age' field
+   *
+   * @param int|string $type
+   * @param string|null $fieldName
+   * @return array<string, string>
    */
-  public function getOperationPair($type = 'string', $fieldName = NULL): array
-  {
+  public function getOperationPair($type = 'string', $fieldName = NULL): array {
     $operations = parent::getOperationPair($type, $fieldName);
-    if ($fieldName == 'age') {
+    if ($fieldName === 'age') {
       $operations += parent::getOperationPair(CRM_Report_Form::OP_MULTISELECT, $fieldName);
     }
     return $operations;
   }
+
 }

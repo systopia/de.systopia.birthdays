@@ -13,42 +13,50 @@
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Birthdays_ExtensionUtil as E;
 use Civi\Token\AbstractTokenSubscriber;
 use Civi\Token\TokenRow;
 use Civi\Token\Event\TokenValueEvent;
 
-class CRM_Birthdays_Tokens extends AbstractTokenSubscriber
-{
-    public function __construct($entity, $tokenNames = [])
-    {
-        $tokenNames += self::getTokens();
-        parent::__construct($entity, $tokenNames);
-    }
+class CRM_Birthdays_Tokens extends AbstractTokenSubscriber {
 
-    public static function getTokens(): array
-    {
-        return ['contact.age' => E::ts('Contact Age (Birthdays Extension)')];
-    }
+  /**
+   * @param string $entity
+   * @param array<string, string> $tokenNames
+   */
+  public function __construct($entity, $tokenNames = []) {
+    $tokenNames += self::getTokens();
+    parent::__construct($entity, $tokenNames);
+  }
 
-    /**
-     * @throws Exception
-     */
-    public function prefetch(TokenValueEvent $e): array
-    {
-        $contact_id = $e->getTokenProcessor()->rowContexts[0]['contact']['contact_id'];
-        $contact_info = new CRM_Birthdays_ContactInfo($contact_id);
+  /**
+   * @return array<string, string>
+   */
+  public static function getTokens(): array {
+    return ['contact.age' => E::ts('Contact Age (Birthdays Extension)')];
+  }
 
-        return [
-            'contact' => [
-                'age' => $contact_info->age()
-            ]
-        ];
-    }
+  /**
+   * @throws Exception
+   * @return array<string, array<string, int>>
+   */
+  public function prefetch(TokenValueEvent $e): array {
+    $contact_id = $e->getTokenProcessor()->rowContexts[0]['contact']['contact_id'];
+    $contact_info = new CRM_Birthdays_ContactInfo($contact_id);
 
-    public function evaluateToken(TokenRow $row, $entity, $field, $prefetch = null)
-    {
-        [$token_type, $token_name] = explode('.', $field);
-        $row->tokens($entity, $field, $prefetch[$token_type][$token_name] ?? 'test');
-    }
+    return [
+      'contact' => [
+        'age' => $contact_info->age(),
+      ],
+    ];
+  }
+
+  public function evaluateToken(TokenRow $row, $entity, $field, $prefetch = NULL): void {
+    [$token_type, $token_name] = explode('.', $field);
+    /** @phpstan-ignore-next-line */
+    $row->tokens($entity, $field, $prefetch[$token_type][$token_name] ?? 'test');
+  }
+
 }

@@ -121,12 +121,12 @@ function _birthdays_civix_civicrm_enable(): void {
 /**
  * Inserts a navigation menu item at a given place in the hierarchy.
  *
- * @param array $menu - menu hierarchy
+ * @param array<string, mixed> $menu - menu hierarchy
  * @param string $path - path to parent of this item, e.g. 'my_extension/submenu'
  *    'Mailing', or 'Administer/System Settings'
  * @param array $item - the item to insert (parent/child attributes will be
  *    filled for you)
- *
+ * @param-out array<string, mixed> $menu - modified menu hierarchy
  * @return bool
  */
 function _birthdays_civix_insert_navigation_menu(&$menu, $path, $item) {

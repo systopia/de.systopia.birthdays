@@ -4,21 +4,23 @@
 // database as appropriate. For more details, see "hook_civicrm_managed" at:
 // https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
 
+declare(strict_types = 1);
+
 use CRM_Birthdays_ExtensionUtil as E;
 
 return [
-  0 => 
+  0 =>
   [
     'name' => E::ts('Birthday Report'),
     'entity' => 'ReportTemplate',
-    'params' => 
+    'params' =>
     [
       'version' => 3,
       'label' => E::ts('Birthdays'),
       'description' => E::ts('Report on upcoming birthdays'),
       'class_name' => 'CRM_Birthdays_Form_Report_Birthdays',
       'report_url' => 'contact/birthdays',
-       'cleanup'=> 'always',
+      'cleanup' => 'always',
       'component' => '',
     ],
   ],
