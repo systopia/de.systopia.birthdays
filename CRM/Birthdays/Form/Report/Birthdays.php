@@ -147,12 +147,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
     foreach ($this->_columns as $tableName => $table) {
       if (array_key_exists('fields', $table)) {
         foreach ($table['fields'] as $fieldName => $field) {
-          /** @phpstan-ignore staticMethod.deprecated */
-          if ((bool) CRM_Utils_Array::value('required', $field)
-            /** @phpstan-ignore staticMethod.deprecated */
-            || (bool) CRM_Utils_Array::value($fieldName, $this->_params['fields'])
-          ) {
-
+          if (($field['required'] ?? NULL) || ($this->_params['fields'][$fieldName] ?? NULL)) {
             if ($fieldName === 'birthday') {
               // phpcs:ignore Generic.Files.LineLength.TooLong
               $select[] = "DATE_ADD({$this->_aliases['civicrm_contact']}.birth_date, INTERVAL YEAR(CURDATE() - INTERVAL 2 DAY) - YEAR({$this->_aliases['civicrm_contact']}.birth_date) + IF(DAYOFYEAR(CURDATE() - INTERVAL 2 DAY) >= DAYOFYEAR({$this->_aliases['civicrm_contact']}.birth_date),1,0) YEAR) AS birthday";
