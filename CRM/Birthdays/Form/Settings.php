@@ -28,15 +28,10 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form {
 
     $this->setDefaults(['message_template_id' => Civi::settings()->get(self::BIRTHDAYS_MESSAGE_TEMPLATE)]);
     $this->add(
-    // field type
         'select',
-    // field name
         'message_template_id',
-    // field label
         E::ts('Select template'),
-    // list of options
         $this->getMessageTemplates(),
-    // is required
         TRUE,
         ['class' => 'huge crm-select2', 'placeholder' => E::ts('-select-')]
     );
