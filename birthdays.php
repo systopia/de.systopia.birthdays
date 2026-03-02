@@ -49,6 +49,8 @@ function birthdays_civicrm_enable(): void {
 }
 
 /**
+ * Implements hook_civicrm_navigationMenu().
+ *
  * @param array<string, mixed> $menu
  * @param-out array<string, mixed> $menu
  * @return void
