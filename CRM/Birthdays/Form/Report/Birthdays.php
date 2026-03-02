@@ -218,9 +218,8 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
 
           /**
            * @var int $operatorType
-           * @phpstan-ignore staticMethod.deprecated
            */
-          $operatorType = CRM_Utils_Array::value('operatorType', $field);
+          $operatorType = $field['operatorType'] ?? NULL;
           /** @phpstan-ignore if.condNotBoolean */
           if ($operatorType & CRM_Utils_Type::T_DATE) {
             $relative = $this->_params["{$fieldName}_relative"] ?? NULL;
