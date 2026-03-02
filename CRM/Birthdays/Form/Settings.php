@@ -51,7 +51,7 @@ class CRM_Birthdays_Form_Settings extends CRM_Core_Form {
 
     Civi::settings()->set(self::BIRTHDAYS_SENDER_EMAIL_ADDRESS, $values['birthday_sender_email_address']);
 
-    Civi::settings()->set(self::BIRTHDAYS_MESSAGE_TEMPLATE, intval($values['message_template_id']));
+    Civi::settings()->set(self::BIRTHDAYS_MESSAGE_TEMPLATE, (int) $values['message_template_id']);
 
     parent::postProcess();
   }
