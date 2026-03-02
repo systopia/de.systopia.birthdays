@@ -42,7 +42,7 @@ function birthdays_civicrm_install(): void {
 /**
  * Implements hook_civicrm_enable().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
 function birthdays_civicrm_enable(): void {
   _birthdays_civix_civicrm_enable();
@@ -51,9 +51,8 @@ function birthdays_civicrm_enable(): void {
 /**
  * Implements hook_civicrm_navigationMenu().
  *
- * @param array<string, mixed> $menu
- * @param-out array<string, mixed> $menu
- * @return void
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
+ * @phpstan-ignore missingType.parameter
  */
 function birthdays_civicrm_navigationMenu(&$menu): void {
   _birthdays_civix_insert_navigation_menu($menu, 'Administer/Communications', [
