@@ -22,6 +22,7 @@ namespace Civi\Api4;
 use Civi\Api4\Generic\AbstractEntity;
 use Civi\Api4\Generic\BasicGetFieldsAction;
 use Civi\Api4\Action\Birthdays\sendGreetings;
+
 /**
  * Birthdays API
  *
@@ -31,14 +32,14 @@ use Civi\Api4\Action\Birthdays\sendGreetings;
  */
 final class Birthdays extends AbstractEntity {
 
-    public static function sendGreetings($checkPermissions = true): SendGreetings {
-        return (new sendGreetings(__CLASS__,__FUNCTION__))->setCheckPermissions($checkPermissions);
-    }
+  public static function sendGreetings(bool $checkPermissions = TRUE): sendGreetings {
+    return (new sendGreetings(__CLASS__, __FUNCTION__))->setCheckPermissions($checkPermissions);
+  }
 
-    public static function getFields($checkPermissions = true) {
-        return (new BasicGetFieldsAction(__CLASS__, __FUNCTION__, function ($getFieldsAction) {
-            return [];
-        }))->setCheckPermissions($checkPermissions);
-    }
+  public static function getFields(bool $checkPermissions = TRUE): BasicGetFieldsAction {
+    return (new BasicGetFieldsAction(__CLASS__, __FUNCTION__, function () {
+      return [];
+    }))->setCheckPermissions($checkPermissions);
+  }
 
 }

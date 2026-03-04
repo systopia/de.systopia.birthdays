@@ -13,16 +13,21 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Birthdays_ExtensionUtil as E;
 
+// phpcs:disable PSR1.Files.SideEffects
 require_once 'birthdays.civix.php';
+// phpcs:enable
 
 /**
  * Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
+ * @phpstan-ignore missingType.parameter
  */
-function birthdays_civicrm_config(&$config) {
+function birthdays_civicrm_config(&$config): void {
   _birthdays_civix_civicrm_config($config);
   \Civi::dispatcher()->addSubscriber(new CRM_Birthdays_Tokens('birthdays'));
 }
@@ -32,27 +37,33 @@ function birthdays_civicrm_config(&$config) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function birthdays_civicrm_install() {
+function birthdays_civicrm_install(): void {
   _birthdays_civix_civicrm_install();
 }
 
 /**
  * Implements hook_civicrm_enable().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function birthdays_civicrm_enable() {
+function birthdays_civicrm_enable(): void {
   _birthdays_civix_civicrm_enable();
 }
 
-function birthdays_civicrm_navigationMenu(&$menu) {
-    _birthdays_civix_insert_navigation_menu($menu, 'Administer/Communications', [
-        'label' => E::ts('Birthday Settings'),
-        'url' => 'civicrm/admin/birthdays',
-        'permission' => 'administer CiviCRM',
-        'operator' => 'OR',
-        'separator' => 0,
-        'icon' => 'crm-i fa-birthday-cake',
-        'active' => 1
-    ]);
+/**
+ * Implements hook_civicrm_navigationMenu().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
+ * @phpstan-ignore missingType.parameter
+ */
+function birthdays_civicrm_navigationMenu(&$menu): void {
+  _birthdays_civix_insert_navigation_menu($menu, 'Administer/Communications', [
+    'label' => E::ts('Birthday Settings'),
+    'url' => 'civicrm/admin/birthdays',
+    'permission' => 'administer CiviCRM',
+    'operator' => 'OR',
+    'separator' => 0,
+    'icon' => 'crm-i fa-birthday-cake',
+    'active' => 1,
+  ]);
 }

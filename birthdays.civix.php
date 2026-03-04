@@ -75,7 +75,6 @@ class CRM_Birthdays_ExtensionUtil {
     return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
   }
 
-
 }
 
 use CRM_Birthdays_ExtensionUtil as E;
