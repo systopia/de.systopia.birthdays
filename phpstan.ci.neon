@@ -3,8 +3,9 @@ includes:
 
 parameters:
 	scanDirectories:
-		- vendor/civicrm/civicrm-core/CRM
 		- vendor/civicrm/civicrm-core/api
+		- vendor/civicrm/civicrm-core/CRM
+		- vendor/civicrm/civicrm-packages/DB
 		- vendor/civicrm/civicrm-packages/HTML
 	bootstrapFiles:
 		- vendor/autoload.php

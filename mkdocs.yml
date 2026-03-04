@@ -1,30 +1,30 @@
 site_name: Birthdays
-site_description: 'Provides a report on upcoming birthdays and an API for sending birthday greetings via e-mail.'
-site_author: 'SYSTOPIA'
+site_description: Provides tools to keep track of your contacts' birthdays, e.g. a report and automatic greetings via e-mail.
+site_author: SYSTOPIA
 repo_url: https://github.com/systopia/de.systopia.birthdays
 
 theme:
-    name: material
+  name: material
 
 nav:
-    - 'Introduction': index.md
-    - 'Report': report.md
-    - 'Birthday mailings': birthday_mailings.md
-    - 'Localisation': localisation.md
+  - 'Introduction': index.md
+  - 'Report': report.md
+  - 'Birthday mailings': birthday_mailings.md
+  - 'Localisation': localisation.md
 
 markdown_extensions:
-    - attr_list
-    - admonition
-    - def_list
-    - codehilite
-    - toc:
-          permalink: True
-    - pymdownx.superfences
-    - pymdownx.inlinehilite
-    - pymdownx.tilde
-    - pymdownx.betterem
-    - pymdownx.mark
+  - attr_list
+  - admonition
+  - def_list
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tilde
+  - pymdownx.betterem
+  - pymdownx.mark
 
 plugins:
-    - search:
-          lang: en
+  - search:
+      lang: en

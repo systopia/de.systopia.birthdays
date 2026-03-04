@@ -17,7 +17,9 @@ declare(strict_types = 1);
 
 use CRM_Birthdays_ExtensionUtil as E;
 
+// phpcs:disable PSR1.Files.SideEffects
 require_once 'birthdays.civix.php';
+// phpcs:enable
 
 /**
  * Implements hook_civicrm_config().
