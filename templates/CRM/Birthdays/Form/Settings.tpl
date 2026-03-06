@@ -16,30 +16,17 @@
     <h1>
         {ts}General{/ts}
     </h1>
-    <div id="help">{ts}This open source extension
-            (
-            <a href="https://github.com/systopia/de.systopia.birthdays#readme">de.systopia.birthdays</a>
-            )
-            allows you to build a report on upcoming birthdays and provides an API for sending birthday
-            greetings automatically via e-mail.{/ts}
-        <br>
-        {ts}Please note: With default settings no email will be sent after upgrading to this version.
-            Mails only will be sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs.{/ts}
+    <div id="help">
+      <p>{ts}This open source extension allows you to build a report on upcoming birthdays and provides an API for sending birthday greetings automatically via e-mail.{/ts}</p>
+      <p>{ts}Please note: With default settings no email will be sent after upgrading to this version. Mails only will be sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs.{/ts}</p>
     </div>
-    <br>
     <h1>
         {ts}Updated extension?{/ts}
     </h1>
     <div id="help">
-        {ts}If you updated from an older version chances are you need to run a migration in your{/ts}
-        <a href="{crmURL p='civicrm/admin/extensions' q='reset=1'}">{ts}extension directory{/ts}</a>.
+      <p>{ts}If you updated from an older version, chances are you need to run a migration in your extension directory.{/ts}</p>
     </div>
-    <br>
-    <hr>
-    <br>
-    <h1>
-        {ts}Step 1: Provide an email message template{/ts}
-    </h1>
+    <h1>{ts}Step 1: Provide an email message template{/ts}</h1>
     <div id="help">
         {ts}Those can be found in:{/ts}<br>
         {ts}Topbar --> "Mailings" -->{/ts} "<a
@@ -54,10 +41,8 @@
             {ts}Step 2: Select a template{/ts}
         </h1>
         <div id="help">
-            {ts}Please select a previously created or edited template for birthday greeting emails.
-                <br>
-                Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}
-            <br>
+          <p>{ts}Please select a previously created or edited template for birthday greeting emails.{/ts}</p>
+          <p>{ts}Make sure to reload this page if your template is not listed here. Templates need to be activated before.{/ts}</p>
         </div>
         <div class="crm-section">
             <div class="label">{$form.message_template_id.label}</div>

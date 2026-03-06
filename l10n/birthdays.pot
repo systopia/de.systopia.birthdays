@@ -1,69 +1,50 @@
-# Copyright CiviCRM LLC (c) 2004-2015
-# This file is distributed under the same license as the CiviCRM package.
-# If you contribute heavily to a translation and deem your work copyrightable,
-# make sure you license it to CiviCRM LLC under Academic Free License 3.0.
-msgid ""
-msgstr ""
-"Project-Id-Version: de.systopia.birthdays\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: Bjoern Endres <Bjoern.Endres@didonai.com>\n"
-"Language-Team: SYSTOPIA <endres@systopia.de>\n"
-"Language: de_DE\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0.1\n"
-
 #: CRM/Birthdays/BirthdayContacts.php
 msgid "Default group called birthday_greeting_recipients_group not found: %1"
 msgstr ""
 
-#: CRM/Birthdays/Form/Report/Birthdays.mgd.php
-#: CRM/Birthdays/Form/Report/Birthdays.php
+#: CRM/Birthdays/Form/Report/Birthdays.mgd.php CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Birthday Report"
-msgstr "Geburtstagsreport"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.mgd.php
 msgid "Birthdays"
-msgstr "Geburtstage"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.mgd.php
 msgid "Report on upcoming birthdays"
-msgstr "Ein Report zu anstehenden Geburtstagen"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Contact Name"
-msgstr "Kontaktname"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Contact Type"
-msgstr "Kontaktart"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Contact Subtype"
-msgstr "Kontaktunterart"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "First Name"
-msgstr "Vorname"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Last Name"
-msgstr "Nachname"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Birth Date"
-msgstr "Geburtsdatum"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Birthday"
-msgstr "Geburtstag"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Age"
-msgstr "Alter"
+msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "Deceased"
@@ -71,7 +52,7 @@ msgstr ""
 
 #: CRM/Birthdays/Form/Report/Birthdays.php
 msgid "View Contact Summary for this Contact."
-msgstr "Diesen Kontakt ansehen."
+msgstr ""
 
 #: CRM/Birthdays/Form/Settings.php
 msgid "Send From"
@@ -106,8 +87,7 @@ msgid "FAILED birthday greeting mail"
 msgstr ""
 
 #: CRM/Birthdays/Mailer.php
-msgid ""
-"Failed sending an birthday greeting mail with template ID nr %1. Error: %2"
+msgid "Failed sending an birthday greeting mail with template ID nr %1. Error: %2"
 msgstr ""
 
 #: CRM/Birthdays/Tokens.php
@@ -115,9 +95,7 @@ msgid "Contact Age (Birthdays Extension)"
 msgstr ""
 
 #: Civi/Api4/Action/Birthdays/sendGreetings.php
-msgid ""
-"There are no contacts in the birthday group or there are contacts where no "
-"birth date is set."
+msgid "There are no contacts in the birthday group or there are contacts where no birth date is set."
 msgstr ""
 
 #: Civi/Api4/Action/Birthdays/sendGreetings.php
@@ -158,16 +136,14 @@ msgstr ""
 
 #: birthdays.php
 msgid "Birthday Settings"
-msgstr "Einstellungen für Geburtstage"
+msgstr ""
 
 #: managed/00_Group_birthdays_greeting_recipients.mgd.php
 msgid "Birthday greeting recipients group"
 msgstr ""
 
 #: managed/00_Group_birthdays_greeting_recipients.mgd.php
-msgid ""
-"Every contact in this group is elected to get birthday greetings via e-mail "
-"if birthday is set correctly"
+msgid "Every contact in this group is elected to get birthday greetings via e-mail if birthday is set correctly"
 msgstr ""
 
 #: settings/birthdays.setting.php
@@ -187,17 +163,11 @@ msgid "General"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"This open source extension allows you to build a report on upcoming "
-"birthdays and provides an API for sending birthday greetings automatically "
-"via e-mail."
+msgid "This open source extension allows you to build a report on upcoming birthdays and provides an API for sending birthday greetings automatically via e-mail."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Please note: With default settings no email will be sent after upgrading to "
-"this version. Mails only will be sent if triggering an APIv3 or APIv4 "
-"birthday action manually or using scheduled jobs."
+msgid "Please note: With default settings no email will be sent after upgrading to this version. Mails only will be sent if triggering an APIv3 or APIv4 birthday action manually or using scheduled jobs."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -205,9 +175,7 @@ msgid "Updated extension?"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"If you updated from an older version, chances are you need to run a "
-"migration in your extension directory."
+msgid "If you updated from an older version, chances are you need to run a migration in your extension directory."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -231,15 +199,11 @@ msgid "Step 2: Select a template"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Please select a previously created or edited template for birthday greeting "
-"emails."
+msgid "Please select a previously created or edited template for birthday greeting emails."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Make sure to reload this page if your template is not listed here. Templates "
-"need to be activated before."
+msgid "Make sure to reload this page if your template is not listed here. Templates need to be activated before."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -247,15 +211,11 @@ msgid "Step 3: Sender email preparation"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"This step is optional if you are happy with the provided options in the "
-"upcomming section."
+msgid "This step is optional if you are happy with the provided options in the upcomming section."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Those email addressed can be added using the topbar: \"Administer\" --> "
-"\"Administration Console\" -->"
+msgid "Those email addressed can be added using the topbar: \"Administer\" --> \"Administration Console\" -->"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -263,15 +223,11 @@ msgid "From Email Addresses"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Please talk to your sysadmin if there are additional steps needed in order "
-"to add emails there to avoid problems."
+msgid "Please talk to your sysadmin if there are additional steps needed in order to add emails there to avoid problems."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Check if this is a noreply address or if you would like to monitor this "
-"email inbox."
+msgid "Check if this is a noreply address or if you would like to monitor this email inbox."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -283,9 +239,7 @@ msgid "Please select an outgoing email address for birthday greeting emails."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"If this is empty please set up an email address as described in the previous "
-"section"
+msgid "If this is empty please set up an email address as described in the previous section"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -329,9 +283,7 @@ msgid "Step 6: Add some test contacts"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Keep section \"filter criteria\" above in mind and add some test contacts to "
-"the birthday greeting group and set their birthday to today."
+msgid "Keep section \"filter criteria\" above in mind and add some test contacts to the birthday greeting group and set their birthday to today."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -343,8 +295,7 @@ msgid "Manage Groups"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"This group was programatically created by this extension by installation."
+msgid "This group was programatically created by this extension by installation."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -352,9 +303,7 @@ msgid "Step 7: Automation using scheduled jobs"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Use the topbar to navigate to: \"Administer\" --> \"Administration Console\" "
-"-->"
+msgid "Use the topbar to navigate to: \"Administer\" --> \"Administration Console\" -->"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -378,9 +327,7 @@ msgid "Select \"Birthdays\" using the dropdown list"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Type \"sendgreetings\" (lowercase) into the textfield behind the dropdown "
-"list"
+msgid "Type \"sendgreetings\" (lowercase) into the textfield behind the dropdown list"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -424,16 +371,11 @@ msgid "Step 8a: Testing it by using scheduled jobs"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Check if you want to use the special debug mode described in the next "
-"chapter to avoid traces in\n"
-"            your system."
+msgid "Check if you want to use the special debug mode described in the next chapter to avoid traces in\n            your system."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Otherwise use the topbar to navigate to: \"Administer\" --> \"Administration "
-"Console\" -->"
+msgid "Otherwise use the topbar to navigate to: \"Administer\" --> \"Administration Console\" -->"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -445,22 +387,15 @@ msgid "Click: \"more\""
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Click: \"Execute Now\" <b>(Warning: <u>Actual emails</u> will be sent to the "
-"contacts email addresses if\n"
-"        everything works as expected!)</b>"
+msgid "Click: \"Execute Now\" <b>(Warning: <u>Actual emails</u> will be sent to the contacts email addresses if\n        everything works as expected!)</b>"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Your previously selected contacts should now receive an email with birthday "
-"greetings."
+msgid "Your previously selected contacts should now receive an email with birthday greetings."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Make sure to check what type of activity description had been added to your "
-"selected contacts."
+msgid "Make sure to check what type of activity description had been added to your selected contacts."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -481,7 +416,7 @@ msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
 msgid "Birthdays as your Entity"
-msgstr "Birthdays als Entität"
+msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
 msgid "sendGreetings as your Action"
@@ -508,8 +443,7 @@ msgid "true: \"successful\" or \"failed\" activities will be suppressed"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"false: \"successful\" or \"failed\" activities will be added to contacts"
+msgid "false: \"successful\" or \"failed\" activities will be added to contacts"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -517,15 +451,11 @@ msgid "text field"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Please add a real email address here. It will only be used for this testing "
-"session."
+msgid "Please add a real email address here. It will only be used for this testing session."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"For example set 'all-birthday-mails-go-to@this-domain.com' as your test "
-"email."
+msgid "For example set 'all-birthday-mails-go-to@this-domain.com' as your test email."
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -549,15 +479,11 @@ msgid "Step 9: Final activation"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"If previous tests were successful we can now activate it for automated "
-"sending:"
+msgid "If previous tests were successful we can now activate it for automated sending:"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
-msgid ""
-"Again use the topbar to navigate to: \"Administer\" --> \"Administration "
-"Console\" -->"
+msgid "Again use the topbar to navigate to: \"Administer\" --> \"Administration Console\" -->"
 msgstr ""
 
 #: templates/CRM/Birthdays/Form/Settings.tpl
@@ -611,3 +537,4 @@ msgstr ""
 #: templates/CRM/Birthdays/Form/Settings.tpl
 msgid "if they aren't listed there already."
 msgstr ""
+

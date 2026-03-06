@@ -68,8 +68,7 @@ final class sendGreetings extends \Civi\Api4\Generic\AbstractAction {
       if (!$birthday_contacts->groupHasBirthDateContacts()) {
         $result[] = [
           'error' => E::ts(
-            'There are no contacts in the birthday group or 
-                        there are contacts where no birth date is set.'
+            'There are no contacts in the birthday group or there are contacts where no birth date is set.'
           ),
         ];
       }
