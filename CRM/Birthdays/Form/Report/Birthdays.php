@@ -80,7 +80,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'title' => E::ts('Age'),
           ],
           'is_deceased' => [
-            'title' => E::ts('Verstorben?'),
+            'title' => E::ts('Deceased'),
             'type' => CRM_Utils_Type::T_BOOLEAN,
             'default' => FALSE,
           ],
@@ -112,7 +112,7 @@ class CRM_Birthdays_Form_Report_Birthdays extends CRM_Report_Form {
             'title' => E::ts('Contact Subtype'),
           ],
           'is_deceased' => [
-            'title' => E::ts('Verstorben?'),
+            'title' => E::ts('Deceased'),
           ],
         ],
         'grouping' => 'contact-fields',
